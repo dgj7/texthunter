@@ -20,3 +20,11 @@
 
 # virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
 hs_err_pid*
+
+# custom
+.idea/
+texthunter.iml
+th-ui/target/
+th-engine/target/
+th-ui/th-ui.iml
+th-engine/th-engine.iml
