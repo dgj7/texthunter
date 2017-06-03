@@ -6,6 +6,8 @@
     <version>0.0.1</version>
 	
 	<properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+
 		<junitversion>4.12</junitversion>
 		<log4jversion>1.2.17</log4jversion>
 		<compilersourceversion>1.7</compilersourceversion>
