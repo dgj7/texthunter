@@ -33,6 +33,8 @@ public class FileSetSearcher implements Runnable
 	private long _linesFound = 0;
 	private long _filesSearched = 0;
 	private long _filesSkipped = 0;
+
+	private volatile boolean cancelled = false;
 	
 	public FileSetSearcher(List<File> lstFiles, SearchConfiguration config, IStatusReporter reporter)
 	{
@@ -50,7 +52,10 @@ public class FileSetSearcher implements Runnable
 		logger.info("beginning search: " + Thread.currentThread().getName());
 		_threadStatus = ThreadStatus.running;
 		searchFiles(_lstFiles);
-		_threadStatus = ThreadStatus.completed;
+		if(ThreadStatus.cancelling.equals(_threadStatus))
+			_threadStatus = ThreadStatus.cancelled;
+		else
+			_threadStatus = ThreadStatus.completed;
 		this.reportStatus(null);
 		logger.info("completed search: " + Thread.currentThread().getName());
 	}
@@ -61,6 +66,9 @@ public class FileSetSearcher implements Runnable
 		
 		for(File file : lstFiles)
 		{
+			if(cancelled)
+				break;
+
 			this.reportStatus(file);
 			if(filePassesNameFilter(file.getName()))
 			{
@@ -89,7 +97,7 @@ public class FileSetSearcher implements Runnable
 			BufferedReader reader = new BufferedReader(new InputStreamReader(new FileInputStream(file)));
 			String line = null;
 			
-			while((line = reader.readLine()) != null)
+			while((line = reader.readLine()) != null && !cancelled)
 			{
 				searchLine(file, line, lineNumber);
 				lineNumber++;
@@ -225,5 +233,12 @@ public class FileSetSearcher implements Runnable
 		message.setThreadStatus(_threadStatus);
 		
 		_reporter.reportStatus(message);
+	}
+
+	public void requestCancel()
+	{
+		logger.info("cancel requested for set searcher...");
+		_threadStatus = ThreadStatus.cancelling;
+		cancelled = true;
 	}
 }

@@ -8,6 +8,7 @@ import com.dg.apps.th.engine.search.FileSearchLauncher;
 import com.dg.apps.th.engine.search.FileSearchStatusMessage;
 import com.dg.apps.th.engine.search.SearchConfiguration;
 import com.dg.apps.th.engine.threads.ThreadStatus;
+import com.dg.apps.th.ui.handler.CancelButtonHandler;
 import com.dg.apps.th.ui.tools.ReadOnlyDataTable;
 import com.dg.apps.th.ui.TextHunterConstants;
 import com.dg.apps.th.ui.handler.FileSearchStatusReporter;
@@ -35,6 +36,7 @@ public class SearchResultInternalFrame extends JInternalFrame
 	private JToolBar _tbrMain = null;
 	private JButton _btnCancel = null;
 	private JButton _btnExport = null;
+	private FileSearchLauncher _launcher = null;
 	
 	public SearchResultInternalFrame(SearchConfiguration config)
 	{
@@ -95,24 +97,25 @@ public class SearchResultInternalFrame extends JInternalFrame
 	private void addHandlers()
 	{
 		_btnExport.addActionListener(new ExportButtonHandler(this, _config));
+		_btnCancel.addActionListener(new CancelButtonHandler(this, _config));
 	}
 	
 	public ReadOnlyDataTable getTableReference()
 	{
 		return _tblResult;
 	}
+
+	public FileSearchLauncher getFileSearchLauncherReference()
+	{
+		return _launcher;
+	}
 	
 	public void launchSearch()
 	{
 		_reporter = new FileSearchStatusReporter(_tblResult, SearchResultInternalFrame.this);
 		_reporter.reportSuccess(null);
-		FileSearchLauncher launcher = new FileSearchLauncher(_config, _reporter);
-		(new Thread(launcher)).start();
-	}
-	
-	public void updateUIForThreadLaunch()
-	{
-		//
+		_launcher = new FileSearchLauncher(_config, _reporter);
+		(new Thread(_launcher)).start();
 	}
 	
 	public void updateUIForThreadCompletion()

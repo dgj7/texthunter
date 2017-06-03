@@ -6,6 +6,8 @@ import com.dg.apps.th.engine.enumeration.IFilesystemEnumerator;
 import com.dg.apps.th.engine.threads.IStatusReporter;
 import com.dg.apps.th.engine.util.CollectionUtility;
 import org.apache.log4j.Logger;
+
+import java.util.LinkedList;
 import java.util.List;
 import java.util.ArrayList;
 import java.util.Collection;
@@ -14,32 +16,34 @@ import java.lang.Thread;
 
 public class FileSearchLauncher implements Runnable
 {
-	private Logger logger = Logger.getLogger(FileSearchLauncher.class);
+	private Logger _logger = Logger.getLogger(FileSearchLauncher.class);
 	private SearchConfiguration _config = null;
 	private IStatusReporter _reporter = null;
 	private volatile List<Thread> _lstThreads = null;
+	private volatile List<FileSetSearcher> _lstSearcher = null;
 	
-	IFilesystemEnumerator filesystemEnumerator = null;
+	private IFilesystemEnumerator _filesystemEnumerator = null;
 	
 	public FileSearchLauncher(SearchConfiguration config, IStatusReporter reporter)
 	{
-		logger.trace("begin FileSearchLauncher c'tor - " + config.toString());
+		_logger.trace("begin FileSearchLauncher c'tor - " + config.toString());
 		_config = config;
 		_reporter = reporter;
 		_lstThreads = new ArrayList<Thread>(0);
-		filesystemEnumerator = FilesystemEnumeratorFactory.getFilesystemEnumerator(_config.isRecursingSubdirectories());
+		_lstSearcher = new LinkedList<FileSetSearcher>();
+		_filesystemEnumerator = FilesystemEnumeratorFactory.getFilesystemEnumerator(_config.isRecursingSubdirectories());
 		
-		logger.trace("end FileSearchLauncher c'tor");
+		_logger.trace("end FileSearchLauncher c'tor");
 	}
 	
 	public void run()
 	{
 		try
 		{
-			logger.info("launching search with: " + _config.toString());
+			_logger.info("launching search with: " + _config.toString());
 		
-			List<File> lstFiles = filesystemEnumerator.enumerateAllFiles(_config.getPathString());
-			logger.debug("found " + lstFiles.size() + " files to search");
+			List<File> lstFiles = _filesystemEnumerator.enumerateAllFiles(_config.getPathString());
+			_logger.debug("found " + lstFiles.size() + " files to search");
 			
 			// temporary
 			int threadCount = 4;
@@ -61,6 +65,7 @@ public class FileSearchLauncher implements Runnable
 				Thread thread = new Thread(searcher);
 				thread.start();
 				_lstThreads.add(thread);
+				_lstSearcher.add(searcher);
 			}
 			
 			while(!this.allThreadsCompleted())
@@ -71,12 +76,12 @@ public class FileSearchLauncher implements Runnable
 				}
 				catch(InterruptedException iex)
 				{
-					logger.error("caught interrupted exception...");
+					_logger.error("caught interrupted exception...");
 				}
 			}
 			
 			_reporter.reportCompletion();
-			logger.info("search completed.");
+			_logger.info("search completed.");
 		}
 		catch(FilesystemEnumerationException fsex)
 		{
@@ -97,5 +102,14 @@ public class FileSearchLauncher implements Runnable
 		}
 		
 		return completed;
+	}
+
+	public void requestCancel()
+	{
+		_logger.info("requested cancel...");
+		for(FileSetSearcher searcher : _lstSearcher)
+		{
+			searcher.requestCancel();
+		}
 	}
 }
