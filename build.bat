@@ -1,5 +1,4 @@
 @echo off
 cls
 
-call mvn clean
-call mvn package
+call mvnw clean package

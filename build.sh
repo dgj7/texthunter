@@ -1,3 +1,2 @@
 #!/bin/sh
-mvn clean
-mvn package
+./mvnw clean package
