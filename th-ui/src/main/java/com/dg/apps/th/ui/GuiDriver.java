@@ -10,8 +10,8 @@ import com.dg.apps.th.ui.tools.JTextAreaAppender;
 
 public class GuiDriver
 {
-	private static Logger logger = Logger.getLogger(GuiDriver.class);
-	private static JTextAreaAppender appender = new JTextAreaAppender();
+	private static final Logger logger = Logger.getLogger(GuiDriver.class);
+	private static final JTextAreaAppender appender = new JTextAreaAppender();
 	
 	public static void main(String []args)
 	{
