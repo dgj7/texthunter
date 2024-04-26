@@ -2,7 +2,7 @@
 
 # build the app (maybe)
 if [ ! -f th-ui/target/th-ui-0.0.1-jar-with-dependencies.jar ]; then
-    ./build-silent.sh
+    ./silent.sh
 else
     printf "no build needed, skipping.\n"
 fi
