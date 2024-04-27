@@ -1,8 +1,8 @@
 package com.dg.apps.th.engine.util;
 
-import com.dg.apps.th.engine.enumeration.FilesystemEnumerationException;
-import com.dg.apps.th.engine.enumeration.FilesystemEnumerator;
-import com.dg.apps.th.engine.enumeration.RecursiveFilesystemEnumerator;
+import com.dg.apps.th.model.exc.FilesystemEnumerationException;
+import com.dg.apps.th.engine.enumeration.impl.FilesystemEnumerator;
+import com.dg.apps.th.engine.enumeration.impl.RecursiveFilesystemEnumerator;
 
 import java.io.File;
 import java.util.List;

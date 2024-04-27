@@ -1,6 +1,6 @@
 package com.dg.apps.th.engine.search;
 
-import com.dg.apps.th.engine.enumeration.FilesystemEnumerationConfiguration;
+import com.dg.apps.th.model.config.FilesystemEnumerationConfiguration;
 
 public class SearchConstants {
     public static final String SEARCH_STRING_VALUE_DEFAULT = "";

@@ -1,6 +1,6 @@
 package com.dg.apps.th.engine.search;
 
-import com.dg.apps.th.engine.enumeration.FilesystemEnumerationException;
+import com.dg.apps.th.model.exc.FilesystemEnumerationException;
 import com.dg.apps.th.engine.enumeration.FilesystemEnumeratorFactory;
 import com.dg.apps.th.engine.enumeration.IFilesystemEnumerator;
 import com.dg.apps.th.engine.threads.IStatusReporter;

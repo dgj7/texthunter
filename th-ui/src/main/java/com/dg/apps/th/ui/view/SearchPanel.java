@@ -86,7 +86,7 @@ public class SearchPanel extends JPanel {
         _chkRegex.setSelected(SearchConstants.REGEX_SEARCH_VALUE_DEFAULT);
         _txtPath.setText(System.getProperty(TextHunterConstants.DEFAULT_PATH_SYSTEM_PROPERTY));
         _txtPath.setEnabled(false);
-        _chkSubdirs.setSelected(SearchConstants.RECURSE_SUBDIRECTORIES_VALUE_DEFAULT.getConfiguration());
+        _chkSubdirs.setSelected(SearchConstants.RECURSE_SUBDIRECTORIES_VALUE_DEFAULT.isConfiguration());
         _txtFilter.setEnabled(false);
         _chkFilterRegex.setEnabled(false);
         _btnSearch.setEnabled(false);

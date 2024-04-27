@@ -1,6 +1,6 @@
 package com.dg.apps.th.engine.search;
 
-import com.dg.apps.th.engine.enumeration.FilesystemEnumerationConfiguration;
+import com.dg.apps.th.model.config.FilesystemEnumerationConfiguration;
 import com.dg.apps.th.engine.util.BooleanUtility;
 
 import java.util.regex.Pattern;
