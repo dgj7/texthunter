@@ -1,4 +1,12 @@
-# texthunter
-[![Build Status](https://travis-ci.org/dgarcia7/texthunter.svg?branch=master)](https://github.com/dgarcia7/texthunter)
-
+# Texthunter
+## Purpose
 A desktop file search application.
+
+## Todo
+* versioning
+* final variables
+* intermediary `th-model` project, used by each of `th-engine` and `th-ui` modules; will contain
+  * main search interface, and potentially factory
+  * search configuration pojos
+
+---
