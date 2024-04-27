@@ -2,8 +2,8 @@ package com.dg.apps.th.ui.handler;
 
 import com.dg.apps.th.model.status.FileSearchStatusMessage;
 import com.dg.apps.th.model.status.FileSearchSuccessMessage;
-import com.dg.apps.th.engine.threads.AbstractStatusMessage;
-import com.dg.apps.th.engine.threads.AbstractSuccessMessage;
+import com.dg.apps.th.model.status.AbstractStatusMessage;
+import com.dg.apps.th.model.status.AbstractSuccessMessage;
 import com.dg.apps.th.engine.threads.IStatusReporter;
 import com.dg.apps.th.ui.tools.ReadOnlyDataTable;
 import com.dg.apps.th.ui.view.SearchResultInternalFrame;
@@ -12,6 +12,7 @@ import lombok.extern.slf4j.Slf4j;
 import java.awt.*;
 import java.util.Vector;
 
+// todo: move this back into the engine project by utilising some kind of callback interface (and/or adapter)
 @Slf4j
 public class FileSearchStatusReporter implements IStatusReporter {
     private ReadOnlyDataTable _tableRef = null;

@@ -1,6 +1,5 @@
 package com.dg.apps.th.model.status;
 
-import com.dg.apps.th.engine.threads.AbstractSuccessMessage;
 import lombok.Getter;
 import lombok.Setter;
 

@@ -3,7 +3,7 @@ package com.dg.apps.th.engine.search.content;
 import com.dg.apps.th.engine.search.FileSearchFactory;
 import com.dg.apps.th.engine.threads.IStatusReporter;
 import com.dg.apps.th.engine.threads.StatusReporterFactory;
-import com.dg.apps.th.engine.threads.ThreadStatus;
+import com.dg.apps.th.model.def.ThreadStatus;
 import com.dg.apps.th.model.config.SearchConfiguration;
 import com.dg.apps.th.model.status.FileSearchStatusMessage;
 import com.dg.apps.th.model.status.FileSearchSuccessMessage;

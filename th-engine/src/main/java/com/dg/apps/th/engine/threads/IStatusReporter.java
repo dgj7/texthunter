@@ -1,17 +1,36 @@
 package com.dg.apps.th.engine.threads;
 
 
+import com.dg.apps.th.model.status.AbstractStatusMessage;
+import com.dg.apps.th.model.status.AbstractSuccessMessage;
+
 /**
- * Status reporter class intended to be an interface for threads to deliver
- * messages to an output stream.  For example, a thread may want to incrementally
- * report it's status to some output medium (like a text box or console).
+ * <p>
+ * API for threads to deliver messages to some output stream.
+ * </p>
+ * <p>
+ * For example, a thread may want to incrementally report it's status
+ * to some output medium (like a text box or console).
+ * </p>
  */
 public interface IStatusReporter {
-    public void reportSuccess(AbstractSuccessMessage message);
+    /**
+     * Report success.
+     */
+    void reportSuccess(final AbstractSuccessMessage message);
 
-    public void reportStatus(AbstractStatusMessage message);
+    /**
+     * Report status.
+     */
+    void reportStatus(final AbstractStatusMessage message);
 
-    public void reportCompletion();
+    /**
+     * Report completion.
+     */
+    void reportCompletion();
 
-    public void reportCancellation();
+    /**
+     * Report cancellation.
+     */
+    void reportCancellation();
 }

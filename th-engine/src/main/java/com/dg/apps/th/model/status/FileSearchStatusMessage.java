@@ -1,7 +1,6 @@
 package com.dg.apps.th.model.status;
 
-import com.dg.apps.th.engine.threads.AbstractStatusMessage;
-import com.dg.apps.th.engine.threads.ThreadStatus;
+import com.dg.apps.th.model.def.ThreadStatus;
 import lombok.Getter;
 import lombok.Setter;
 
