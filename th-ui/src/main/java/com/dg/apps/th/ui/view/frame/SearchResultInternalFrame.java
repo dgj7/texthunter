@@ -25,17 +25,19 @@ import java.util.Map;
  */
 @Slf4j
 public class SearchResultInternalFrame extends JInternalFrame implements ILabelAdapter, ISearchAware, IDataTableAware {
-    static int openFrameCount = 0;
-    private volatile JLabel lblStatus = null;
-    private volatile ReadOnlyDataTable tblResult = null;
-    private volatile SearchConfiguration config;
-    private volatile IStatusReporter reporter = null;
-    private volatile Map<String, FileSearchStatusMessage> mapSearchStatus = null;
-    private JPanel pnlTop = null;
-    private JToolBar tbrMain = null;
-    private JButton btnCancel = null;
-    private JButton btnExport = null;
-    private FileSearchLauncher launcher = null;
+    private static int openFrameCount = 0;
+
+    private final JLabel lblStatus;
+    private final ReadOnlyDataTable tblResult;
+    private final SearchConfiguration config;
+    private final Map<String, FileSearchStatusMessage> mapSearchStatus;
+    private final JPanel pnlTop;
+    private final JToolBar tbrMain;
+    private final JButton btnCancel;
+    private final JButton btnExport;
+
+    private FileSearchLauncher launcher;
+    private IStatusReporter reporter;
 
     /**
      * Create a new instance.
@@ -50,7 +52,7 @@ public class SearchResultInternalFrame extends JInternalFrame implements ILabelA
 
         openFrameCount++;
         config = pConfig;
-        mapSearchStatus = new HashMap<String, FileSearchStatusMessage>();
+        mapSearchStatus = new HashMap<>();
 
         /* initialize */
         lblStatus = new JLabel(TextHunterConstants.DEFAULT_SEARCH_LABEL_TEXT);

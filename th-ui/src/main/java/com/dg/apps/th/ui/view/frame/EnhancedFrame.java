@@ -6,35 +6,35 @@ import java.awt.*;
 /**
  * An attempt at a better {@link JFrame}.
  */
-public class EnhancedFrame extends JFrame {
+public abstract class EnhancedFrame extends JFrame {
     private static final int DEFAULT_WIDTH = 100;
     private static final int DEFAULT_HEIGHT = 100;
 
     /**
      * Create a new instance.
      */
-    public EnhancedFrame() {
+    protected EnhancedFrame() {
         this.construct("", DEFAULT_WIDTH, DEFAULT_HEIGHT, null);
     }
 
     /**
      * Create a new instance.
      */
-    public EnhancedFrame(String title) {
+    protected EnhancedFrame(final String title) {
         this.construct(title, DEFAULT_WIDTH, DEFAULT_HEIGHT, null);
     }
 
     /**
      * Create a new instance.
      */
-    public EnhancedFrame(final String title, final int width, final int height) {
+    protected EnhancedFrame(final String title, final int width, final int height) {
         this.construct(title, width, height, null);
     }
 
     /**
      * Create a new instance.
      */
-    public EnhancedFrame(final String title, final int width, final int height, final LayoutManager layout) {
+    protected EnhancedFrame(final String title, final int width, final int height, final LayoutManager layout) {
         this.construct(title, width, height, layout);
     }
 
