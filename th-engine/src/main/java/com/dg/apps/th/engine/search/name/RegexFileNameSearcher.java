@@ -3,11 +3,12 @@ package com.dg.apps.th.engine.search.name;
 import java.io.File;
 
 import com.dg.apps.th.engine.search.SearchConfiguration;
-import org.apache.log4j.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class RegexFileNameSearcher implements IFileNameSearcher
 {
-	private Logger logger = Logger.getLogger(RegexFileNameSearcher.class);
+	private final Logger logger = LoggerFactory.getLogger(RegexFileNameSearcher.class);
 	private static RegexFileNameSearcher instance = null;
 	
 	private RegexFileNameSearcher()

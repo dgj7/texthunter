@@ -4,13 +4,15 @@ import java.io.File;
 
 import com.dg.apps.th.engine.search.SearchConfiguration;
 import com.dg.apps.th.engine.util.FileUtility;
-import org.apache.log4j.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import java.util.regex.Pattern;
 import java.util.regex.Matcher;
 
 public class RegexFileNameFilterer implements IFileNameFilterer
 {
-	private Logger logger = Logger.getLogger(RegexFileNameFilterer.class);
+	private final Logger logger = LoggerFactory.getLogger(RegexFileNameFilterer.class);
 	private static RegexFileNameFilterer instance = null;
 	
 	private RegexFileNameFilterer()

@@ -5,7 +5,8 @@ import com.dg.apps.th.engine.enumeration.FilesystemEnumeratorFactory;
 import com.dg.apps.th.engine.enumeration.IFilesystemEnumerator;
 import com.dg.apps.th.engine.threads.IStatusReporter;
 import com.dg.apps.th.engine.util.CollectionUtility;
-import org.apache.log4j.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.util.LinkedList;
 import java.util.List;
@@ -16,7 +17,7 @@ import java.lang.Thread;
 
 public class FileSearchLauncher implements Runnable
 {
-	private Logger _logger = Logger.getLogger(FileSearchLauncher.class);
+	private final Logger _logger = LoggerFactory.getLogger(FileSearchLauncher.class);
 	private SearchConfiguration _config = null;
 	private IStatusReporter _reporter = null;
 	private volatile List<Thread> _lstThreads = null;

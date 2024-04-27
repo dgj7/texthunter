@@ -4,7 +4,7 @@ import java.awt.Font;
 
 public class TextHunterConstants
 {
-	public static final String LOGGER_PATTERN = "%-6.6p %-12.12t %24.24d{HH:mm:ss.SSS-MM/dd/yyyy} %-40.40c %m%n";
+	public static final String LOGGER_PATTERN = "%d{HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n";
 	public static final String LOGGER_FONT_NAME = "Courier New";
 	public static final int LOGGER_FONT_STYLE = Font.PLAIN;
 	public static final int LOGGER_FONT_SIZE = 12;

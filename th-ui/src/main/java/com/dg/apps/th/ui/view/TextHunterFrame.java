@@ -1,19 +1,14 @@
 package com.dg.apps.th.ui.view;
 
-import javax.swing.JTextArea;
-import java.awt.BorderLayout;
-
-import com.dg.apps.th.ui.tools.EnhancedFrame;
-import org.apache.log4j.Logger;
-import javax.swing.JToolBar;
-import javax.swing.JPanel;
-import javax.swing.JButton;
-import javax.swing.JTabbedPane;
-import com.dg.apps.th.ui.view.DebugPanel;
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
 import com.dg.apps.th.ui.TextHunterConstants;
+import com.dg.apps.th.ui.tools.EnhancedFrame;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
+import javax.swing.*;
+import java.awt.*;
+
+// todo: potentially add lombok
 public class TextHunterFrame extends EnhancedFrame
 {
 	private JPanel _pnlMain = null;
@@ -22,8 +17,8 @@ public class TextHunterFrame extends EnhancedFrame
 	private DebugPanel _pnlDebug = null;
 	private SearchPanel _pnlSearch = null;
 	private JPanel _pnlOptions = null;
-	
-	private Logger logger = Logger.getLogger(TextHunterFrame.class);
+
+	private final Logger logger = LoggerFactory.getLogger(TextHunterFrame.class);
 	
 	public TextHunterFrame()
 	{

@@ -6,14 +6,15 @@ import com.dg.apps.th.engine.threads.AbstractStatusMessage;
 import com.dg.apps.th.engine.threads.AbstractSuccessMessage;
 import com.dg.apps.th.engine.threads.IStatusReporter;
 import com.dg.apps.th.ui.tools.ReadOnlyDataTable;
-import org.apache.log4j.Logger;
 import java.util.Vector;
 import java.awt.Component;
 import com.dg.apps.th.ui.view.SearchResultInternalFrame;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class FileSearchStatusReporter implements IStatusReporter
 {
-	private Logger logger = Logger.getLogger(FileSearchStatusReporter.class);
+	private final Logger logger = LoggerFactory.getLogger(FileSearchStatusReporter.class);
 	private ReadOnlyDataTable _tableRef = null;
 	private Component _parent = null;
 	

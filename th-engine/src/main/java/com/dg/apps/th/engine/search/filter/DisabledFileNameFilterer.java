@@ -3,12 +3,13 @@ package com.dg.apps.th.engine.search.filter;
 import java.io.File;
 
 import com.dg.apps.th.engine.search.SearchConfiguration;
-import org.apache.log4j.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class DisabledFileNameFilterer implements IFileNameFilterer
 {
 	private static DisabledFileNameFilterer instance = null;
-	private Logger logger = Logger.getLogger(DisabledFileNameFilterer.class);
+	private final Logger logger = LoggerFactory.getLogger(DisabledFileNameFilterer.class);
 	
 	private DisabledFileNameFilterer()
 	{

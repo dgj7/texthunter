@@ -4,12 +4,14 @@ import java.util.List;
 import java.util.ArrayList;
 
 import com.dg.apps.th.engine.util.FileUtility;
-import org.apache.log4j.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import java.io.File;
 
 public class RecursiveFilesystemEnumerator extends AbstractFilesystemEnumerator implements IFilesystemEnumerator
 {
-	private Logger logger = Logger.getLogger(RecursiveFilesystemEnumerator.class);
+	private final Logger logger = LoggerFactory.getLogger(RecursiveFilesystemEnumerator.class);
 	private static RecursiveFilesystemEnumerator instance = null;
 	
 	private RecursiveFilesystemEnumerator()

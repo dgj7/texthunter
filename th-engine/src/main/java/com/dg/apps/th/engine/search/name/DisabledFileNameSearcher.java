@@ -1,13 +1,14 @@
 package com.dg.apps.th.engine.search.name;
 
-import java.io.File;
-
 import com.dg.apps.th.engine.search.SearchConfiguration;
-import org.apache.log4j.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+import java.io.File;
 
 public class DisabledFileNameSearcher implements IFileNameSearcher
 {
-	private Logger logger = Logger.getLogger(DisabledFileNameSearcher.class);
+	private final Logger logger = LoggerFactory.getLogger(DisabledFileNameSearcher.class);
 	private static DisabledFileNameSearcher instance = null;
 	
 	private DisabledFileNameSearcher()

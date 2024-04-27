@@ -1,74 +1,52 @@
 package com.dg.apps.th.ui.tools;
 
-import org.apache.log4j.AppenderSkeleton;
-import org.apache.log4j.spi.LoggingEvent;
-import org.apache.log4j.spi.ErrorCode;
-import javax.swing.JTextArea;
+import ch.qos.logback.classic.spi.ILoggingEvent;
+import ch.qos.logback.core.AppenderBase;
+
+import javax.swing.*;
 import java.util.ArrayList;
 import java.util.List;
-import org.apache.log4j.Level;
 
-public class JTextAreaAppender extends AppenderSkeleton
+public class JTextAreaAppender extends AppenderBase<ILoggingEvent>
 {
-	private JTextArea _txtArea = null;
-	List<LoggingEvent> _lstQueue = new ArrayList<LoggingEvent>();
-	
-	public JTextAreaAppender()
-	{
+	private JTextArea _txtArea;
+
+	private final List<ILoggingEvent> _lstQueue = new ArrayList<>();
+
+	public JTextAreaAppender() {
 		this(null);
 	}
 	
 	public JTextAreaAppender(JTextArea txtArea)
 	{
 		_txtArea = txtArea;
-		this.name = "JTextAreaAppender";
-		this.setThreshold(Level.ALL);
+		this.name = this.getClass().getSimpleName();
+		super.start();
 	}
-	
-	public void setTextArea(JTextArea txtArea)
-	{
-		_txtArea = txtArea;
+
+	public void setTextArea(final JTextArea input) {
+		this._txtArea = input;
 	}
-	
-	@Override public void append(LoggingEvent event)
-	{
-		//System.out.println("received message: " + event.getMessage());
-		
-		if(this.layout == null)
-		{
-			//errorHandler.error("No layout for appender " + name, null, ErrorCode.MISSING_LAYOUT);
-			_lstQueue.add(event);
-			return;
-		}
-		
+
+	@Override
+	protected void append(final ILoggingEvent event) {
 		if(this._txtArea == null)
 		{
-			//errorHandler.error("No layout for appender " + name, null, ErrorCode.GENERIC_FAILURE);
 			_lstQueue.add(event);
 			return;
 		}
-		
-		if(_lstQueue.size() > 0)
+
+		if(!_lstQueue.isEmpty())
 		{
-			for(LoggingEvent e : _lstQueue)
+			for(ILoggingEvent queuedEvent : _lstQueue)
 			{
-				String m = this.layout.format(e);
-				_txtArea.append("{QUEUED}    " + m);
+				final String queuedMessage = queuedEvent.getFormattedMessage();
+				_txtArea.append("{QUEUED}    " + queuedMessage + "\n");
 			}
 			_lstQueue.clear();
 		}
-		
-		String message = this.layout.format(event);
-		_txtArea.append("{REALTIME}  " + message);
-	}
-	
-	@Override public boolean requiresLayout()
-	{
-		return true;
-	}
-	
-	@Override public void close()
-	{
-		_lstQueue = null;
+
+		final String message = event.getFormattedMessage();
+		_txtArea.append("{REALTIME}  " + message + "\n");
 	}
 }

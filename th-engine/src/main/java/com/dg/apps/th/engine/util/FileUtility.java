@@ -1,16 +1,17 @@
 package com.dg.apps.th.engine.util;
 
-import java.io.File;
-import java.util.List;
-
 import com.dg.apps.th.engine.enumeration.FilesystemEnumerationException;
 import com.dg.apps.th.engine.enumeration.FilesystemEnumerator;
 import com.dg.apps.th.engine.enumeration.RecursiveFilesystemEnumerator;
-import org.apache.log4j.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+import java.io.File;
+import java.util.List;
 
 public class FileUtility
 {
-	private static Logger logger = Logger.getLogger(FileUtility.class);
+	private final Logger logger = LoggerFactory.getLogger(FileUtility.class);
 	
 	public static String getAbsoluteFilePath(File file)
 	{

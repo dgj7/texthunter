@@ -3,14 +3,16 @@ package com.dg.apps.th.engine.enumeration;
 import java.io.File;
 
 import com.dg.apps.th.engine.util.FileUtility;
-import org.apache.log4j.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import java.util.List;
 import java.util.ArrayList;
 import java.util.Arrays;
 
 public abstract class AbstractFilesystemEnumerator
 {
-	private Logger logger = Logger.getLogger(AbstractFilesystemEnumerator.class);
+	private final Logger logger = LoggerFactory.getLogger(AbstractFilesystemEnumerator.class);
 	
 	protected boolean isValidDirectoryName(String directoryName)
 	{

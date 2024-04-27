@@ -13,8 +13,9 @@ import javax.swing.JButton;
 
 import com.dg.apps.th.engine.search.SearchConfiguration;
 import com.dg.apps.th.engine.search.SearchConstants;
-import org.apache.log4j.Logger;
 import com.dg.apps.th.ui.TextHunterConstants;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
@@ -52,8 +53,8 @@ public class SearchPanel extends JPanel
 	private volatile JTextField _txtFilter = null;
 	
 	private JDesktopPane _pnlOutput = null;
-	
-	private Logger logger = Logger.getLogger(SearchPanel.class);
+
+	private final Logger logger = LoggerFactory.getLogger(SearchPanel.class);
 	
 	public SearchPanel()
 	{

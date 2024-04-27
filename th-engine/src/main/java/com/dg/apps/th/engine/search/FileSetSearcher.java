@@ -7,11 +7,11 @@ import java.lang.Runnable;
 import com.dg.apps.th.engine.threads.IStatusReporter;
 import com.dg.apps.th.engine.threads.StatusReporterFactory;
 import com.dg.apps.th.engine.threads.ThreadStatus;
-import org.apache.log4j.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import java.io.BufferedReader;
-import java.util.ArrayList;
 import java.io.InputStreamReader;
-import java.io.BufferedReader;
 import java.io.FileInputStream;
 import java.util.regex.Pattern;
 import java.util.regex.Matcher;
@@ -24,7 +24,7 @@ public class FileSetSearcher implements Runnable
 	private List<File> _lstFiles = null;
 	private SearchConfiguration _config = null;
 	private volatile ThreadStatus _threadStatus = ThreadStatus.idle;
-	private Logger logger = Logger.getLogger(FileSetSearcher.class);
+	private final Logger logger = LoggerFactory.getLogger(FileSetSearcher.class);
 	private FileSearchStatusMessage _status = new FileSearchStatusMessage();
 	private Pattern _pattern = null;
 	private Pattern _fileNamePattern = null;

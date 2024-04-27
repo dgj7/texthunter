@@ -5,11 +5,12 @@ import java.io.File;
 import com.dg.apps.th.engine.search.SearchConfiguration;
 import com.dg.apps.th.engine.util.FileUtility;
 import com.dg.apps.th.engine.util.StringUtility;
-import org.apache.log4j.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class CaseInsensitiveFileNameSearcher implements IFileNameSearcher
 {
-	private Logger logger = Logger.getLogger(CaseInsensitiveFileNameSearcher.class);
+	private final Logger logger = LoggerFactory.getLogger(CaseInsensitiveFileNameSearcher.class);
 	private static CaseInsensitiveFileNameSearcher instance = null;
 	
 	private CaseInsensitiveFileNameSearcher()

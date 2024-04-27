@@ -13,7 +13,6 @@ import com.dg.apps.th.ui.tools.ReadOnlyDataTable;
 import com.dg.apps.th.ui.TextHunterConstants;
 import com.dg.apps.th.ui.handler.FileSearchStatusReporter;
 import com.dg.apps.th.engine.threads.IStatusReporter;
-import org.apache.log4j.Logger;
 import java.lang.Thread;
 import java.util.HashMap;
 import java.util.Map;
@@ -21,10 +20,12 @@ import javax.swing.JToolBar;
 import javax.swing.JPanel;
 import javax.swing.JButton;
 import com.dg.apps.th.ui.handler.ExportButtonHandler;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class SearchResultInternalFrame extends JInternalFrame
 {
-	Logger logger = Logger.getLogger(SearchResultInternalFrame.class);
+	private final Logger logger = LoggerFactory.getLogger(SearchResultInternalFrame.class);
 	
 	static int openFrameCount = 0;
 	private volatile JLabel _lblStatus = null;

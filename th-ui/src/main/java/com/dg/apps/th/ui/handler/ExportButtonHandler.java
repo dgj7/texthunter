@@ -5,18 +5,20 @@ import java.awt.event.ActionEvent;
 
 import com.dg.apps.th.engine.search.SearchConfiguration;
 import com.dg.apps.th.ui.tools.ReadOnlyDataTable;
-import org.apache.log4j.Logger;
 import javax.swing.JFileChooser;
 import java.io.File;
 import com.dg.apps.th.ui.TextHunterConstants;
 import java.awt.Component;
 import com.dg.apps.th.ui.view.SearchResultInternalFrame;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import java.io.PrintWriter;
 import java.lang.Thread;
 
 public class ExportButtonHandler implements ActionListener
 {
-	private Logger logger = Logger.getLogger(ExportButtonHandler.class);
+	private final Logger logger = LoggerFactory.getLogger(ExportButtonHandler.class);
 	private Component _parent = null;
 	private SearchConfiguration _config = null;
 	

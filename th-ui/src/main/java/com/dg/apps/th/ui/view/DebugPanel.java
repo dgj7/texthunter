@@ -1,15 +1,15 @@
 package com.dg.apps.th.ui.view;
 
 import javax.swing.*;
-import java.awt.Font;
 import java.awt.Component;
-import org.apache.log4j.Logger;
 import javax.swing.text.DefaultCaret;
 import com.dg.apps.th.ui.TextHunterConstants;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class DebugPanel extends JPanel
 {
-	private Logger logger = Logger.getLogger(DebugPanel.class);
+	private final Logger logger = LoggerFactory.getLogger(DebugPanel.class);
 	private JScrollPane _pane = null;
 	private JTextArea _txtDebug = null;
 	
