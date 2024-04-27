@@ -1,7 +1,7 @@
 package com.dg.apps.th.ui.handler;
 
-import com.dg.apps.th.engine.search.FileSearchLauncher;
-import com.dg.apps.th.engine.search.SearchConfiguration;
+import com.dg.apps.th.engine.search.content.FileSearchLauncher;
+import com.dg.apps.th.model.config.SearchConfiguration;
 import com.dg.apps.th.ui.view.SearchResultInternalFrame;
 
 import java.awt.*;

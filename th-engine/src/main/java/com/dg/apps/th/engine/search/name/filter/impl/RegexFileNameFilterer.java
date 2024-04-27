@@ -1,9 +1,8 @@
 package com.dg.apps.th.engine.search.name.filter.impl;
 
-import com.dg.apps.th.engine.search.SearchConfiguration;
 import com.dg.apps.th.engine.search.name.filter.IFileNameFilterer;
 import com.dg.apps.th.engine.util.FileUtility;
-import com.dg.apps.th.model.Constants;
+import com.dg.apps.th.model.config.SearchConfiguration;
 import com.dg.apps.th.model.def.FileNameFilterResult;
 
 import java.io.File;
@@ -20,7 +19,7 @@ public class RegexFileNameFilterer implements IFileNameFilterer {
      * Create a new instance.
      */
     private RegexFileNameFilterer() {
-        throw new UnsupportedOperationException(Constants.DO_NOT_INSTANTIATE);
+        // only allowed internally
     }
 
     /**

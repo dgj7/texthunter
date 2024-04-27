@@ -1,6 +1,6 @@
 package com.dg.apps.th.engine.search.name.filter;
 
-import com.dg.apps.th.engine.search.SearchConfiguration;
+import com.dg.apps.th.model.config.SearchConfiguration;
 import com.dg.apps.th.model.def.FileNameFilterResult;
 
 import java.io.File;

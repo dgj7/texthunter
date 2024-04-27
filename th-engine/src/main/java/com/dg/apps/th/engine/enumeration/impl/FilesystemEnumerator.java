@@ -21,7 +21,7 @@ public class FilesystemEnumerator extends AbstractFilesystemEnumerator implement
      * Create a new instance.
      */
     private FilesystemEnumerator() {
-        throw new UnsupportedOperationException(Constants.DO_NOT_INSTANTIATE);
+        // only allowed internally
     }
 
     /**

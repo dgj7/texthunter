@@ -1,7 +1,7 @@
 package com.dg.apps.th.ui.handler;
 
-import com.dg.apps.th.engine.search.FileSearchStatusMessage;
-import com.dg.apps.th.engine.search.FileSearchSuccessMessage;
+import com.dg.apps.th.model.status.FileSearchStatusMessage;
+import com.dg.apps.th.model.status.FileSearchSuccessMessage;
 import com.dg.apps.th.engine.threads.AbstractStatusMessage;
 import com.dg.apps.th.engine.threads.AbstractSuccessMessage;
 import com.dg.apps.th.engine.threads.IStatusReporter;

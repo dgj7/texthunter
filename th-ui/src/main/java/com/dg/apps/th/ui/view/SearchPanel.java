@@ -1,7 +1,7 @@
 package com.dg.apps.th.ui.view;
 
-import com.dg.apps.th.engine.search.SearchConfiguration;
-import com.dg.apps.th.engine.search.SearchConstants;
+import com.dg.apps.th.model.Constants;
+import com.dg.apps.th.model.config.SearchConfiguration;
 import com.dg.apps.th.ui.TextHunterConstants;
 import lombok.extern.slf4j.Slf4j;
 
@@ -81,12 +81,12 @@ public class SearchPanel extends JPanel {
         _tbrPath.setFloatable(TextHunterConstants.MAIN_TOOL_BARS_FLOATABLE);
         _tbrFilter.setFloatable(TextHunterConstants.MAIN_TOOL_BARS_FLOATABLE);
 
-        _chkSearchFileContent.setSelected(SearchConstants.SEARCH_FILE_CONTENT_DEFAULT);
-        _chkSearchFileNames.setSelected(SearchConstants.SEARCH_FILE_NAMES_DEFAULT);
-        _chkRegex.setSelected(SearchConstants.REGEX_SEARCH_VALUE_DEFAULT);
+        _chkSearchFileContent.setSelected(Constants.SEARCH_FILE_CONTENT_DEFAULT);
+        _chkSearchFileNames.setSelected(Constants.SEARCH_FILE_NAMES_DEFAULT);
+        _chkRegex.setSelected(Constants.REGEX_SEARCH_VALUE_DEFAULT);
         _txtPath.setText(System.getProperty(TextHunterConstants.DEFAULT_PATH_SYSTEM_PROPERTY));
         _txtPath.setEnabled(false);
-        _chkSubdirs.setSelected(SearchConstants.RECURSE_SUBDIRECTORIES_VALUE_DEFAULT.isConfiguration());
+        _chkSubdirs.setSelected(Constants.RECURSE_SUBDIRECTORIES_VALUE_DEFAULT.isConfiguration());
         _txtFilter.setEnabled(false);
         _chkFilterRegex.setEnabled(false);
         _btnSearch.setEnabled(false);

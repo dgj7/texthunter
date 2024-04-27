@@ -1,6 +1,6 @@
 package com.dg.apps.th.engine.search.name.filter.impl;
 
-import com.dg.apps.th.engine.search.SearchConfiguration;
+import com.dg.apps.th.model.config.SearchConfiguration;
 import com.dg.apps.th.engine.search.name.filter.IFileNameFilterer;
 import com.dg.apps.th.model.Constants;
 import com.dg.apps.th.model.def.FileNameFilterResult;
@@ -17,7 +17,7 @@ public class DisabledFileNameFilterer implements IFileNameFilterer {
      * Create a new instance.
      */
     private DisabledFileNameFilterer() {
-        throw new UnsupportedOperationException(Constants.DO_NOT_INSTANTIATE);
+        // only allowed internally
     }
 
     /**

@@ -1,8 +1,8 @@
 package com.dg.apps.th.ui.view;
 
-import com.dg.apps.th.engine.search.FileSearchLauncher;
-import com.dg.apps.th.engine.search.FileSearchStatusMessage;
-import com.dg.apps.th.engine.search.SearchConfiguration;
+import com.dg.apps.th.engine.search.content.FileSearchLauncher;
+import com.dg.apps.th.model.status.FileSearchStatusMessage;
+import com.dg.apps.th.model.config.SearchConfiguration;
 import com.dg.apps.th.engine.threads.IStatusReporter;
 import com.dg.apps.th.engine.threads.ThreadStatus;
 import com.dg.apps.th.ui.TextHunterConstants;

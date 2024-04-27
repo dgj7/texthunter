@@ -10,13 +10,28 @@ import com.dg.apps.th.engine.search.name.filter.impl.CaseInsensitiveFileNameFilt
 import com.dg.apps.th.engine.search.name.filter.impl.CaseSensitiveFileNameFilterer;
 import com.dg.apps.th.engine.search.name.filter.impl.DisabledFileNameFilterer;
 import com.dg.apps.th.engine.search.name.filter.impl.RegexFileNameFilterer;
+import com.dg.apps.th.model.config.SearchConfiguration;
 import com.dg.apps.th.model.def.FileNameFilterResult;
 
 import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * <p>
+ * Factory for various file search interfaces:
+ * <ul>
+ *     <li>{@link IFileNameFilterer}</li>
+ *     <li>{@link IFileNameSearcher}</li>
+ *     <li>SOON: {@code IFileContentSearcher}</li>
+ * </ul>
+ * </p>
+ */
+// todo: IFileContentSearcher design, impl, and addition to this factory
 public class FileSearchFactory {
+    /**
+     * Provide {@link IFileNameFilterer}.
+     */
     public static IFileNameFilterer getFileNameFilterer(SearchConfiguration config) {
         if (config.isFilteredSearch()) {
             if (config.isRegexFilter()) {
@@ -31,6 +46,9 @@ public class FileSearchFactory {
         return DisabledFileNameFilterer.getInstance();
     }
 
+    /**
+     * Provide {@link IFileNameSearcher}.
+     */
     public static IFileNameSearcher getFileNameSearcher(SearchConfiguration config, FileNameFilterResult fileNameFilterResult) {
         if (FileNameFilterResult.Failed.equals(fileNameFilterResult))
             return DisabledFileNameSearcher.getInstance();
@@ -48,6 +66,10 @@ public class FileSearchFactory {
         return DisabledFileNameSearcher.getInstance();
     }
 
+    /**
+     * Initialize a file list.
+     */
+    // todo: remove this.  this is a really weird place for this.
     public static List<File> initializeFileList(List<File> input) {
         if (input == null)
             input = new ArrayList<>();

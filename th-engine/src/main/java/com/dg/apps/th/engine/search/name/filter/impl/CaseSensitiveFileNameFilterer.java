@@ -1,6 +1,6 @@
 package com.dg.apps.th.engine.search.name.filter.impl;
 
-import com.dg.apps.th.engine.search.SearchConfiguration;
+import com.dg.apps.th.model.config.SearchConfiguration;
 import com.dg.apps.th.engine.search.name.filter.IFileNameFilterer;
 import com.dg.apps.th.engine.util.FileUtility;
 import com.dg.apps.th.model.Constants;
@@ -18,7 +18,7 @@ public class CaseSensitiveFileNameFilterer implements IFileNameFilterer {
      * Create a new instance.
      */
     private CaseSensitiveFileNameFilterer() {
-        throw new UnsupportedOperationException(Constants.DO_NOT_INSTANTIATE);
+        // only allowed internally
     }
 
     /**
