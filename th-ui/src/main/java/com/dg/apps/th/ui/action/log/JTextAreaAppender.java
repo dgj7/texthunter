@@ -1,4 +1,4 @@
-package com.dg.apps.th.ui.log;
+package com.dg.apps.th.ui.action.log;
 
 import ch.qos.logback.classic.spi.ILoggingEvent;
 import ch.qos.logback.core.AppenderBase;

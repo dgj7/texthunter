@@ -1,4 +1,4 @@
-package com.dg.apps.th.ui.util;
+package com.dg.apps.th.ui.view;
 
 import javax.swing.*;
 

@@ -1,4 +1,4 @@
-package com.dg.apps.th.ui.handler;
+package com.dg.apps.th.ui.action.handler;
 
 import com.dg.apps.th.engine.search.content.FileSearchLauncher;
 import com.dg.apps.th.model.adapter.ISearchAware;

@@ -1,4 +1,4 @@
-package com.dg.apps.th.ui.panel;
+package com.dg.apps.th.ui.view.panel;
 
 import com.dg.apps.th.model.adapter.ITableAdapter;
 

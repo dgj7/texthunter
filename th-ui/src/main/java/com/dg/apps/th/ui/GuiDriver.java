@@ -3,32 +3,39 @@ package com.dg.apps.th.ui;
 import ch.qos.logback.classic.Level;
 import ch.qos.logback.classic.LoggerContext;
 import ch.qos.logback.classic.joran.JoranConfigurator;
-import com.dg.apps.th.ui.log.JTextAreaAppender;
-import com.dg.apps.th.ui.util.LookAndFeelSetter;
-import com.dg.apps.th.ui.view.TextHunterFrame;
+import com.dg.apps.th.ui.action.log.JTextAreaAppender;
+import com.dg.apps.th.ui.view.LookAndFeelSetter;
+import com.dg.apps.th.ui.view.frame.TextHunterFrame;
 import lombok.extern.slf4j.Slf4j;
 import org.slf4j.LoggerFactory;
 
+/**
+ * Main application driver.
+ */
 @Slf4j
 public class GuiDriver {
     private static final JTextAreaAppender appender = new JTextAreaAppender();
 
-    public static void main(String[] args) {
+    /**
+     * Main method.
+     */
+    public static void main(final String[] args) {
         configureLogger();
 
         log.trace("beginning of main()");
-        javax.swing.SwingUtilities.invokeLater(new Runnable() {
-            public void run() {
-                log.trace("beginning of run()");
-                LookAndFeelSetter.setCrossPlatformLookAndFeel();
-                TextHunterFrame frame = new TextHunterFrame();
-                appender.setTextArea(frame.getLoggingComponent());
-                log.trace("end of run()");
-            }
+        javax.swing.SwingUtilities.invokeLater(() -> {
+            log.trace("beginning of run()");
+            LookAndFeelSetter.setCrossPlatformLookAndFeel();
+            final TextHunterFrame frame = new TextHunterFrame();
+            appender.setTextArea(frame.getLoggingComponent());
+            log.trace("end of run()");
         });
         log.trace("end of main()");
     }
 
+    /**
+     * Configure the logger.
+     */
     private static void configureLogger() {
         final LoggerContext ctx = (LoggerContext) LoggerFactory.getILoggerFactory();
         final JoranConfigurator jc = new JoranConfigurator();

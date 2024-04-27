@@ -2,6 +2,9 @@ package com.dg.apps.th.ui;
 
 import java.awt.*;
 
+/**
+ * UI constants.
+ */
 public class TextHunterConstants {
     public static final String LOGGER_FONT_NAME = "Courier New";
     public static final int LOGGER_FONT_STYLE = Font.PLAIN;

@@ -1,4 +1,4 @@
-package com.dg.apps.th.ui.view;
+package com.dg.apps.th.ui.view.frame;
 
 import javax.swing.*;
 import java.awt.*;
