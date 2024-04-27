@@ -1,6 +1,6 @@
 package com.dg.apps.th.ui.adapter;
 
-import com.dg.apps.th.ui.tools.ReadOnlyDataTable;
+import com.dg.apps.th.ui.panel.ReadOnlyDataTable;
 
 /**
  * Data table aware components.

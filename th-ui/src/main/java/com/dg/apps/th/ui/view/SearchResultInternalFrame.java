@@ -12,7 +12,7 @@ import com.dg.apps.th.ui.adapter.IDataTableAware;
 import com.dg.apps.th.ui.handler.CancelButtonHandler;
 import com.dg.apps.th.ui.handler.ExportButtonHandler;
 import com.dg.apps.th.engine.threads.impl.FileSearchStatusReporter;
-import com.dg.apps.th.ui.tools.ReadOnlyDataTable;
+import com.dg.apps.th.ui.panel.ReadOnlyDataTable;
 import lombok.extern.slf4j.Slf4j;
 
 import javax.swing.*;

@@ -1,7 +1,6 @@
 package com.dg.apps.th.ui.view;
 
 import com.dg.apps.th.ui.TextHunterConstants;
-import com.dg.apps.th.ui.tools.EnhancedFrame;
 
 import javax.swing.*;
 import java.awt.*;

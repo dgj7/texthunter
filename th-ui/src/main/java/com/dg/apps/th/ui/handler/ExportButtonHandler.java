@@ -3,7 +3,7 @@ package com.dg.apps.th.ui.handler;
 import com.dg.apps.th.model.config.SearchConfiguration;
 import com.dg.apps.th.ui.TextHunterConstants;
 import com.dg.apps.th.ui.adapter.IDataTableAware;
-import com.dg.apps.th.ui.tools.ReadOnlyDataTable;
+import com.dg.apps.th.ui.panel.ReadOnlyDataTable;
 import lombok.extern.slf4j.Slf4j;
 
 import javax.swing.*;
