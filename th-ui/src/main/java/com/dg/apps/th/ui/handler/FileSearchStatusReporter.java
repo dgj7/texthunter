@@ -1,10 +1,8 @@
 package com.dg.apps.th.ui.handler;
 
+import com.dg.apps.th.engine.threads.IStatusReporter;
 import com.dg.apps.th.model.status.FileSearchStatusMessage;
 import com.dg.apps.th.model.status.FileSearchSuccessMessage;
-import com.dg.apps.th.model.status.AbstractStatusMessage;
-import com.dg.apps.th.model.status.AbstractSuccessMessage;
-import com.dg.apps.th.engine.threads.IStatusReporter;
 import com.dg.apps.th.ui.tools.ReadOnlyDataTable;
 import com.dg.apps.th.ui.view.SearchResultInternalFrame;
 import lombok.extern.slf4j.Slf4j;
@@ -24,56 +22,48 @@ public class FileSearchStatusReporter implements IStatusReporter {
     }
 
     @Override
-    public void reportSuccess(AbstractSuccessMessage message) {
+    public void reportSuccess(FileSearchSuccessMessage message) {
         log.debug("attempting to report success message to data table...");
         try {
-            reportSuccess((FileSearchSuccessMessage) message);
+            Vector<String> rowData = new Vector<String>();
+            if (message.getFile() != null) {
+                rowData.add(message.getFile().getName());
+                rowData.add(message.getFile().getAbsolutePath());
+            } else {
+                rowData.add("");
+                rowData.add("");
+            }
+
+            if (message.getLine() != null) {
+                rowData.add(message.getLine().toString());
+            } else {
+                rowData.add("");
+            }
+
+            if (message.getText() != null) {
+                rowData.add(message.getText());
+            } else {
+                rowData.add("");
+            }
+
+            _tableRef.addRow(rowData);
         } catch (Exception ex) {
             log.error("unable to report success message!");
         }
         log.debug("done with attempt to log success message to data table");
     }
 
-    private void reportSuccess(FileSearchSuccessMessage message) {
-        Vector<String> rowData = new Vector<String>();
-        if (message.getFile() != null) {
-            rowData.add(message.getFile().getName());
-            rowData.add(message.getFile().getAbsolutePath());
-        } else {
-            rowData.add("");
-            rowData.add("");
-        }
-
-        if (message.getLine() != null) {
-            rowData.add(message.getLine().toString());
-        } else {
-            rowData.add("");
-        }
-
-        if (message.getText() != null) {
-            rowData.add(message.getText());
-        } else {
-            rowData.add("");
-        }
-
-        _tableRef.addRow(rowData);
-    }
-
     @Override
-    public void reportStatus(AbstractStatusMessage message) {
+    public void reportStatus(FileSearchStatusMessage message) {
         log.debug("attempting to report status...");
 
         try {
-            reportStatus((FileSearchStatusMessage) message);
+            ((SearchResultInternalFrame) _parent).updateStatusLabel(message);
         } catch (Exception ex) {
             log.error("unable to report status message!");
         }
 
         log.debug("done with attempt to report status");
-    }
-
-    private void reportStatus(FileSearchStatusMessage message) {
-        ((SearchResultInternalFrame) _parent).updateStatusLabel(message);
     }
 
     @Override

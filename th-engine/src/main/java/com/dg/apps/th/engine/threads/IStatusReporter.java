@@ -1,8 +1,8 @@
 package com.dg.apps.th.engine.threads;
 
 
-import com.dg.apps.th.model.status.AbstractStatusMessage;
-import com.dg.apps.th.model.status.AbstractSuccessMessage;
+import com.dg.apps.th.model.status.FileSearchStatusMessage;
+import com.dg.apps.th.model.status.FileSearchSuccessMessage;
 
 /**
  * <p>
@@ -17,12 +17,12 @@ public interface IStatusReporter {
     /**
      * Report success.
      */
-    void reportSuccess(final AbstractSuccessMessage message);
+    void reportSuccess(final FileSearchSuccessMessage message);
 
     /**
      * Report status.
      */
-    void reportStatus(final AbstractStatusMessage message);
+    void reportStatus(final FileSearchStatusMessage message);
 
     /**
      * Report completion.

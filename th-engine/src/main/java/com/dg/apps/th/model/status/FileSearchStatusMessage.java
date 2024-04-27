@@ -7,7 +7,7 @@ import lombok.Setter;
 /**
  * Status of a thread's search progress.
  */
-public class FileSearchStatusMessage extends AbstractStatusMessage {
+public class FileSearchStatusMessage {
     @Getter
     @Setter
     private String fileName;

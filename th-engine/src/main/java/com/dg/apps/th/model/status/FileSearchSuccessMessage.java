@@ -8,7 +8,7 @@ import java.io.File;
 /**
  * File search success message.
  */
-public class FileSearchSuccessMessage extends AbstractSuccessMessage {
+public class FileSearchSuccessMessage {
     @Getter
     @Setter
     private File file;
