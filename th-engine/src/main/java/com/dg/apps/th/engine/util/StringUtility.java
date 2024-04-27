@@ -1,13 +1,22 @@
 package com.dg.apps.th.engine.util;
 
+/**
+ * Various String utilities.
+ */
 public class StringUtility {
-    public static String trim(String input) {
+    /**
+     * Safely trim a String.
+     */
+    public static String trim(final String input) {
         if (input != null)
             return input.trim();
         return input;
     }
 
-    public static String toLowerCase(String input) {
+    /**
+     * Safely lowercase a String.
+     */
+    public static String toLowerCase(final String input) {
         if (input != null)
             return input.toLowerCase();
         return input;

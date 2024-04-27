@@ -5,21 +5,27 @@ import java.util.Collection;
 import java.util.Iterator;
 import java.util.List;
 
+/**
+ * Various collection utilities.
+ */
 public class CollectionUtility {
-    public static <T> List<Collection<T>> splitCollection(Collection<T> col, int numLists) throws InstantiationException, IllegalAccessException {
-        List<Collection<T>> lstReturn = new ArrayList<Collection<T>>();
-        Iterator<T> iter = col.iterator();
+    /**
+     * Split a collection into n collections.
+     */
+    public static <T> List<Collection<T>> splitCollection(final Collection<T> col, final int numLists) throws InstantiationException, IllegalAccessException {
+        final List<Collection<T>> lstReturn = new ArrayList<Collection<T>>();
+        final Iterator<T> iter = col.iterator();
 
         for (int c = 0; c < numLists; c++) {
-            Collection<T> temp = col.getClass().newInstance();
+            final Collection<T> temp = col.getClass().newInstance();
             lstReturn.add(temp);
         }
 
         while (iter.hasNext()) {
             for (int collectionIndex = 0; collectionIndex < numLists; collectionIndex++) {
                 if (iter.hasNext()) {
-                    Collection<T> current = lstReturn.get(collectionIndex);
-                    T value = iter.next();
+                    final Collection<T> current = lstReturn.get(collectionIndex);
+                    final T value = iter.next();
                     current.add(value);
                 }
             }
@@ -28,12 +34,18 @@ public class CollectionUtility {
         return lstReturn;
     }
 
+    /**
+     * Determine if the given Class is a {@link Collection}.
+     */
     public static boolean isCollection(Class<?> clazz) {
         if (Collection.class.isAssignableFrom(clazz))
             return true;
         return false;
     }
 
+    /**
+     * Determine if the given Object is a {@link Collection}.
+     */
     public static boolean isCollection(Object object) {
         return isCollection(object.getClass());
     }

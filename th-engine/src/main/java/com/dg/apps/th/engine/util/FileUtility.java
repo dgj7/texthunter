@@ -7,34 +7,55 @@ import com.dg.apps.th.engine.enumeration.impl.RecursiveFilesystemEnumerator;
 import java.io.File;
 import java.util.List;
 
+/**
+ * Various file utilities.
+ */
 public class FileUtility {
-    public static String getAbsoluteFilePath(File file) {
+    /**
+     * Get file's absolute path as a String.
+     */
+    public static String getAbsoluteFilePath(final File file) {
         String filePath = "";
         if (file != null)
             filePath = file.getAbsolutePath();
         return filePath;
     }
 
-    public static String getShortFileName(File file) {
+    /**
+     * Get file's "short" (without path) name.
+     */
+    public static String getShortFileName(final File file) {
         String fileName = "";
         if (file != null)
             fileName = file.getName();
         return fileName;
     }
 
-    public static List<File> getFilesFromDirectory(String directoryName) throws FilesystemEnumerationException {
+    /**
+     * Get all files from a directory (and not subdirectories).
+     */
+    public static List<File> getFilesFromDirectory(final String directoryName) throws FilesystemEnumerationException {
         return FilesystemEnumerator.getInstance().enumerateAllFiles(directoryName);
     }
 
-    public static List<File> getFilesFromDirectoryRecursive(String directoryName) throws FilesystemEnumerationException {
+    /**
+     * Get all files from a directory, recursing into subdirectories.
+     */
+    public static List<File> getFilesFromDirectoryRecursive(final String directoryName) throws FilesystemEnumerationException {
         return RecursiveFilesystemEnumerator.getInstance().enumerateAllFiles(directoryName);
     }
 
-    public static List<String> getFilenamesFromDirectory(String directoryName) throws FilesystemEnumerationException {
+    /**
+     * Get all filenames from a directory (and not subdirectories).
+     */
+    public static List<String> getFilenamesFromDirectory(final String directoryName) throws FilesystemEnumerationException {
         return FilesystemEnumerator.getInstance().enumerateAllFilenames(directoryName);
     }
 
-    public static List<String> getFilenamesFromDirectoryRecursive(String directoryName) throws FilesystemEnumerationException {
+    /**
+     * Get filenames from a directory, recursing into subdirectories.
+     */
+    public static List<String> getFilenamesFromDirectoryRecursive(final String directoryName) throws FilesystemEnumerationException {
         return RecursiveFilesystemEnumerator.getInstance().enumerateAllFilenames(directoryName);
     }
 }
