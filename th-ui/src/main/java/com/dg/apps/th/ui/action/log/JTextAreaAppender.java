@@ -8,6 +8,7 @@ import ch.qos.logback.core.AppenderBase;
 import lombok.Setter;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
+import org.slf4j.helpers.MessageFormatter;
 
 import javax.swing.*;
 import java.time.Instant;
@@ -88,7 +89,7 @@ public class JTextAreaAppender extends AppenderBase<ILoggingEvent> {
                 .append("][")
                 .append(java)
                 .append("]:  ")
-                .append(event.getMessage())
+                .append(event.getFormattedMessage())
                 .append("\n")
                 .toString();
     }

@@ -9,6 +9,8 @@ import com.dg.apps.th.engine.util.CollectionUtility;
 import lombok.extern.slf4j.Slf4j;
 
 import java.io.File;
+import java.time.Duration;
+import java.time.Instant;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.LinkedList;
@@ -48,6 +50,7 @@ public class FileSearchLauncher implements Runnable {
      */
     public void run() {
         try {
+            final Instant start = Instant.now();
             log.info("launching search with: " + searchConfig.toString());
 
             final List<File> lstFiles = fse.enumerateAllFiles(searchConfig.getPathString());
@@ -81,7 +84,7 @@ public class FileSearchLauncher implements Runnable {
             }
 
             reporter.reportCompletion();
-            log.info("search completed.");
+            log.info("search completed ({}ms).", Duration.between(start, Instant.now()).toMillis());
         } catch (FilesystemEnumerationException fsex) {
             //
         }
