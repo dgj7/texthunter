@@ -22,15 +22,16 @@ public class GuiDriver {
     public static void main(final String[] args) {
         configureLogger();
 
-        log.trace("beginning of main()");
+        log.info("beginning of main()");
         javax.swing.SwingUtilities.invokeLater(() -> {
-            log.trace("beginning of run()");
+            log.info("beginning of run()");
             LookAndFeelSetter.setCrossPlatformLookAndFeel();
             final TextHunterFrame frame = new TextHunterFrame();
             appender.setTextArea(frame.getLoggingComponent());
-            log.trace("end of run()");
+            log.info("end of run()");
+            appender.checkQueuedMessages();
         });
-        log.trace("end of main()");
+        log.info("end of main()");
     }
 
     /**

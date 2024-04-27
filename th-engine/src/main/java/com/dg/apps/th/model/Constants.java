@@ -23,6 +23,12 @@ public class Constants {
     public static final boolean SEARCH_FILE_CONTENT_DEFAULT = true;
     public static final boolean SEARCH_FILE_NAMES_DEFAULT = true;
 
+    /* logger constants */
+    public static final int LOGGER_TIME = 12;
+    public static final int LOGGER_LEVEL = 5;
+    public static final int LOGGER_THREAD = 16;
+    public static final int LOGGER_JAVA = 24;
+
     /* ui constants */
     public static final String LOGGER_FONT_NAME = "Courier New";
     public static final int LOGGER_FONT_STYLE = Font.PLAIN;
