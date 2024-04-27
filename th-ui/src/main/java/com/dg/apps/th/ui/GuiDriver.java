@@ -11,38 +11,35 @@ import com.dg.apps.th.ui.view.TextHunterFrame;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-public class GuiDriver
-{
-	private static final Logger logger = LoggerFactory.getLogger(GuiDriver.class);
-	private static final JTextAreaAppender appender = new JTextAreaAppender();
-	
-	public static void main(String []args) {
-		configureLogger();
+public class GuiDriver {
+    private static final Logger logger = LoggerFactory.getLogger(GuiDriver.class);
+    private static final JTextAreaAppender appender = new JTextAreaAppender();
 
-		logger.trace("beginning of main()");
-		javax.swing.SwingUtilities.invokeLater(new Runnable()
-		{
-			public void run()
-			{
-				logger.trace("beginning of run()");
-				LookAndFeelSetter.setCrossPlatformLookAndFeel();
-				TextHunterFrame frame = new TextHunterFrame();
-				appender.setTextArea(frame.getLoggingComponent());
-				logger.trace("end of run()");
-			}
-		});
-		logger.trace("end of main()");
-	}
+    public static void main(String[] args) {
+        configureLogger();
 
-	private static void configureLogger() {
-		final LoggerContext ctx = (LoggerContext) LoggerFactory.getILoggerFactory();
-		final JoranConfigurator jc = new JoranConfigurator();
-		jc.setContext(ctx);
-		ctx.reset();
-		appender.setContext(ctx);
+        logger.trace("beginning of main()");
+        javax.swing.SwingUtilities.invokeLater(new Runnable() {
+            public void run() {
+                logger.trace("beginning of run()");
+                LookAndFeelSetter.setCrossPlatformLookAndFeel();
+                TextHunterFrame frame = new TextHunterFrame();
+                appender.setTextArea(frame.getLoggingComponent());
+                logger.trace("end of run()");
+            }
+        });
+        logger.trace("end of main()");
+    }
 
-		final ch.qos.logback.classic.Logger root = (ch.qos.logback.classic.Logger) org.slf4j.LoggerFactory.getLogger(ch.qos.logback.classic.Logger.ROOT_LOGGER_NAME);
-		root.setLevel(Level.INFO);
-		root.addAppender(appender);
-	}
+    private static void configureLogger() {
+        final LoggerContext ctx = (LoggerContext) LoggerFactory.getILoggerFactory();
+        final JoranConfigurator jc = new JoranConfigurator();
+        jc.setContext(ctx);
+        ctx.reset();
+        appender.setContext(ctx);
+
+        final ch.qos.logback.classic.Logger root = (ch.qos.logback.classic.Logger) org.slf4j.LoggerFactory.getLogger(ch.qos.logback.classic.Logger.ROOT_LOGGER_NAME);
+        root.setLevel(Level.INFO);
+        root.addAppender(appender);
+    }
 }

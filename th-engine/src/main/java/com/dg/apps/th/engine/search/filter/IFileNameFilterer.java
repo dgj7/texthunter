@@ -4,7 +4,6 @@ import com.dg.apps.th.engine.search.SearchConfiguration;
 
 import java.io.File;
 
-public interface IFileNameFilterer
-{
-	public FileNameFilterResult filterFileName(File file, SearchConfiguration config);
+public interface IFileNameFilterer {
+    public FileNameFilterResult filterFileName(File file, SearchConfiguration config);
 }

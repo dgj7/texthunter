@@ -7,46 +7,41 @@ import javax.swing.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class JTextAreaAppender extends AppenderBase<ILoggingEvent>
-{
-	private JTextArea _txtArea;
+public class JTextAreaAppender extends AppenderBase<ILoggingEvent> {
+    private JTextArea _txtArea;
 
-	private final List<ILoggingEvent> _lstQueue = new ArrayList<>();
+    private final List<ILoggingEvent> _lstQueue = new ArrayList<>();
 
-	public JTextAreaAppender() {
-		this(null);
-	}
-	
-	public JTextAreaAppender(JTextArea txtArea)
-	{
-		_txtArea = txtArea;
-		this.name = this.getClass().getSimpleName();
-		super.start();
-	}
+    public JTextAreaAppender() {
+        this(null);
+    }
 
-	public void setTextArea(final JTextArea input) {
-		this._txtArea = input;
-	}
+    public JTextAreaAppender(JTextArea txtArea) {
+        _txtArea = txtArea;
+        this.name = this.getClass().getSimpleName();
+        super.start();
+    }
 
-	@Override
-	protected void append(final ILoggingEvent event) {
-		if(this._txtArea == null)
-		{
-			_lstQueue.add(event);
-			return;
-		}
+    public void setTextArea(final JTextArea input) {
+        this._txtArea = input;
+    }
 
-		if(!_lstQueue.isEmpty())
-		{
-			for(ILoggingEvent queuedEvent : _lstQueue)
-			{
-				final String queuedMessage = queuedEvent.getFormattedMessage();
-				_txtArea.append("{QUEUED}    " + queuedMessage + "\n");
-			}
-			_lstQueue.clear();
-		}
+    @Override
+    protected void append(final ILoggingEvent event) {
+        if (this._txtArea == null) {
+            _lstQueue.add(event);
+            return;
+        }
 
-		final String message = event.getFormattedMessage();
-		_txtArea.append("{REALTIME}  " + message + "\n");
-	}
+        if (!_lstQueue.isEmpty()) {
+            for (ILoggingEvent queuedEvent : _lstQueue) {
+                final String queuedMessage = queuedEvent.getFormattedMessage();
+                _txtArea.append("{QUEUED}    " + queuedMessage + "\n");
+            }
+            _lstQueue.clear();
+        }
+
+        final String message = event.getFormattedMessage();
+        _txtArea.append("{REALTIME}  " + message + "\n");
+    }
 }

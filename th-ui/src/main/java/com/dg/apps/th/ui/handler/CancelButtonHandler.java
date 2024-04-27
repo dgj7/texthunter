@@ -10,24 +10,21 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class CancelButtonHandler implements ActionListener
-{
+public class CancelButtonHandler implements ActionListener {
     private final Logger logger = LoggerFactory.getLogger(CancelButtonHandler.class);
     private Component _parent = null;
     private SearchConfiguration _config = null;
 
-    public CancelButtonHandler(Component parent, SearchConfiguration config)
-    {
+    public CancelButtonHandler(Component parent, SearchConfiguration config) {
         _parent = parent;
-        if(config == null)
+        if (config == null)
             _config = SearchConfiguration.getDefaultConfiguration();
         else
             _config = config;
     }
 
-    public void actionPerformed(ActionEvent event)
-    {
-        FileSearchLauncher launcher = ((SearchResultInternalFrame)_parent).getFileSearchLauncherReference();
+    public void actionPerformed(ActionEvent event) {
+        FileSearchLauncher launcher = ((SearchResultInternalFrame) _parent).getFileSearchLauncherReference();
         launcher.requestCancel();
     }
 }
