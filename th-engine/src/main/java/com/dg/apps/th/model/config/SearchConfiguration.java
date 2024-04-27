@@ -13,7 +13,7 @@ import java.util.regex.Pattern;
 public class SearchConfiguration {
     @Getter
     @Setter
-    private volatile String searchString = "";
+    private volatile String searchString;
     @Getter
     @Setter
     private volatile boolean caseSensitive;
@@ -28,7 +28,7 @@ public class SearchConfiguration {
     private volatile boolean searchFileNames;
     @Getter
     @Setter
-    private volatile String pathString = "";
+    private volatile String pathString;
     @Getter
     private volatile FilesystemEnumerationConfiguration recursingSubdirectories;
     @Getter
@@ -39,7 +39,10 @@ public class SearchConfiguration {
     private volatile boolean regexFilter;
     @Getter
     @Setter
-    private volatile String filterString = "";
+    private volatile String filterString;
+    @Getter
+    @Setter
+    private volatile int threadCount;
 
     /**
      * Create a new instance.
@@ -55,6 +58,7 @@ public class SearchConfiguration {
         filteredSearch = Constants.FILTERED_SEARCH_VALUE_DEFAULT;
         regexFilter = Constants.REGEX_FILTER_VALUE_DEFAULT;
         filterString = Constants.FILTER_STRING_VALUE_DEFAULT;
+        threadCount = Constants.SEARCH_THREAD_COUNT_DEFAULT;
     }
 
     /**

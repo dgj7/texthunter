@@ -22,6 +22,7 @@ public class Constants {
     public static final String FILTER_STRING_VALUE_DEFAULT = "";
     public static final boolean SEARCH_FILE_CONTENT_DEFAULT = true;
     public static final boolean SEARCH_FILE_NAMES_DEFAULT = true;
+    public static final int SEARCH_THREAD_COUNT_DEFAULT = 4;
 
     /* logger constants */
     public static final int LOGGER_TIME = 12;

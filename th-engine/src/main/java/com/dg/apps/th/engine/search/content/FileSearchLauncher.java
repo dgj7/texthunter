@@ -53,13 +53,10 @@ public class FileSearchLauncher implements Runnable {
             final List<File> lstFiles = fse.enumerateAllFiles(searchConfig.getPathString());
             log.debug("found " + lstFiles.size() + " files to search");
 
-            // todo: make thread count configurable
-            final int threadCount = 4;
-
             // todo: make into List<List<File>>; this requires updating collection utility
             List<Collection<File>> lstSplitLists;
             try {
-                lstSplitLists = CollectionUtility.splitCollection(lstFiles, threadCount);
+                lstSplitLists = CollectionUtility.splitCollection(lstFiles, searchConfig.getThreadCount());
             } catch (Exception ex) {
                 lstSplitLists = new ArrayList<>();
                 lstSplitLists.add(lstFiles);
