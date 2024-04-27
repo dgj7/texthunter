@@ -1,9 +1,8 @@
 package com.dg.apps.th.ui;
 
-import java.awt.Font;
+import java.awt.*;
 
 public class TextHunterConstants {
-    public static final String LOGGER_PATTERN = "%d{HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n";
     public static final String LOGGER_FONT_NAME = "Courier New";
     public static final int LOGGER_FONT_STYLE = Font.PLAIN;
     public static final int LOGGER_FONT_SIZE = 12;

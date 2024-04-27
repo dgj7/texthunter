@@ -1,7 +1,7 @@
 package com.dg.apps.th.ui.tools;
 
-import javax.swing.JFrame;
-import java.awt.LayoutManager;
+import javax.swing.*;
+import java.awt.*;
 
 public class EnhancedFrame extends JFrame {
     private int defaultWidth = 100;

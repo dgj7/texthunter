@@ -1,32 +1,24 @@
 package com.dg.apps.th.ui.view;
 
-import javax.swing.JInternalFrame;
-import javax.swing.JLabel;
-import java.awt.BorderLayout;
-
 import com.dg.apps.th.engine.search.FileSearchLauncher;
 import com.dg.apps.th.engine.search.FileSearchStatusMessage;
 import com.dg.apps.th.engine.search.SearchConfiguration;
-import com.dg.apps.th.engine.threads.ThreadStatus;
-import com.dg.apps.th.ui.handler.CancelButtonHandler;
-import com.dg.apps.th.ui.tools.ReadOnlyDataTable;
-import com.dg.apps.th.ui.TextHunterConstants;
-import com.dg.apps.th.ui.handler.FileSearchStatusReporter;
 import com.dg.apps.th.engine.threads.IStatusReporter;
+import com.dg.apps.th.engine.threads.ThreadStatus;
+import com.dg.apps.th.ui.TextHunterConstants;
+import com.dg.apps.th.ui.handler.CancelButtonHandler;
+import com.dg.apps.th.ui.handler.ExportButtonHandler;
+import com.dg.apps.th.ui.handler.FileSearchStatusReporter;
+import com.dg.apps.th.ui.tools.ReadOnlyDataTable;
+import lombok.extern.slf4j.Slf4j;
 
-import java.lang.Thread;
+import javax.swing.*;
+import java.awt.*;
 import java.util.HashMap;
 import java.util.Map;
-import javax.swing.JToolBar;
-import javax.swing.JPanel;
-import javax.swing.JButton;
 
-import com.dg.apps.th.ui.handler.ExportButtonHandler;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
+@Slf4j
 public class SearchResultInternalFrame extends JInternalFrame {
-    private final Logger logger = LoggerFactory.getLogger(SearchResultInternalFrame.class);
 
     static int openFrameCount = 0;
     private volatile JLabel _lblStatus = null;
@@ -123,7 +115,7 @@ public class SearchResultInternalFrame extends JInternalFrame {
     }
 
     public synchronized void updateStatusLabel(FileSearchStatusMessage message) {
-        logger.trace("entered updateStatusLabel()...");
+        log.trace("entered updateStatusLabel()...");
         StringBuilder builder = new StringBuilder();
 
         if (message != null) {
@@ -148,7 +140,7 @@ public class SearchResultInternalFrame extends JInternalFrame {
 
         builder.append("</table></body></html>");
         _lblStatus.setText(builder.toString());
-        logger.trace("exiting updateStatusLabel()...");
+        log.trace("exiting updateStatusLabel()...");
     }
 
     private String getStatusForThread(String threadName) {

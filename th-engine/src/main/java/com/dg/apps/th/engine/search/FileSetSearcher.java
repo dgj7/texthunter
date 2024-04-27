@@ -1,29 +1,26 @@
 package com.dg.apps.th.engine.search;
 
-import java.util.List;
-import java.io.File;
-import java.lang.Runnable;
-
 import com.dg.apps.th.engine.threads.IStatusReporter;
 import com.dg.apps.th.engine.threads.StatusReporterFactory;
 import com.dg.apps.th.engine.threads.ThreadStatus;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.extern.slf4j.Slf4j;
 
 import java.io.BufferedReader;
-import java.io.InputStreamReader;
+import java.io.File;
 import java.io.FileInputStream;
-import java.util.regex.Pattern;
+import java.io.InputStreamReader;
+import java.util.List;
 import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 // regex example: http://docs.oracle.com/javase/tutorial/essential/regex/test_harness.html
 
+@Slf4j
 public class FileSetSearcher implements Runnable {
     private IStatusReporter _reporter = null;
     private List<File> _lstFiles = null;
     private SearchConfiguration _config = null;
     private volatile ThreadStatus _threadStatus = ThreadStatus.idle;
-    private final Logger logger = LoggerFactory.getLogger(FileSetSearcher.class);
     private FileSearchStatusMessage _status = new FileSearchStatusMessage();
     private Pattern _pattern = null;
     private Pattern _fileNamePattern = null;
@@ -46,7 +43,7 @@ public class FileSetSearcher implements Runnable {
     }
 
     public void run() {
-        logger.info("beginning search: " + Thread.currentThread().getName());
+        log.info("beginning search: " + Thread.currentThread().getName());
         _threadStatus = ThreadStatus.running;
         searchFiles(_lstFiles);
         if (ThreadStatus.cancelling.equals(_threadStatus))
@@ -54,11 +51,11 @@ public class FileSetSearcher implements Runnable {
         else
             _threadStatus = ThreadStatus.completed;
         this.reportStatus(null);
-        logger.info("completed search: " + Thread.currentThread().getName());
+        log.info("completed search: " + Thread.currentThread().getName());
     }
 
     private void searchFiles(List<File> lstFiles) {
-        logger.debug("beginning batch search of files");
+        log.debug("beginning batch search of files");
 
         for (File file : lstFiles) {
             if (cancelled)
@@ -76,11 +73,11 @@ public class FileSetSearcher implements Runnable {
             }
         }
 
-        logger.debug("done with batch search of files");
+        log.debug("done with batch search of files");
     }
 
     private void searchFile(File file) {
-        logger.debug("opening " + file.getAbsolutePath());
+        log.debug("opening " + file.getAbsolutePath());
         long lineNumber = 0;
 
         try {
@@ -92,13 +89,13 @@ public class FileSetSearcher implements Runnable {
                 lineNumber++;
             }
         } catch (Exception ex) {
-            logger.error("caught exception on line " + lineNumber + " of type " + ex.getClass().getSimpleName() + " on file " + file.getAbsolutePath());
+            log.error("caught exception on line " + lineNumber + " of type " + ex.getClass().getSimpleName() + " on file " + file.getAbsolutePath());
         }
 
         this._filesSearched++;
         this.reportStatus(file);
 
-        logger.debug("done with " + file.getAbsolutePath());
+        log.debug("done with " + file.getAbsolutePath());
     }
 
     private void searchLine(File file, String line, Long lineNumber) {
@@ -150,7 +147,7 @@ public class FileSetSearcher implements Runnable {
     }
 
     private boolean filePassesNameFilter(String fileName) {
-        logger.debug("checking if " + fileName + " passes filename filter...");
+        log.debug("checking if " + fileName + " passes filename filter...");
 
         if (_config.isFilteredSearch()) {
             if (_config.isRegexFilter()) {
@@ -193,7 +190,7 @@ public class FileSetSearcher implements Runnable {
     }
 
     public void requestCancel() {
-        logger.info("cancel requested for set searcher...");
+        log.info("cancel requested for set searcher...");
         _threadStatus = ThreadStatus.cancelling;
         cancelled = true;
     }

@@ -13,7 +13,7 @@ import java.util.TimeZone;
 
 public class JTextAreaAppender extends AppenderBase<ILoggingEvent> {
     private static final String REALTIME = "{REALTIME}";
-    private static final String QUEUED   = "{QUEUED}  ";
+    private static final String QUEUED = "{QUEUED}  ";
 
     private JTextArea _txtArea;
 

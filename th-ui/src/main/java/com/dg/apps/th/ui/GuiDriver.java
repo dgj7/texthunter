@@ -3,32 +3,30 @@ package com.dg.apps.th.ui;
 import ch.qos.logback.classic.Level;
 import ch.qos.logback.classic.LoggerContext;
 import ch.qos.logback.classic.joran.JoranConfigurator;
-import ch.qos.logback.core.joran.spi.JoranException;
-import ch.qos.logback.core.util.StatusPrinter;
 import com.dg.apps.th.ui.tools.JTextAreaAppender;
 import com.dg.apps.th.ui.tools.LookAndFeelSetter;
 import com.dg.apps.th.ui.view.TextHunterFrame;
-import org.slf4j.Logger;
+import lombok.extern.slf4j.Slf4j;
 import org.slf4j.LoggerFactory;
 
+@Slf4j
 public class GuiDriver {
-    private static final Logger logger = LoggerFactory.getLogger(GuiDriver.class);
     private static final JTextAreaAppender appender = new JTextAreaAppender();
 
     public static void main(String[] args) {
         configureLogger();
 
-        logger.trace("beginning of main()");
+        log.trace("beginning of main()");
         javax.swing.SwingUtilities.invokeLater(new Runnable() {
             public void run() {
-                logger.trace("beginning of run()");
+                log.trace("beginning of run()");
                 LookAndFeelSetter.setCrossPlatformLookAndFeel();
                 TextHunterFrame frame = new TextHunterFrame();
                 appender.setTextArea(frame.getLoggingComponent());
-                logger.trace("end of run()");
+                log.trace("end of run()");
             }
         });
-        logger.trace("end of main()");
+        log.trace("end of main()");
     }
 
     private static void configureLogger() {

@@ -3,8 +3,6 @@ package com.dg.apps.th.engine.search;
 import com.dg.apps.th.engine.threads.AbstractStatusMessage;
 import com.dg.apps.th.engine.threads.ThreadStatus;
 
-import java.lang.Long;
-
 public class FileSearchStatusMessage extends AbstractStatusMessage {
     private String _fileName;
     private Long _linesFound;

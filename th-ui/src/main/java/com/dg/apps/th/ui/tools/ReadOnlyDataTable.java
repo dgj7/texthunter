@@ -1,12 +1,12 @@
 package com.dg.apps.th.ui.tools;
 
 import javax.swing.*;
+import javax.swing.event.ListSelectionListener;
 import javax.swing.table.DefaultTableModel;
 import java.awt.*;
-import java.util.Vector;
-import java.util.List;
-import javax.swing.event.ListSelectionListener;
 import java.awt.event.MouseAdapter;
+import java.util.List;
+import java.util.Vector;
 
 public class ReadOnlyDataTable extends JPanel {
     private volatile DefaultTableModel _model = null;

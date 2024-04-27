@@ -1,27 +1,20 @@
 package com.dg.apps.th.ui.handler;
 
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
-
 import com.dg.apps.th.engine.search.SearchConfiguration;
-import com.dg.apps.th.ui.tools.ReadOnlyDataTable;
-
-import javax.swing.JFileChooser;
-import java.io.File;
-
 import com.dg.apps.th.ui.TextHunterConstants;
-
-import java.awt.Component;
-
+import com.dg.apps.th.ui.tools.ReadOnlyDataTable;
 import com.dg.apps.th.ui.view.SearchResultInternalFrame;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.extern.slf4j.Slf4j;
 
+import javax.swing.*;
+import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.io.File;
 import java.io.PrintWriter;
-import java.lang.Thread;
 
+@Slf4j
 public class ExportButtonHandler implements ActionListener {
-    private final Logger logger = LoggerFactory.getLogger(ExportButtonHandler.class);
     private Component _parent = null;
     private SearchConfiguration _config = null;
 
@@ -34,7 +27,7 @@ public class ExportButtonHandler implements ActionListener {
     }
 
     public void actionPerformed(ActionEvent event) {
-        logger.trace("export button - click handler");
+        log.trace("export button - click handler");
 
         final JFileChooser fc = new JFileChooser();
         File currentDirectory = new File(System.getProperty(TextHunterConstants.DEFAULT_PATH_SYSTEM_PROPERTY));
@@ -47,11 +40,11 @@ public class ExportButtonHandler implements ActionListener {
 
         Thread thread = new Thread(new Runnable() {
             public void run() {
-                logger.trace("begin threaded export process...");
+                log.trace("begin threaded export process...");
 
                 if (retVal == JFileChooser.APPROVE_OPTION) {
                     File selectedFile = fc.getSelectedFile();
-                    logger.trace("chose file [" + selectedFile.getAbsolutePath() + "]");
+                    log.trace("chose file [" + selectedFile.getAbsolutePath() + "]");
                     if ((selectedFile.isFile() && selectedFile.exists()) || (!selectedFile.isFile() && !selectedFile.exists())) {
                         ReadOnlyDataTable table = ((SearchResultInternalFrame) _parent).getTableReference();
                         int rows = table.getRowCount();
@@ -121,20 +114,20 @@ public class ExportButtonHandler implements ActionListener {
                             writer.write(builder.toString());
                             writer.close();
                         } catch (Exception ex) {
-                            logger.error(ex.getClass().getSimpleName() + " thrown while exporting data file.");
+                            log.error(ex.getClass().getSimpleName() + " thrown while exporting data file.");
                         }
                     }
                 } else {
-                    logger.trace("user did not APPROVE_OPTION, returning...");
+                    log.trace("user did not APPROVE_OPTION, returning...");
                     return;
                 }
 
-                logger.trace("end threaded export process.");
+                log.trace("end threaded export process.");
             }
         });
         thread.start();
 
-        logger.trace("export button - end click handler");
+        log.trace("export button - end click handler");
     }
 
     private String cleanseForHtml(String input) {

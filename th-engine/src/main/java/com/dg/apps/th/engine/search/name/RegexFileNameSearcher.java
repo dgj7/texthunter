@@ -1,17 +1,16 @@
 package com.dg.apps.th.engine.search.name;
 
+import com.dg.apps.th.engine.search.SearchConfiguration;
+import lombok.extern.slf4j.Slf4j;
+
 import java.io.File;
 
-import com.dg.apps.th.engine.search.SearchConfiguration;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
+@Slf4j
 public class RegexFileNameSearcher implements IFileNameSearcher {
-    private final Logger logger = LoggerFactory.getLogger(RegexFileNameSearcher.class);
     private static RegexFileNameSearcher instance = null;
 
     private RegexFileNameSearcher() {
-        logger.debug("created instance");
+        log.debug("created instance");
     }
 
     public static RegexFileNameSearcher getInstance() {

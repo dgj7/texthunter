@@ -1,16 +1,14 @@
 package com.dg.apps.th.engine.enumeration;
 
-import java.util.List;
-import java.util.ArrayList;
-
 import com.dg.apps.th.engine.util.FileUtility;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.extern.slf4j.Slf4j;
 
 import java.io.File;
+import java.util.ArrayList;
+import java.util.List;
 
+@Slf4j
 public class RecursiveFilesystemEnumerator extends AbstractFilesystemEnumerator implements IFilesystemEnumerator {
-    private final Logger logger = LoggerFactory.getLogger(RecursiveFilesystemEnumerator.class);
     private static RecursiveFilesystemEnumerator instance = null;
 
     private RecursiveFilesystemEnumerator() {
@@ -34,7 +32,7 @@ public class RecursiveFilesystemEnumerator extends AbstractFilesystemEnumerator 
         } catch (Exception ex) {
             String folderName = FileUtility.getAbsoluteFilePath(folder);
             String message = "exception in " + folderName;
-            logger.error(message);
+            log.error(message);
             throw new FilesystemEnumerationException(message);
         }
 
@@ -55,7 +53,7 @@ public class RecursiveFilesystemEnumerator extends AbstractFilesystemEnumerator 
             }
         } catch (Exception ex) {
             String folderName = FileUtility.getAbsoluteFilePath(folder);
-            logger.error("exception in " + folderName);
+            log.error("exception in " + folderName);
         }
 
         return lstFiles;

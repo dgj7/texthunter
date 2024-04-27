@@ -1,21 +1,19 @@
 package com.dg.apps.th.engine.search.filter;
 
-import java.io.File;
-
 import com.dg.apps.th.engine.search.SearchConfiguration;
 import com.dg.apps.th.engine.util.FileUtility;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.extern.slf4j.Slf4j;
 
-import java.util.regex.Pattern;
+import java.io.File;
 import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
+@Slf4j
 public class RegexFileNameFilterer implements IFileNameFilterer {
-    private final Logger logger = LoggerFactory.getLogger(RegexFileNameFilterer.class);
     private static RegexFileNameFilterer instance = null;
 
     private RegexFileNameFilterer() {
-        logger.debug("created instance.");
+        log.debug("created instance.");
     }
 
     public static RegexFileNameFilterer getInstance() {

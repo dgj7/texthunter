@@ -1,18 +1,15 @@
 package com.dg.apps.th.engine.enumeration;
 
-import java.io.File;
-
 import com.dg.apps.th.engine.util.FileUtility;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.extern.slf4j.Slf4j;
 
-import java.util.List;
+import java.io.File;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
+@Slf4j
 public abstract class AbstractFilesystemEnumerator {
-    private final Logger logger = LoggerFactory.getLogger(AbstractFilesystemEnumerator.class);
-
     protected boolean isValidDirectoryName(String directoryName) {
         try {
             File file = new File(directoryName);
@@ -35,7 +32,7 @@ public abstract class AbstractFilesystemEnumerator {
             }
         } catch (Exception ex) {
             String folderName = FileUtility.getAbsoluteFilePath(folder);
-            logger.error("there was an error retrieving the file list in " + folderName);
+            log.error("there was an error retrieving the file list in " + folderName);
         }
         return lstFilesAndFolders;
     }

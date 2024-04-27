@@ -1,8 +1,6 @@
 package com.dg.apps.th.ui.tools;
 
-import javax.swing.UIManager;
-import javax.swing.LookAndFeel;
-import javax.swing.UnsupportedLookAndFeelException;
+import javax.swing.*;
 
 public class LookAndFeelSetter {
     public static void setLookAndFeel(LookAndFeel lnf) {

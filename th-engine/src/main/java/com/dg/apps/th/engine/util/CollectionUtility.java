@@ -1,10 +1,9 @@
 package com.dg.apps.th.engine.util;
 
-import java.util.Collection;
-import java.util.List;
-import java.util.LinkedList;
-import java.util.Iterator;
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Iterator;
+import java.util.List;
 
 public class CollectionUtility {
     public static <T> List<Collection<T>> splitCollection(Collection<T> col, int numLists) throws InstantiationException, IllegalAccessException {

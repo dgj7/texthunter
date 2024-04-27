@@ -3,17 +3,16 @@ package com.dg.apps.th.engine.search.filter;
 import com.dg.apps.th.engine.search.SearchConfiguration;
 import com.dg.apps.th.engine.util.FileUtility;
 import com.dg.apps.th.engine.util.StringUtility;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.extern.slf4j.Slf4j;
 
 import java.io.File;
 
+@Slf4j
 public class CaseInsensitiveFileNameFilterer implements IFileNameFilterer {
-    private final Logger logger = LoggerFactory.getLogger(CaseInsensitiveFileNameFilterer.class);
     private static CaseInsensitiveFileNameFilterer _instance = null;
 
     private CaseInsensitiveFileNameFilterer() {
-        logger.debug("created instance.");
+        log.debug("created instance.");
     }
 
     public static CaseInsensitiveFileNameFilterer getInstance() {

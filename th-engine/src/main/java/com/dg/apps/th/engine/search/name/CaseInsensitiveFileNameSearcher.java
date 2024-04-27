@@ -1,19 +1,18 @@
 package com.dg.apps.th.engine.search.name;
 
-import java.io.File;
-
 import com.dg.apps.th.engine.search.SearchConfiguration;
 import com.dg.apps.th.engine.util.FileUtility;
 import com.dg.apps.th.engine.util.StringUtility;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.extern.slf4j.Slf4j;
 
+import java.io.File;
+
+@Slf4j
 public class CaseInsensitiveFileNameSearcher implements IFileNameSearcher {
-    private final Logger logger = LoggerFactory.getLogger(CaseInsensitiveFileNameSearcher.class);
     private static CaseInsensitiveFileNameSearcher instance = null;
 
     private CaseInsensitiveFileNameSearcher() {
-        logger.debug("created instance.");
+        log.debug("created instance.");
     }
 
     public static CaseInsensitiveFileNameSearcher getInstance() {

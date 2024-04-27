@@ -1,34 +1,21 @@
 package com.dg.apps.th.ui.view;
 
-import javax.swing.JPanel;
-import javax.swing.JDesktopPane;
-import javax.swing.JToolBar;
-import java.awt.GridBagConstraints;
-import java.awt.GridBagLayout;
-import java.awt.BorderLayout;
-import javax.swing.JLabel;
-import javax.swing.JTextField;
-import javax.swing.JCheckBox;
-import javax.swing.JButton;
-
 import com.dg.apps.th.engine.search.SearchConfiguration;
 import com.dg.apps.th.engine.search.SearchConstants;
 import com.dg.apps.th.ui.TextHunterConstants;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.extern.slf4j.Slf4j;
 
-import java.awt.event.ActionListener;
+import javax.swing.*;
+import java.awt.*;
 import java.awt.event.ActionEvent;
-import javax.swing.JFileChooser;
-import java.io.File;
+import java.awt.event.ActionListener;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
-import javax.swing.JSeparator;
-import javax.swing.SwingConstants;
-import javax.swing.JInternalFrame;
-import java.util.List;
+import java.io.File;
 import java.util.Arrays;
+import java.util.List;
 
+@Slf4j
 public class SearchPanel extends JPanel {
     private JPanel _pnlInput = null;
     private JToolBar _tbrInput = null;
@@ -52,8 +39,6 @@ public class SearchPanel extends JPanel {
     private volatile JTextField _txtFilter = null;
 
     private JDesktopPane _pnlOutput = null;
-
-    private final Logger logger = LoggerFactory.getLogger(SearchPanel.class);
 
     public SearchPanel() {
         initialize();
@@ -169,7 +154,7 @@ public class SearchPanel extends JPanel {
     private void addHandlers() {
         _btnSearch.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent actionEvent) {
-                logger.trace("begin _btnSearch click handler");
+                log.trace("begin _btnSearch click handler");
 
                 SearchConfiguration config = getSearchConfiguration();
                 List<JInternalFrame> lstExistingFrames = Arrays.asList(_pnlOutput.getAllFrames());
@@ -177,7 +162,7 @@ public class SearchPanel extends JPanel {
                     try {
                         existingFrame.setIcon(true);
                     } catch (java.beans.PropertyVetoException pve) {
-                        logger.error(pve.getClass().getSimpleName() + " thrown while iconifying existing frames.");
+                        log.error(pve.getClass().getSimpleName() + " thrown while iconifying existing frames.");
                     }
                 }
 
@@ -186,13 +171,13 @@ public class SearchPanel extends JPanel {
                 try {
                     frame.setMaximum(true);
                 } catch (java.beans.PropertyVetoException pve) {
-                    logger.error(pve.getClass().getSimpleName() + " thrown while iconifying existing frames.");
+                    log.error(pve.getClass().getSimpleName() + " thrown while iconifying existing frames.");
                 }
 
                 _txtInput.setText("");
                 _btnSearch.setEnabled(false);
 
-                logger.trace("end _btnSearch click handler");
+                log.trace("end _btnSearch click handler");
             }
         });
 
@@ -210,7 +195,7 @@ public class SearchPanel extends JPanel {
 
         _chkRegex.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent actionEvent) {
-                logger.trace("begin _chkRegex click handler");
+                log.trace("begin _chkRegex click handler");
 
                 if (_chkRegex.isSelected()) {
                     _chkCapitalization.setSelected(true);
@@ -220,13 +205,13 @@ public class SearchPanel extends JPanel {
                     _chkCapitalization.setEnabled(true);
                 }
 
-                logger.trace("end _chkRegex click handler");
+                log.trace("end _chkRegex click handler");
             }
         });
 
         _chkFilter.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent actionEvent) {
-                logger.trace("begin _chkFilter click handler");
+                log.trace("begin _chkFilter click handler");
 
                 if (_chkFilter.isSelected()) {
                     _chkFilterRegex.setEnabled(true);
@@ -238,13 +223,13 @@ public class SearchPanel extends JPanel {
                     _txtFilter.setEnabled(false);
                 }
 
-                logger.trace("end _chkFilter click handler");
+                log.trace("end _chkFilter click handler");
             }
         });
 
         _btnPath.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent actionEvent) {
-                logger.trace("begin _btnPath click handler");
+                log.trace("begin _btnPath click handler");
 
                 JFileChooser fc = new JFileChooser();
                 File currentDirectory = new File(_txtPath.getText());
@@ -259,7 +244,7 @@ public class SearchPanel extends JPanel {
                     File selectedFile = fc.getSelectedFile();
                     _txtPath.setText(selectedFile.getAbsolutePath());
                 }
-                logger.trace("end _btnPath click handler");
+                log.trace("end _btnPath click handler");
             }
         });
 
@@ -315,7 +300,7 @@ public class SearchPanel extends JPanel {
     }
 
     public SearchResultInternalFrame displayNewSearchWindow(SearchConfiguration config) {
-        logger.info("launching search...");
+        log.info("launching search...");
 
         SearchResultInternalFrame frame = new SearchResultInternalFrame(config);
         frame.setVisible(true);
@@ -328,7 +313,7 @@ public class SearchPanel extends JPanel {
         }
 
         frame.launchSearch();
-        logger.info("exiting search frame launch method...");
+        log.info("exiting search frame launch method...");
         return frame;
     }
 

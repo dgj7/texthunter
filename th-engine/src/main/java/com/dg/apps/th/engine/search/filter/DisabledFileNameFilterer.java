@@ -1,17 +1,16 @@
 package com.dg.apps.th.engine.search.filter;
 
+import com.dg.apps.th.engine.search.SearchConfiguration;
+import lombok.extern.slf4j.Slf4j;
+
 import java.io.File;
 
-import com.dg.apps.th.engine.search.SearchConfiguration;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
+@Slf4j
 public class DisabledFileNameFilterer implements IFileNameFilterer {
     private static DisabledFileNameFilterer instance = null;
-    private final Logger logger = LoggerFactory.getLogger(DisabledFileNameFilterer.class);
 
     private DisabledFileNameFilterer() {
-        logger.debug("created instance.");
+        log.debug("created instance.");
     }
 
     public static DisabledFileNameFilterer getInstance() {

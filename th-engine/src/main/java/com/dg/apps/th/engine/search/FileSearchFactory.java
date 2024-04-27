@@ -3,9 +3,9 @@ package com.dg.apps.th.engine.search;
 import com.dg.apps.th.engine.search.filter.*;
 import com.dg.apps.th.engine.search.name.*;
 
-import java.util.List;
-import java.util.ArrayList;
 import java.io.File;
+import java.util.ArrayList;
+import java.util.List;
 
 public class FileSearchFactory {
     public static IFileNameFilterer getFileNameFilterer(SearchConfiguration config) {

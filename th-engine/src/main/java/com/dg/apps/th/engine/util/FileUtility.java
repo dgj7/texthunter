@@ -3,15 +3,11 @@ package com.dg.apps.th.engine.util;
 import com.dg.apps.th.engine.enumeration.FilesystemEnumerationException;
 import com.dg.apps.th.engine.enumeration.FilesystemEnumerator;
 import com.dg.apps.th.engine.enumeration.RecursiveFilesystemEnumerator;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 import java.io.File;
 import java.util.List;
 
 public class FileUtility {
-    private final Logger logger = LoggerFactory.getLogger(FileUtility.class);
-
     public static String getAbsoluteFilePath(File file) {
         String filePath = "";
         if (file != null)
