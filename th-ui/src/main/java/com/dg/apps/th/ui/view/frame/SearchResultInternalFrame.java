@@ -1,13 +1,13 @@
 package com.dg.apps.th.ui.view.frame;
 
 import com.dg.apps.th.engine.search.content.FileSearchLauncher;
+import com.dg.apps.th.model.Constants;
 import com.dg.apps.th.model.adapter.ILabelAdapter;
 import com.dg.apps.th.model.adapter.ISearchAware;
 import com.dg.apps.th.model.status.FileSearchStatusMessage;
 import com.dg.apps.th.model.config.SearchConfiguration;
 import com.dg.apps.th.engine.threads.IStatusReporter;
 import com.dg.apps.th.model.def.ThreadStatus;
-import com.dg.apps.th.ui.TextHunterConstants;
 import com.dg.apps.th.ui.view.adapter.IDataTableAware;
 import com.dg.apps.th.ui.action.handler.CancelButtonHandler;
 import com.dg.apps.th.ui.action.handler.ExportButtonHandler;
@@ -55,23 +55,23 @@ public class SearchResultInternalFrame extends JInternalFrame implements ILabelA
         mapSearchStatus = new HashMap<>();
 
         /* initialize */
-        lblStatus = new JLabel(TextHunterConstants.DEFAULT_SEARCH_LABEL_TEXT);
+        lblStatus = new JLabel(Constants.DEFAULT_SEARCH_LABEL_TEXT);
         tblResult = new ReadOnlyDataTable();
         pnlTop = new JPanel();
         tbrMain = new JToolBar();
-        btnCancel = new JButton(TextHunterConstants.INTERNAL_CANCEL_SEARCH_BUTTON);
-        btnExport = new JButton(TextHunterConstants.INTERNAL_EXPORT_SEARCH_BUTTON);
+        btnCancel = new JButton(Constants.INTERNAL_CANCEL_SEARCH_BUTTON);
+        btnExport = new JButton(Constants.INTERNAL_EXPORT_SEARCH_BUTTON);
 
         /* configure */
         this.setLayout(new BorderLayout());
         pnlTop.setLayout(new BorderLayout());
-        btnExport.setEnabled(TextHunterConstants.INTERNAL_EXPORT_SEARCH_BUTTON_ENABLED_BEFORE_SEARCH);
-        tbrMain.setFloatable(TextHunterConstants.INTERNAL_TOOL_BARS_FLOATABLE);
-        tblResult.addColumns(TextHunterConstants.COLUMN_NAMES);
-        tblResult.adjustColumnWidth(0, TextHunterConstants.COLUMN_ONE_WIDTH);
-        tblResult.adjustColumnWidth(1, TextHunterConstants.COLUMN_TWO_WIDTH);
-        tblResult.adjustColumnWidth(2, TextHunterConstants.COLUMN_THREE_WIDTH);
-        tblResult.adjustColumnWidth(3, TextHunterConstants.COLUMN_FOUR_WIDTH);
+        btnExport.setEnabled(Constants.INTERNAL_EXPORT_SEARCH_BUTTON_ENABLED_BEFORE_SEARCH);
+        tbrMain.setFloatable(Constants.INTERNAL_TOOL_BARS_FLOATABLE);
+        tblResult.addColumns(Constants.COLUMN_NAMES);
+        tblResult.adjustColumnWidth(0, Constants.COLUMN_ONE_WIDTH);
+        tblResult.adjustColumnWidth(1, Constants.COLUMN_TWO_WIDTH);
+        tblResult.adjustColumnWidth(2, Constants.COLUMN_THREE_WIDTH);
+        tblResult.adjustColumnWidth(3, Constants.COLUMN_FOUR_WIDTH);
 
         /* add widgets */
         pnlTop.add(tbrMain, BorderLayout.PAGE_START);
@@ -86,8 +86,8 @@ public class SearchResultInternalFrame extends JInternalFrame implements ILabelA
         btnCancel.addActionListener(new CancelButtonHandler(this, config));
 
         /* additional configuration */
-        setSize(TextHunterConstants.INTERNAL_FRAME_WIDTH, TextHunterConstants.INTERNAL_FRAME_HEIGHT);
-        setLocation(TextHunterConstants.INTERNAL_FRAME_X_OFFSET + openFrameCount, TextHunterConstants.INTERNAL_FRAME_Y_OFFSET + openFrameCount);
+        setSize(Constants.INTERNAL_FRAME_WIDTH, Constants.INTERNAL_FRAME_HEIGHT);
+        setLocation(Constants.INTERNAL_FRAME_X_OFFSET + openFrameCount, Constants.INTERNAL_FRAME_Y_OFFSET + openFrameCount);
     }
 
     /**
@@ -121,8 +121,8 @@ public class SearchResultInternalFrame extends JInternalFrame implements ILabelA
      */
     @Override
     public void updateUIForThreadCompletion() {
-        btnExport.setEnabled(TextHunterConstants.INTERNAL_EXPORT_SEARCH_BUTTON_ENABLED_AFTER_SEARCH);
-        btnCancel.setEnabled(TextHunterConstants.INTERNAL_CANCEL_SEARCH_BUTTON_ENABLED_AFTER_SEARCH);
+        btnExport.setEnabled(Constants.INTERNAL_EXPORT_SEARCH_BUTTON_ENABLED_AFTER_SEARCH);
+        btnCancel.setEnabled(Constants.INTERNAL_CANCEL_SEARCH_BUTTON_ENABLED_AFTER_SEARCH);
     }
 
     /**
@@ -130,8 +130,8 @@ public class SearchResultInternalFrame extends JInternalFrame implements ILabelA
      */
     @Override
     public void updateUIForThreadCancellation() {
-        btnExport.setEnabled(TextHunterConstants.INTERNAL_EXPORT_SEARCH_BUTTON_ENABLED_AFTER_SEARCH);
-        btnCancel.setEnabled(TextHunterConstants.INTERNAL_CANCEL_SEARCH_BUTTON_ENABLED_AFTER_SEARCH);
+        btnExport.setEnabled(Constants.INTERNAL_EXPORT_SEARCH_BUTTON_ENABLED_AFTER_SEARCH);
+        btnCancel.setEnabled(Constants.INTERNAL_CANCEL_SEARCH_BUTTON_ENABLED_AFTER_SEARCH);
     }
 
     /**
@@ -186,7 +186,7 @@ public class SearchResultInternalFrame extends JInternalFrame implements ILabelA
         Long filesSearched = 0L;
         Long filesSkipped = 0L;
         Long totalFiles = 0L;
-        String threadStatus = TextHunterConstants.THREAD_STATUS_NOT_STARTED;
+        String threadStatus = Constants.THREAD_STATUS_NOT_STARTED;
         String fileName = "";
         String threadName = "";
 
@@ -200,17 +200,17 @@ public class SearchResultInternalFrame extends JInternalFrame implements ILabelA
 
 
             if (message.getThreadStatus().equals(ThreadStatus.completed)) {
-                threadStatus = TextHunterConstants.THREAD_STATUS_COMPLETED;
+                threadStatus = Constants.THREAD_STATUS_COMPLETED;
             } else if (message.getThreadStatus().equals(ThreadStatus.cancelled)) {
-                threadStatus = TextHunterConstants.THREAD_STATUS_CANCELLED;
+                threadStatus = Constants.THREAD_STATUS_CANCELLED;
             } else if (message.getThreadStatus().equals(ThreadStatus.cancelling)) {
-                threadStatus = TextHunterConstants.THREAD_STATUS_CANCELLING;
+                threadStatus = Constants.THREAD_STATUS_CANCELLING;
             } else if (message.getThreadStatus().equals(ThreadStatus.running)) {
-                threadStatus = TextHunterConstants.THREAD_STATUS_IN_PROGRESS;
+                threadStatus = Constants.THREAD_STATUS_IN_PROGRESS;
             } else if (message.getThreadStatus().equals(ThreadStatus.idle)) {
-                threadStatus = TextHunterConstants.THREAD_STATUS_NOT_STARTED;
+                threadStatus = Constants.THREAD_STATUS_NOT_STARTED;
             } else {
-                threadStatus = TextHunterConstants.THREAD_STATUS_UNKNOWN;
+                threadStatus = Constants.THREAD_STATUS_UNKNOWN;
             }
         }
 

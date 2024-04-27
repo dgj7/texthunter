@@ -1,6 +1,6 @@
 package com.dg.apps.th.ui.view.panel;
 
-import com.dg.apps.th.ui.TextHunterConstants;
+import com.dg.apps.th.model.Constants;
 import com.dg.apps.th.ui.view.adapter.ILoggerTextAreaAware;
 import lombok.extern.slf4j.Slf4j;
 
@@ -34,7 +34,7 @@ public class LoggerPanel extends JPanel implements ILoggerTextAreaAware {
 
         /* configure */
         textArea.setEditable(false);
-        textArea.setFont(TextHunterConstants.LOGGER_FONT);
+        textArea.setFont(Constants.LOGGER_FONT);
         ((DefaultCaret) textArea.getCaret()).setUpdatePolicy(DefaultCaret.ALWAYS_UPDATE);
 
         /* add widgets */

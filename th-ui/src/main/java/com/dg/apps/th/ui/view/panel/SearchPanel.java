@@ -2,7 +2,6 @@ package com.dg.apps.th.ui.view.panel;
 
 import com.dg.apps.th.model.Constants;
 import com.dg.apps.th.model.config.SearchConfiguration;
-import com.dg.apps.th.ui.TextHunterConstants;
 import com.dg.apps.th.ui.view.frame.SearchResultInternalFrame;
 import lombok.extern.slf4j.Slf4j;
 
@@ -49,33 +48,33 @@ public class SearchPanel extends JPanel {
         tbrInput = new JToolBar();
         tbrPath = new JToolBar();
         tbrFilter = new JToolBar();
-        lblInput = new JLabel(TextHunterConstants.SEARCH_STRING_LABEL);
+        lblInput = new JLabel(Constants.SEARCH_STRING_LABEL);
         txtInput = new JTextField();
-        chkSearchFileContent = new JCheckBox(TextHunterConstants.SEARCH_FILE_CONTENT_CHECKBOX);
-        chkSearchFileNames = new JCheckBox(TextHunterConstants.SEARCH_FILE_NAMES_CHECKBOX);
-        chkRegex = new JCheckBox(TextHunterConstants.REGEX_CHECKBOX);
-        chkCapitalization = new JCheckBox(TextHunterConstants.CASE_SENSITIVE_CHECKBOX);
-        btnSearch = new JButton(TextHunterConstants.BEGIN_SEARCH_BUTTON);
-        lblPath = new JLabel(TextHunterConstants.PATH_LABEL);
+        chkSearchFileContent = new JCheckBox(Constants.SEARCH_FILE_CONTENT_CHECKBOX);
+        chkSearchFileNames = new JCheckBox(Constants.SEARCH_FILE_NAMES_CHECKBOX);
+        chkRegex = new JCheckBox(Constants.REGEX_CHECKBOX);
+        chkCapitalization = new JCheckBox(Constants.CASE_SENSITIVE_CHECKBOX);
+        btnSearch = new JButton(Constants.BEGIN_SEARCH_BUTTON);
+        lblPath = new JLabel(Constants.PATH_LABEL);
         txtPath = new JTextField();
-        chkSubdirs = new JCheckBox(TextHunterConstants.SUBDIR_CHECKBOX);
-        btnPath = new JButton(TextHunterConstants.PATH_BROWSE_BUTTON);
-        lblFilter = new JLabel(TextHunterConstants.FILTER_LABEL);
-        chkFilter = new JCheckBox(TextHunterConstants.FILTERED_SEARCH_CHECKBOX);
-        chkFilterRegex = new JCheckBox(TextHunterConstants.REGEX_FILTER_CHECKBOX);
+        chkSubdirs = new JCheckBox(Constants.SUBDIR_CHECKBOX);
+        btnPath = new JButton(Constants.PATH_BROWSE_BUTTON);
+        lblFilter = new JLabel(Constants.FILTER_LABEL);
+        chkFilter = new JCheckBox(Constants.FILTERED_SEARCH_CHECKBOX);
+        chkFilterRegex = new JCheckBox(Constants.REGEX_FILTER_CHECKBOX);
         txtFilter = new JTextField();
         pnlOutput = new JDesktopPane();
 
         /* configure */
         this.setLayout(new BorderLayout());
         pnlInput.setLayout(new GridBagLayout());
-        tbrInput.setFloatable(TextHunterConstants.MAIN_TOOL_BARS_FLOATABLE);
-        tbrPath.setFloatable(TextHunterConstants.MAIN_TOOL_BARS_FLOATABLE);
-        tbrFilter.setFloatable(TextHunterConstants.MAIN_TOOL_BARS_FLOATABLE);
+        tbrInput.setFloatable(Constants.MAIN_TOOL_BARS_FLOATABLE);
+        tbrPath.setFloatable(Constants.MAIN_TOOL_BARS_FLOATABLE);
+        tbrFilter.setFloatable(Constants.MAIN_TOOL_BARS_FLOATABLE);
         chkSearchFileContent.setSelected(Constants.SEARCH_FILE_CONTENT_DEFAULT);
         chkSearchFileNames.setSelected(Constants.SEARCH_FILE_NAMES_DEFAULT);
         chkRegex.setSelected(Constants.REGEX_SEARCH_VALUE_DEFAULT);
-        txtPath.setText(System.getProperty(TextHunterConstants.DEFAULT_PATH_SYSTEM_PROPERTY));
+        txtPath.setText(System.getProperty(Constants.DEFAULT_PATH_SYSTEM_PROPERTY));
         txtPath.setEnabled(false);
         chkSubdirs.setSelected(Constants.RECURSE_SUBDIRECTORIES_VALUE_DEFAULT.isConfiguration());
         txtFilter.setEnabled(false);
@@ -204,7 +203,7 @@ public class SearchPanel extends JPanel {
             File currentDirectory = new File(txtPath.getText());
 
             fc.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
-            fc.setDialogTitle(TextHunterConstants.PATH_SEARCH_DIALOG_TITLE);
+            fc.setDialogTitle(Constants.PATH_SEARCH_DIALOG_TITLE);
             fc.setCurrentDirectory(currentDirectory);
 
             int retVal = fc.showOpenDialog(SearchPanel.this);

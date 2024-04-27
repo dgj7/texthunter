@@ -1,6 +1,6 @@
 package com.dg.apps.th.ui.view.frame;
 
-import com.dg.apps.th.ui.TextHunterConstants;
+import com.dg.apps.th.model.Constants;
 import com.dg.apps.th.ui.view.adapter.ILoggerTextAreaAware;
 import com.dg.apps.th.ui.view.panel.LoggerPanel;
 import com.dg.apps.th.ui.view.panel.SearchPanel;
@@ -22,7 +22,7 @@ public class TextHunterFrame extends EnhancedFrame implements ILoggerTextAreaAwa
      * Create a new instance.
      */
     public TextHunterFrame() {
-        super(TextHunterConstants.APP_TITLE, TextHunterConstants.APP_WIDTH, TextHunterConstants.APP_HEIGHT, new BorderLayout());
+        super(Constants.APP_TITLE, Constants.APP_WIDTH, Constants.APP_HEIGHT, new BorderLayout());
 
         /* initialize */
         pnlMain = new JPanel();
@@ -33,9 +33,9 @@ public class TextHunterFrame extends EnhancedFrame implements ILoggerTextAreaAwa
 
         /* configure */
         pnlMain.setLayout(new BorderLayout());
-        tabsMain.addTab(TextHunterConstants.SEARCHES_TAB_TEXT, pnlSearch);
-        tabsMain.addTab(TextHunterConstants.LOG_TAB_TEXT, pnlLogger);
-        tabsMain.addTab(TextHunterConstants.OPTIONS_TAB_TEXT, pnlOptions);
+        tabsMain.addTab(Constants.SEARCHES_TAB_TEXT, pnlSearch);
+        tabsMain.addTab(Constants.LOG_TAB_TEXT, pnlLogger);
+        tabsMain.addTab(Constants.OPTIONS_TAB_TEXT, pnlOptions);
 
         /* add widgets */
         this.add(pnlMain, BorderLayout.CENTER);

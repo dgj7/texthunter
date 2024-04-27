@@ -1,7 +1,7 @@
 package com.dg.apps.th.ui.action.handler;
 
+import com.dg.apps.th.model.Constants;
 import com.dg.apps.th.model.config.SearchConfiguration;
-import com.dg.apps.th.ui.TextHunterConstants;
 import com.dg.apps.th.ui.view.adapter.IDataTableAware;
 import com.dg.apps.th.ui.view.panel.ReadOnlyDataTable;
 import lombok.extern.slf4j.Slf4j;
@@ -39,10 +39,10 @@ public class ExportButtonHandler implements ActionListener {
         log.trace("export button - click handler");
 
         final JFileChooser fc = new JFileChooser();
-        final File currentDirectory = new File(System.getProperty(TextHunterConstants.DEFAULT_PATH_SYSTEM_PROPERTY));
+        final File currentDirectory = new File(System.getProperty(Constants.DEFAULT_PATH_SYSTEM_PROPERTY));
 
         fc.setFileSelectionMode(JFileChooser.FILES_AND_DIRECTORIES);
-        fc.setDialogTitle(TextHunterConstants.EXPORT_DIALOG_TITLE);
+        fc.setDialogTitle(Constants.EXPORT_DIALOG_TITLE);
         fc.setCurrentDirectory(currentDirectory);
 
         final int retVal = fc.showSaveDialog(parent.asComponent());
