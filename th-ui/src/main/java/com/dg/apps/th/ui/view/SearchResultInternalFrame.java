@@ -1,7 +1,7 @@
 package com.dg.apps.th.ui.view;
 
 import com.dg.apps.th.engine.search.content.FileSearchLauncher;
-import com.dg.apps.th.engine.threads.ILabelAdapter;
+import com.dg.apps.th.engine.threads.adapt.ILabelAdapter;
 import com.dg.apps.th.model.status.FileSearchStatusMessage;
 import com.dg.apps.th.model.config.SearchConfiguration;
 import com.dg.apps.th.engine.threads.IStatusReporter;
@@ -9,7 +9,7 @@ import com.dg.apps.th.model.def.ThreadStatus;
 import com.dg.apps.th.ui.TextHunterConstants;
 import com.dg.apps.th.ui.handler.CancelButtonHandler;
 import com.dg.apps.th.ui.handler.ExportButtonHandler;
-import com.dg.apps.th.ui.handler.FileSearchStatusReporter;
+import com.dg.apps.th.engine.threads.impl.FileSearchStatusReporter;
 import com.dg.apps.th.ui.tools.ReadOnlyDataTable;
 import lombok.extern.slf4j.Slf4j;
 
