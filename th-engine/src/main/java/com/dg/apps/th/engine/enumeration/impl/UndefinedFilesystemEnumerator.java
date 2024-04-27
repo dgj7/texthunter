@@ -1,5 +1,6 @@
 package com.dg.apps.th.engine.enumeration.impl;
 
+import com.dg.apps.th.model.Constants;
 import com.dg.apps.th.model.exc.FilesystemEnumerationException;
 import com.dg.apps.th.engine.enumeration.IFilesystemEnumerator;
 
@@ -16,7 +17,7 @@ public class UndefinedFilesystemEnumerator extends AbstractFilesystemEnumerator 
      * Create a new instance.
      */
     private UndefinedFilesystemEnumerator() {
-        // only allowed internally
+        throw new UnsupportedOperationException(Constants.DO_NOT_INSTANTIATE);
     }
 
     /**

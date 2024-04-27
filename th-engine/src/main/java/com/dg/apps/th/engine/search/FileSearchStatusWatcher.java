@@ -1,8 +1,8 @@
 package com.dg.apps.th.engine.search;
 
 import com.dg.apps.th.engine.search.content.FileContentSearchResult;
-import com.dg.apps.th.engine.search.filter.FileNameFilterResult;
-import com.dg.apps.th.engine.search.name.FileNameSearchResult;
+import com.dg.apps.th.model.def.FileNameFilterResult;
+import com.dg.apps.th.model.def.FileNameSearchResult;
 
 public class FileSearchStatusWatcher {
     private long _totalFiles = 0;

@@ -1,5 +1,6 @@
 package com.dg.apps.th.engine.enumeration.impl;
 
+import com.dg.apps.th.model.Constants;
 import com.dg.apps.th.model.exc.FilesystemEnumerationException;
 import com.dg.apps.th.engine.enumeration.IFilesystemEnumerator;
 import com.dg.apps.th.engine.util.FileUtility;
@@ -22,7 +23,7 @@ public class RecursiveFilesystemEnumerator extends AbstractFilesystemEnumerator 
      * Create a new instance.
      */
     private RecursiveFilesystemEnumerator() {
-        //
+        throw new UnsupportedOperationException(Constants.DO_NOT_INSTANTIATE);
     }
 
     /**

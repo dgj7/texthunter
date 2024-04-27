@@ -1,7 +1,16 @@
 package com.dg.apps.th.engine.search;
 
-import com.dg.apps.th.engine.search.filter.*;
-import com.dg.apps.th.engine.search.name.*;
+import com.dg.apps.th.engine.search.name.contains.*;
+import com.dg.apps.th.engine.search.name.contains.impl.CaseInsensitiveFileNameSearcher;
+import com.dg.apps.th.engine.search.name.contains.impl.CaseSensitiveFileNameSearcher;
+import com.dg.apps.th.engine.search.name.contains.impl.DisabledFileNameSearcher;
+import com.dg.apps.th.engine.search.name.contains.impl.RegexFileNameSearcher;
+import com.dg.apps.th.engine.search.name.filter.*;
+import com.dg.apps.th.engine.search.name.filter.impl.CaseInsensitiveFileNameFilterer;
+import com.dg.apps.th.engine.search.name.filter.impl.CaseSensitiveFileNameFilterer;
+import com.dg.apps.th.engine.search.name.filter.impl.DisabledFileNameFilterer;
+import com.dg.apps.th.engine.search.name.filter.impl.RegexFileNameFilterer;
+import com.dg.apps.th.model.def.FileNameFilterResult;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -41,7 +50,7 @@ public class FileSearchFactory {
 
     public static List<File> initializeFileList(List<File> input) {
         if (input == null)
-            input = new ArrayList<File>();
+            input = new ArrayList<>();
         return input;
     }
 }
