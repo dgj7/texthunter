@@ -10,10 +10,9 @@ public class TextHunterConstants {
     public static final int LOGGER_FONT_STYLE = Font.PLAIN;
     public static final int LOGGER_FONT_SIZE = 12;
     public static final Font LOGGER_FONT = new Font(LOGGER_FONT_NAME, LOGGER_FONT_STYLE, LOGGER_FONT_SIZE);
-    public static final String APP_TITLE = "text hunter (alpha)";
+    public static final String APP_TITLE = "TextHunter";
     public static final int APP_WIDTH = 800;
     public static final int APP_HEIGHT = 600;
-    public static final String NEW_TAB_BUTTON_STRING = "new tab";
     public static final String SEARCHES_TAB_TEXT = "searches";
     public static final String LOG_TAB_TEXT = "log";
     public static final String OPTIONS_TAB_TEXT = "options";
@@ -23,7 +22,6 @@ public class TextHunterConstants {
     public static final String SEARCH_FILE_NAMES_CHECKBOX = "names";
     public static final String CASE_SENSITIVE_CHECKBOX = "case-sensitive";
     public static final String BEGIN_SEARCH_BUTTON = "launch";
-    public static final String CANCEL_SEARCH_BUTTON = "cancel";
     public static final boolean MAIN_TOOL_BARS_FLOATABLE = false;
     public static final boolean INTERNAL_TOOL_BARS_FLOATABLE = false;
     public static final String INTERNAL_CANCEL_SEARCH_BUTTON = "cancel";
