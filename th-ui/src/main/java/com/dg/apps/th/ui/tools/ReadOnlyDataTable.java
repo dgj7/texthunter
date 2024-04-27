@@ -1,6 +1,6 @@
 package com.dg.apps.th.ui.tools;
 
-import com.dg.apps.th.engine.threads.adapt.ITableAdapter;
+import com.dg.apps.th.model.adapter.ITableAdapter;
 
 import javax.swing.*;
 import javax.swing.event.ListSelectionListener;

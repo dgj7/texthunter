@@ -67,6 +67,7 @@ public class SearchConfiguration {
     /**
      * Get the default configuration.
      */
+    // todo: look at usages of this method; in most places it should just be Objects.reuireNonNull() instead
     public static SearchConfiguration getDefaultConfiguration() {
         return new SearchConfiguration();
     }

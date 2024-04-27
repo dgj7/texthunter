@@ -1,12 +1,14 @@
 package com.dg.apps.th.ui.view;
 
 import com.dg.apps.th.engine.search.content.FileSearchLauncher;
-import com.dg.apps.th.engine.threads.adapt.ILabelAdapter;
+import com.dg.apps.th.model.adapter.ILabelAdapter;
+import com.dg.apps.th.model.adapter.ISearchAware;
 import com.dg.apps.th.model.status.FileSearchStatusMessage;
 import com.dg.apps.th.model.config.SearchConfiguration;
 import com.dg.apps.th.engine.threads.IStatusReporter;
 import com.dg.apps.th.model.def.ThreadStatus;
 import com.dg.apps.th.ui.TextHunterConstants;
+import com.dg.apps.th.ui.adapter.IDataTableAware;
 import com.dg.apps.th.ui.handler.CancelButtonHandler;
 import com.dg.apps.th.ui.handler.ExportButtonHandler;
 import com.dg.apps.th.engine.threads.impl.FileSearchStatusReporter;
@@ -19,7 +21,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 @Slf4j
-public class SearchResultInternalFrame extends JInternalFrame implements ILabelAdapter {
+public class SearchResultInternalFrame extends JInternalFrame implements ILabelAdapter, ISearchAware, IDataTableAware {
     static int openFrameCount = 0;
     private volatile JLabel _lblStatus = null;
     private volatile ReadOnlyDataTable _tblResult = null;
@@ -89,10 +91,12 @@ public class SearchResultInternalFrame extends JInternalFrame implements ILabelA
         _btnCancel.addActionListener(new CancelButtonHandler(this, _config));
     }
 
+    @Override
     public ReadOnlyDataTable getTableReference() {
         return _tblResult;
     }
 
+    @Override
     public FileSearchLauncher getFileSearchLauncherReference() {
         return _launcher;
     }
@@ -198,5 +202,10 @@ public class SearchResultInternalFrame extends JInternalFrame implements ILabelA
         builder.append("]</nobr>");
 
         return builder.toString();
+    }
+
+    @Override
+    public Component asComponent() {
+        return this;
     }
 }

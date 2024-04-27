@@ -1,27 +1,35 @@
 package com.dg.apps.th.ui.handler;
 
 import com.dg.apps.th.engine.search.content.FileSearchLauncher;
+import com.dg.apps.th.model.adapter.ISearchAware;
 import com.dg.apps.th.model.config.SearchConfiguration;
-import com.dg.apps.th.ui.view.SearchResultInternalFrame;
 
-import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+/**
+ * {@link ActionListener} for cancel button(s).
+ */
 public class CancelButtonHandler implements ActionListener {
-    private Component _parent = null;
-    private SearchConfiguration _config = null;
+    private final ISearchAware parent;
+    private final SearchConfiguration searchConfiguration;
 
-    public CancelButtonHandler(Component parent, SearchConfiguration config) {
-        _parent = parent;
-        if (config == null)
-            _config = SearchConfiguration.getDefaultConfiguration();
+    /**
+     * Create a new instance.
+     */
+    public CancelButtonHandler(final ISearchAware pParent, final SearchConfiguration pConfig) {
+        this.parent = pParent;
+        if (pConfig == null)
+            searchConfiguration = SearchConfiguration.getDefaultConfiguration();
         else
-            _config = config;
+            searchConfiguration = pConfig;
     }
 
-    public void actionPerformed(ActionEvent event) {
-        FileSearchLauncher launcher = ((SearchResultInternalFrame) _parent).getFileSearchLauncherReference();
+    /**
+     * Handle action performed.
+     */
+    public void actionPerformed(final ActionEvent event) {
+        final FileSearchLauncher launcher = parent.getFileSearchLauncherReference();
         launcher.requestCancel();
     }
 }

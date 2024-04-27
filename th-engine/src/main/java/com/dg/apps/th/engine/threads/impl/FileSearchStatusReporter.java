@@ -1,8 +1,8 @@
 package com.dg.apps.th.engine.threads.impl;
 
-import com.dg.apps.th.engine.threads.adapt.ILabelAdapter;
+import com.dg.apps.th.model.adapter.ILabelAdapter;
 import com.dg.apps.th.engine.threads.IStatusReporter;
-import com.dg.apps.th.engine.threads.adapt.ITableAdapter;
+import com.dg.apps.th.model.adapter.ITableAdapter;
 import com.dg.apps.th.model.status.FileSearchStatusMessage;
 import com.dg.apps.th.model.status.FileSearchSuccessMessage;
 import lombok.extern.slf4j.Slf4j;

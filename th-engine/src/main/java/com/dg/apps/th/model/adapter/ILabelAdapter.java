@@ -1,4 +1,4 @@
-package com.dg.apps.th.engine.threads.adapt;
+package com.dg.apps.th.model.adapter;
 
 import com.dg.apps.th.model.status.FileSearchStatusMessage;
 
