@@ -1,31 +1,30 @@
 package com.dg.apps.th.ui.handler;
 
+import com.dg.apps.th.engine.threads.ILabelAdapter;
 import com.dg.apps.th.engine.threads.IStatusReporter;
+import com.dg.apps.th.engine.threads.ITableAdapter;
 import com.dg.apps.th.model.status.FileSearchStatusMessage;
 import com.dg.apps.th.model.status.FileSearchSuccessMessage;
-import com.dg.apps.th.ui.tools.ReadOnlyDataTable;
-import com.dg.apps.th.ui.view.SearchResultInternalFrame;
 import lombok.extern.slf4j.Slf4j;
 
-import java.awt.*;
 import java.util.Vector;
 
 // todo: move this back into the engine project by utilising some kind of callback interface (and/or adapter)
 @Slf4j
 public class FileSearchStatusReporter implements IStatusReporter {
-    private ReadOnlyDataTable _tableRef = null;
-    private Component _parent = null;
+    private final ITableAdapter table;
+    private final ILabelAdapter label;
 
-    public FileSearchStatusReporter(ReadOnlyDataTable tableRef, Component parent) {
-        _tableRef = tableRef;
-        _parent = parent;
+    public FileSearchStatusReporter(final ITableAdapter pTable, final ILabelAdapter pLabel) {
+        table = pTable;
+        label = pLabel;
     }
 
     @Override
     public void reportSuccess(FileSearchSuccessMessage message) {
         log.debug("attempting to report success message to data table...");
         try {
-            Vector<String> rowData = new Vector<String>();
+            final Vector<String> rowData = new Vector<>();
             if (message.getFile() != null) {
                 rowData.add(message.getFile().getName());
                 rowData.add(message.getFile().getAbsolutePath());
@@ -46,7 +45,7 @@ public class FileSearchStatusReporter implements IStatusReporter {
                 rowData.add("");
             }
 
-            _tableRef.addRow(rowData);
+            table.addRow(rowData);
         } catch (Exception ex) {
             log.error("unable to report success message!");
         }
@@ -58,7 +57,7 @@ public class FileSearchStatusReporter implements IStatusReporter {
         log.debug("attempting to report status...");
 
         try {
-            ((SearchResultInternalFrame) _parent).updateStatusLabel(message);
+            label.updateStatusLabel(message);
         } catch (Exception ex) {
             log.error("unable to report status message!");
         }
@@ -68,11 +67,11 @@ public class FileSearchStatusReporter implements IStatusReporter {
 
     @Override
     public void reportCompletion() {
-        ((SearchResultInternalFrame) _parent).updateUIForThreadCompletion();
+        label.updateUIForThreadCompletion();
     }
 
     @Override
     public void reportCancellation() {
-        ((SearchResultInternalFrame) _parent).updateUIForThreadCancellation();
+        label.updateUIForThreadCancellation();
     }
 }

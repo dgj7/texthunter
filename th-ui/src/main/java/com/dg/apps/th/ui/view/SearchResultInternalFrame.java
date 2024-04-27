@@ -1,6 +1,7 @@
 package com.dg.apps.th.ui.view;
 
 import com.dg.apps.th.engine.search.content.FileSearchLauncher;
+import com.dg.apps.th.engine.threads.ILabelAdapter;
 import com.dg.apps.th.model.status.FileSearchStatusMessage;
 import com.dg.apps.th.model.config.SearchConfiguration;
 import com.dg.apps.th.engine.threads.IStatusReporter;
@@ -18,8 +19,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 @Slf4j
-public class SearchResultInternalFrame extends JInternalFrame {
-
+public class SearchResultInternalFrame extends JInternalFrame implements ILabelAdapter {
     static int openFrameCount = 0;
     private volatile JLabel _lblStatus = null;
     private volatile ReadOnlyDataTable _tblResult = null;
@@ -104,17 +104,20 @@ public class SearchResultInternalFrame extends JInternalFrame {
         (new Thread(_launcher)).start();
     }
 
+    @Override
     public void updateUIForThreadCompletion() {
         _btnExport.setEnabled(TextHunterConstants.INTERNAL_EXPORT_SEARCH_BUTTON_ENABLED_AFTER_SEARCH);
         _btnCancel.setEnabled(TextHunterConstants.INTERNAL_CANCEL_SEARCH_BUTTON_ENABLED_AFTER_SEARCH);
     }
 
+    @Override
     public void updateUIForThreadCancellation() {
         _btnExport.setEnabled(TextHunterConstants.INTERNAL_EXPORT_SEARCH_BUTTON_ENABLED_AFTER_SEARCH);
         _btnCancel.setEnabled(TextHunterConstants.INTERNAL_CANCEL_SEARCH_BUTTON_ENABLED_AFTER_SEARCH);
     }
 
-    public synchronized void updateStatusLabel(FileSearchStatusMessage message) {
+    @Override
+    public synchronized void updateStatusLabel(final FileSearchStatusMessage message) {
         log.trace("entered updateStatusLabel()...");
         StringBuilder builder = new StringBuilder();
 

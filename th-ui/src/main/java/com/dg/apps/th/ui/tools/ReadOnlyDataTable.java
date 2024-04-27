@@ -1,5 +1,7 @@
 package com.dg.apps.th.ui.tools;
 
+import com.dg.apps.th.engine.threads.ITableAdapter;
+
 import javax.swing.*;
 import javax.swing.event.ListSelectionListener;
 import javax.swing.table.DefaultTableModel;
@@ -8,7 +10,7 @@ import java.awt.event.MouseAdapter;
 import java.util.List;
 import java.util.Vector;
 
-public class ReadOnlyDataTable extends JPanel {
+public class ReadOnlyDataTable extends JPanel implements ITableAdapter {
     private volatile DefaultTableModel _model = null;
     private volatile JTable _table = null;
     private volatile JScrollPane _scroller = null;
@@ -37,7 +39,8 @@ public class ReadOnlyDataTable extends JPanel {
         }
     }
 
-    public synchronized void addRow(Vector rowData) {
+    @Override
+    public synchronized void addRow(Vector<String> rowData) {
         _model.addRow(rowData);
     }
 
