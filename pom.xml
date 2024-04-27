@@ -7,16 +7,6 @@
 	
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-
-		<junitversion>4.13.2</junitversion>
-		<log4jversion>1.2.17</log4jversion>
-		<compilersourceversion>1.7</compilersourceversion>
-		<compilertargetversion>1.7</compilertargetversion>
-		<surefireversion>2.16</surefireversion>
-		<maven-compiler-plugin-version>3.1</maven-compiler-plugin-version>
-		<maven-shade-plugin-version>2.4.3</maven-shade-plugin-version>
-		<th-ui-version>0.0.1</th-ui-version>
-		<th-engine-version>0.0.1</th-engine-version>
 	</properties>
 	
 	<modules>
@@ -28,24 +18,24 @@
 		<dependency>
 			<groupId>com.dg.apps.th.engine</groupId>
 			<artifactId>th-engine</artifactId>
-			<version>${th-engine-version}</version>
+			<version>0.0.1</version>
 		</dependency>
 		<dependency>
 			<groupId>com.dg.apps.th.ui</groupId>
 			<artifactId>th-ui</artifactId>
-			<version>${th-ui-version}</version>
+			<version>0.0.1</version>
 		</dependency>
 		
 		<dependency>
 			<groupId>junit</groupId>
 			<artifactId>junit</artifactId>
-			<version>${junitversion}</version>
+			<version>4.13.2</version>
 			<scope>test</scope>
 		</dependency>
 		<dependency>
 			<groupId>log4j</groupId>
 			<artifactId>log4j</artifactId>
-			<version>${log4jversion}</version>
+			<version>1.2.17</version>
 		</dependency>
 	</dependencies>
 	
@@ -55,15 +45,15 @@
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-compiler-plugin</artifactId>
 				<configuration>
-					<source>${compilersourceversion}</source>
-					<target>${compilertargetversion}</target>
+					<source>1.8</source>
+					<target>1.8</target>
 				</configuration>
-				<version>${maven-compiler-plugin-version}</version>
+				<version>3.1</version>
 			</plugin>
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-surefire-plugin</artifactId>
-				<version>${surefireversion}</version>
+				<version>2.16</version>
 				<configuration>
 					<enableAssertions>true</enableAssertions>
 				</configuration>
