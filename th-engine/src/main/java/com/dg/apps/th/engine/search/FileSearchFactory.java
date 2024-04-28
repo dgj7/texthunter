@@ -36,7 +36,7 @@ public class FileSearchFactory {
     /**
      * Provide {@link IFileNameFilterer}.
      */
-    public static IFileNameFilterer getFileNameFilterer(SearchConfiguration config) {
+    public static IFileNameFilterer getFileNameFilterer(final SearchConfiguration config) {
         if (config.isFilteredSearch()) {
             if (config.isRegexFilter()) {
                 return RegexFileNameFilterer.getInstance();
@@ -53,7 +53,7 @@ public class FileSearchFactory {
     /**
      * Provide {@link IFileNameSearcher}.
      */
-    public static IFileNameSearcher getFileNameSearcher(SearchConfiguration config, FileNameFilterResult fileNameFilterResult) {
+    public static IFileNameSearcher getFileNameSearcher(final SearchConfiguration config, final FileNameFilterResult fileNameFilterResult) {
         if (FileNameFilterResult.Failed.equals(fileNameFilterResult))
             return DisabledFileNameSearcher.getInstance();
 
