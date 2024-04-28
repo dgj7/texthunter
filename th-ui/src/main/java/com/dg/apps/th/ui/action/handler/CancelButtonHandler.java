@@ -1,6 +1,5 @@
 package com.dg.apps.th.ui.action.handler;
 
-import com.dg.apps.th.engine.search.content.FileSearchLauncher;
 import com.dg.apps.th.model.adapter.ISearchAware;
 import com.dg.apps.th.model.config.SearchConfiguration;
 
@@ -27,7 +26,6 @@ public class CancelButtonHandler implements ActionListener {
      * Handle action performed.
      */
     public void actionPerformed(final ActionEvent event) {
-        final FileSearchLauncher launcher = parent.getFileSearchLauncherReference();
-        launcher.requestCancel();
+        parent.getFileSearchLauncherReference().requestCancel();
     }
 }

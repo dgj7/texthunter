@@ -140,10 +140,10 @@ public class SearchResultInternalFrame extends JInternalFrame implements ILabelA
     @Override
     public synchronized void updateStatusLabel(final FileSearchStatusMessage message) {
         log.trace("entered updateStatusLabel()...");
-        StringBuilder builder = new StringBuilder();
+        final StringBuilder builder = new StringBuilder();
 
         if (message != null) {
-            String threadName = message.getThreadName();
+            final String threadName = message.getThreadName();
             mapSearchStatus.put(threadName, message);
         }
 
