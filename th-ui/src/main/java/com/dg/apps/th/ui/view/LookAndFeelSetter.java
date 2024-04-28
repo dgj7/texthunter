@@ -1,10 +1,13 @@
 package com.dg.apps.th.ui.view;
 
+import lombok.extern.slf4j.Slf4j;
+
 import javax.swing.*;
 
 /**
  * Util for sending the look-and-feel.
  */
+@Slf4j
 public class LookAndFeelSetter {
     /**
      * Set look-and-feel by Class.
@@ -13,7 +16,7 @@ public class LookAndFeelSetter {
         try {
             UIManager.setLookAndFeel(lnf);
         } catch (UnsupportedLookAndFeelException ex) {
-            // don't do anything - use the default look and feel
+            log.error("{}: {}", ex.getClass().getSimpleName(), ex.getMessage());
         }
     }
 
@@ -24,7 +27,7 @@ public class LookAndFeelSetter {
         try {
             UIManager.setLookAndFeel(className);
         } catch (UnsupportedLookAndFeelException | ClassNotFoundException | InstantiationException | IllegalAccessException ex) {
-            // don't do anything - use the default look and feel
+            log.error("{}: {}", ex.getClass().getSimpleName(), ex.getMessage());
         }
     }
 

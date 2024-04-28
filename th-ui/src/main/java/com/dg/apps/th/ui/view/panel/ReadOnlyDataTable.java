@@ -1,6 +1,7 @@
 package com.dg.apps.th.ui.view.panel;
 
 import com.dg.apps.th.model.adapter.ITableAdapter;
+import lombok.extern.slf4j.Slf4j;
 
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
@@ -10,6 +11,7 @@ import java.util.Vector;
 /**
  * Panel storing a data table.
  */
+@Slf4j
 public class ReadOnlyDataTable extends JPanel implements ITableAdapter {
     private volatile DefaultTableModel model = null;
     private volatile JTable table = null;
@@ -86,7 +88,7 @@ public class ReadOnlyDataTable extends JPanel implements ITableAdapter {
         try {
             table.getColumnModel().getColumn(column).setPreferredWidth(width);
         } catch (Exception ex) {
-            //
+            log.error("{}: {}", ex.getClass().getSimpleName(), ex.getMessage());
         }
     }
 

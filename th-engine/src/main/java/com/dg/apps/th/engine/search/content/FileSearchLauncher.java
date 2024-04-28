@@ -59,6 +59,7 @@ public class FileSearchLauncher implements Runnable {
             try {
                 lstSplitLists = ListUtility.splitCollection(lstFiles, searchConfig.getThreadCount());
             } catch (Exception ex) {
+                log.error("{}: {}", ex.getClass().getSimpleName(), ex.getMessage());
                 lstSplitLists = new ArrayList<>();
                 lstSplitLists.add(lstFiles);
             }
@@ -84,7 +85,7 @@ public class FileSearchLauncher implements Runnable {
             reporter.reportCompletion();
             log.info("search completed ({}ms).", Duration.between(start, Instant.now()).toMillis());
         } catch (FilesystemEnumerationException fsex) {
-            // todo: probably should at least be logging something here
+            log.error("{}: {}", fsex.getClass().getSimpleName(), fsex.getMessage());
         }
     }
 

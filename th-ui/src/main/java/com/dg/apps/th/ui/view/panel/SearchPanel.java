@@ -243,7 +243,7 @@ public class SearchPanel extends JPanel {
         try {
             frame.setSelected(true);
         } catch (java.beans.PropertyVetoException ex) {
-            //
+            log.error("{}: {}", ex.getClass().getSimpleName(), ex.getMessage());
         }
 
         frame.launchSearch();
