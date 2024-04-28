@@ -60,7 +60,7 @@ public class JTextAreaAppender extends AppenderBase<ILoggingEvent> {
      */
     public void checkQueuedMessages() {
         if (this.textArea != null && !queuedMessages.isEmpty()) {
-            queuedMessages.add(new LoggingEvent("fqcn", (Logger)log, Level.INFO, "dumping queued messages.", null, new String[]{}));
+            queuedMessages.add(new LoggingEvent("fqcn", (Logger) log, Level.INFO, "dumping queued messages.", null, new String[]{}));
             queuedMessages.forEach(queuedEvent -> textArea.append(format(queuedEvent, QUEUED)));
             queuedMessages.clear();
         }

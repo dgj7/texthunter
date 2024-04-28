@@ -1,6 +1,7 @@
 package com.dg.apps.th.ui.view.panel;
 
 import com.dg.apps.th.model.Constants;
+import com.dg.apps.th.model.config.FilesystemEnumerationConfiguration;
 import com.dg.apps.th.model.config.SearchConfiguration;
 import com.dg.apps.th.ui.view.frame.SearchResultInternalFrame;
 import lombok.extern.slf4j.Slf4j;
@@ -290,34 +291,25 @@ public class SearchPanel extends JPanel {
      * Get the search configuration based on the current ui selections.
      */
     private SearchConfiguration getSearchConfiguration() {
-        final SearchConfiguration config = new SearchConfiguration();
-        config.setSearchString(txtInput.getText());
-
-        config.setSearchFileContent(chkSearchFileContent.isSelected());
-        config.setSearchFileNames(chkSearchFileNames.isSelected());
-        config.setRegex(chkRegex.isSelected());
-        config.setCaseSensitive(chkCapitalization.isSelected());
-
-        config.setPathString(txtPath.getText());
-
-        config.setRecursingSubdirectories(chkSubdirs.isSelected());
+        final SearchConfiguration.SearchConfigurationBuilder builder = SearchConfiguration.builder()
+                .withSearchString(txtInput.getText())
+                .withPathString(txtPath.getText())
+                .isSearchFileContent(chkSearchFileContent.isSelected())
+                .isSearchFileNames(chkSearchFileNames.isSelected())
+                .isRegex(chkRegex.isSelected())
+                .isCaseSensitive(chkCapitalization.isSelected())
+                .isRecursingSubdirectories(FilesystemEnumerationConfiguration.deriveConfiguration(chkSubdirs.isSelected()));
 
         if (chkFilter.isSelected()) {
-            config.setFilteredSearch(true);
-
-            if (chkFilterRegex.isSelected()) {
-                config.setRegexFilter(true);
-            } else {
-                config.setRegexFilter(false);
-            }
-
-            config.setFilterString(txtFilter.getText());
+            builder.isFilteredSearch(true)
+                    .isRegexFilter(chkFilterRegex.isSelected())
+                    .withFilterString(txtFilter.getText());
         } else {
-            config.setFilteredSearch(false);
-            config.setRegexFilter(false);
-            config.setFilterString("");
+            builder.isFilteredSearch(false)
+                    .isRegexFilter(false)
+                    .withFilterString("");
         }
 
-        return config;
+        return builder.build();
     }
 }
