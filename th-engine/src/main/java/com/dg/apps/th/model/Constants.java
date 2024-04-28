@@ -23,6 +23,7 @@ public class Constants {
     public static final boolean SEARCH_FILE_CONTENT_DEFAULT = true;
     public static final boolean SEARCH_FILE_NAMES_DEFAULT = true;
     public static final int SEARCH_THREAD_COUNT_DEFAULT = 4;
+    public static final int SEARCH_THREAD_COMPLETE_SLEEP_TIME_MS = 250;
 
     /* logger constants */
     public static final int LOGGER_TIME = 12;

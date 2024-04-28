@@ -77,7 +77,7 @@ public class FileSearchLauncher implements Runnable {
 
             while (!this.allThreadsCompleted()) {
                 try {
-                    Thread.sleep(250);
+                    Thread.sleep(searchConfig.getThreadsCompleteSleepTime());
                 } catch (InterruptedException iex) {
                     log.error("caught interrupted exception...");
                 }

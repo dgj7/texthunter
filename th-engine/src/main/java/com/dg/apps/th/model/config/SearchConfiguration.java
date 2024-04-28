@@ -44,6 +44,9 @@ public class SearchConfiguration {
     @Getter
     @Setter
     private volatile int threadCount;
+    @Getter
+    @Setter
+    private volatile int threadsCompleteSleepTime;
 
     @Getter
     @Setter
@@ -120,6 +123,7 @@ public class SearchConfiguration {
                 .isRegexFilter(Constants.REGEX_FILTER_VALUE_DEFAULT)
 
                 .withThreadCount(Constants.SEARCH_THREAD_COUNT_DEFAULT)
+                .withThreadCompleteSleepTime(Constants.SEARCH_THREAD_COMPLETE_SLEEP_TIME_MS)
 
                 .isRecursingSubdirectories(Constants.RECURSE_SUBDIRECTORIES_VALUE_DEFAULT.isRecursive());
     }
@@ -139,6 +143,7 @@ public class SearchConfiguration {
         private Boolean theRegexFilter;
         private Boolean theRecursingSubdirectories;
         private Integer theThreadCount;
+        private Integer theThreadCompleteSleepTime;
 
         /**
          * Feed the builder.
@@ -223,6 +228,14 @@ public class SearchConfiguration {
         /**
          * Feed the builder.
          */
+        public SearchConfigurationBuilder withThreadCompleteSleepTime(final int input) {
+            this.theThreadCompleteSleepTime = input;
+            return this;
+        }
+
+        /**
+         * Feed the builder.
+         */
         public SearchConfigurationBuilder isRecursingSubdirectories(final boolean input) {
             this.theRecursingSubdirectories = input;
             return this;
@@ -247,6 +260,7 @@ public class SearchConfiguration {
             sc.setRegexFilter(theRegexFilter != null ? theRegexFilter : Constants.REGEX_FILTER_VALUE_DEFAULT);
 
             sc.setThreadCount(theThreadCount != null ? theThreadCount : Constants.SEARCH_THREAD_COUNT_DEFAULT);
+            sc.setThreadsCompleteSleepTime(theThreadCompleteSleepTime != null ? theThreadCompleteSleepTime : Constants.SEARCH_THREAD_COMPLETE_SLEEP_TIME_MS);
 
             sc.setRecursingSubdirectories(theRecursingSubdirectories != null ? FilesystemEnumerationConfiguration.deriveConfiguration(theRecursingSubdirectories) : Constants.RECURSE_SUBDIRECTORIES_VALUE_DEFAULT);
 
