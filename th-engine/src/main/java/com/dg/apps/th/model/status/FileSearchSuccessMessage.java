@@ -4,6 +4,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 import java.io.File;
+import java.util.Objects;
 
 /**
  * File search success message.
@@ -23,8 +24,8 @@ public class FileSearchSuccessMessage {
      * Create a new instance.
      */
     public FileSearchSuccessMessage(final File pFile, final String pText, final Long pLine) {
-        this.file = pFile;
-        this.text = pText;
-        this.line = pLine;
+        this.file = Objects.requireNonNull(pFile);
+        this.text = Objects.requireNonNull(pText);
+        this.line = Objects.requireNonNull(pLine);
     }
 }

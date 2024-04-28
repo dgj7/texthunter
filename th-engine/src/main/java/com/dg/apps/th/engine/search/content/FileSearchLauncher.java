@@ -14,6 +14,7 @@ import java.time.Instant;
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Objects;
 
 /**
  * <p>
@@ -34,11 +35,11 @@ public class FileSearchLauncher implements Runnable {
     /**
      * Create a new instance.
      */
-    public FileSearchLauncher(final SearchConfiguration config, final IStatusReporter reporter) {
-        log.trace("begin FileSearchLauncher c'tor - " + config.toString());
+    public FileSearchLauncher(final SearchConfiguration pConfig, final IStatusReporter pReporter) {
+        log.trace("begin FileSearchLauncher c'tor - " + pConfig.toString());
 
-        this.searchConfig = config;
-        this.reporter = reporter;
+        this.searchConfig = Objects.requireNonNull(pConfig);
+        this.reporter = Objects.requireNonNull(pReporter);
         this.fse = FilesystemEnumeratorFactory.getFilesystemEnumerator(searchConfig.getRecursingSubdirectories());
 
         log.trace("end FileSearchLauncher c'tor");

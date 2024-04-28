@@ -7,6 +7,7 @@ import com.dg.apps.th.model.status.FileSearchStatusMessage;
 import com.dg.apps.th.model.status.FileSearchSuccessMessage;
 import lombok.extern.slf4j.Slf4j;
 
+import java.util.Objects;
 import java.util.Vector;
 
 /**
@@ -21,8 +22,8 @@ public class FileSearchStatusReporter implements IStatusReporter {
      * Create a new instance.
      */
     public FileSearchStatusReporter(final ITableAdapter pTable, final ILabelAdapter pLabel) {
-        table = pTable;
-        label = pLabel;
+        table = Objects.requireNonNull(pTable);
+        label = Objects.requireNonNull(pLabel);
     }
 
     /**

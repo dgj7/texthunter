@@ -11,6 +11,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
 import java.io.PrintWriter;
+import java.util.Objects;
 
 /**
  * {@link ActionListener} for export button(s).
@@ -24,11 +25,8 @@ public class ExportButtonHandler implements ActionListener {
      * Create a new instance.
      */
     public ExportButtonHandler(final IDataTableAware pParent, final SearchConfiguration pConfig) {
-        this.parent = pParent;
-        if (pConfig == null)
-            searchConfiguration = SearchConfiguration.getDefaultConfiguration();
-        else
-            searchConfiguration = pConfig;
+        this.parent = Objects.requireNonNull(pParent);
+        this.searchConfiguration = Objects.requireNonNull(pConfig);
     }
 
     /**

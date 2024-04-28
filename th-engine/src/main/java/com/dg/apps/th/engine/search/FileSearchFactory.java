@@ -1,21 +1,18 @@
 package com.dg.apps.th.engine.search;
 
-import com.dg.apps.th.engine.search.name.contains.*;
+import com.dg.apps.th.engine.search.name.contains.IFileNameSearcher;
 import com.dg.apps.th.engine.search.name.contains.impl.CaseInsensitiveFileNameSearcher;
 import com.dg.apps.th.engine.search.name.contains.impl.CaseSensitiveFileNameSearcher;
 import com.dg.apps.th.engine.search.name.contains.impl.DisabledFileNameSearcher;
 import com.dg.apps.th.engine.search.name.contains.impl.RegexFileNameSearcher;
-import com.dg.apps.th.engine.search.name.filter.*;
+import com.dg.apps.th.engine.search.name.filter.IFileNameFilterer;
 import com.dg.apps.th.engine.search.name.filter.impl.CaseInsensitiveFileNameFilterer;
 import com.dg.apps.th.engine.search.name.filter.impl.CaseSensitiveFileNameFilterer;
 import com.dg.apps.th.engine.search.name.filter.impl.DisabledFileNameFilterer;
 import com.dg.apps.th.engine.search.name.filter.impl.RegexFileNameFilterer;
+import com.dg.apps.th.model.Constants;
 import com.dg.apps.th.model.config.SearchConfiguration;
 import com.dg.apps.th.model.def.FileNameFilterResult;
-
-import java.io.File;
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  * <p>
@@ -29,6 +26,13 @@ import java.util.List;
  */
 // todo: IFileContentSearcher design, impl, and addition to this factory
 public class FileSearchFactory {
+    /**
+     * Create a new instance.
+     */
+    private FileSearchFactory() {
+        throw new UnsupportedOperationException(Constants.DO_NOT_INSTANTIATE);
+    }
+
     /**
      * Provide {@link IFileNameFilterer}.
      */
@@ -64,15 +68,5 @@ public class FileSearchFactory {
             }
         }
         return DisabledFileNameSearcher.getInstance();
-    }
-
-    /**
-     * Initialize a file list.
-     */
-    // todo: remove this.  this is a really weird place for this.
-    public static List<File> initializeFileList(List<File> input) {
-        if (input == null)
-            input = new ArrayList<>();
-        return input;
     }
 }

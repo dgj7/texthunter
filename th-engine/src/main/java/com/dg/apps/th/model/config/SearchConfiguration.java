@@ -69,24 +69,6 @@ public class SearchConfiguration {
     }
 
     /**
-     * Get the default configuration.
-     */
-    // todo: look at usages of this method; in most places it should just be Objects.reuireNonNull() instead
-    public static SearchConfiguration getDefaultConfiguration() {
-        return new SearchConfiguration();
-    }
-
-    /**
-     * Get the default configuration if null is provided.
-     */
-    public static SearchConfiguration cleanse(final SearchConfiguration input) {
-        if (input == null)
-            return SearchConfiguration.getDefaultConfiguration();
-        else
-            return input;
-    }
-
-    /**
      * Generate the search string pattern.
      */
     public Pattern generateSearchStringPattern() {

@@ -1,8 +1,6 @@
 package com.dg.apps.th.engine.search.content;
 
-import com.dg.apps.th.engine.search.FileSearchFactory;
 import com.dg.apps.th.engine.threads.IStatusReporter;
-import com.dg.apps.th.engine.threads.StatusReporterFactory;
 import com.dg.apps.th.model.def.ThreadStatus;
 import com.dg.apps.th.model.config.SearchConfiguration;
 import com.dg.apps.th.model.status.FileSearchStatusMessage;
@@ -15,6 +13,7 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.InputStreamReader;
 import java.util.List;
+import java.util.Objects;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -47,10 +46,11 @@ public class FileSetSearcher implements Runnable {
      * Create a new instance.
      */
     public FileSetSearcher(final List<File> pFiles, final SearchConfiguration pConfig, final IStatusReporter pReporter) {
-        files = FileSearchFactory.initializeFileList(pFiles);
+        files = Objects.requireNonNull(pFiles);
+        config = Objects.requireNonNull(pConfig);
+        reporter = Objects.requireNonNull(pReporter);
+
         totalFiles = files.size();
-        config = SearchConfiguration.cleanse(pConfig);
-        reporter = StatusReporterFactory.cleanse(pReporter);
         pattern = config.generateSearchStringPattern();
         fileNamePattern = config.generateFileNamePattern();
         threadStatus = ThreadStatus.idle;

@@ -6,6 +6,7 @@ import com.dg.apps.th.model.config.SearchConfiguration;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.Objects;
 
 /**
  * {@link ActionListener} for cancel button(s).
@@ -18,11 +19,8 @@ public class CancelButtonHandler implements ActionListener {
      * Create a new instance.
      */
     public CancelButtonHandler(final ISearchAware pParent, final SearchConfiguration pConfig) {
-        this.parent = pParent;
-        if (pConfig == null)
-            searchConfiguration = SearchConfiguration.getDefaultConfiguration();
-        else
-            searchConfiguration = pConfig;
+        this.parent = Objects.requireNonNull(pParent);
+        this.searchConfiguration = Objects.requireNonNull(pConfig);
     }
 
     /**
