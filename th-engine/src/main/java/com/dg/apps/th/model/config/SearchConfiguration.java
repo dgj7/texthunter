@@ -121,7 +121,7 @@ public class SearchConfiguration {
 
                 .withThreadCount(Constants.SEARCH_THREAD_COUNT_DEFAULT)
 
-                .isRecursingSubdirectories(Constants.RECURSE_SUBDIRECTORIES_VALUE_DEFAULT);
+                .isRecursingSubdirectories(Constants.RECURSE_SUBDIRECTORIES_VALUE_DEFAULT.isRecursive());
     }
 
     /**
@@ -137,8 +137,8 @@ public class SearchConfiguration {
         private Boolean theSearchFileNames;
         private Boolean theFilteredSearch;
         private Boolean theRegexFilter;
+        private Boolean theRecursingSubdirectories;
         private Integer theThreadCount;
-        private FilesystemEnumerationConfiguration theFilesystemEnumerationConfiguration;
 
         /**
          * Feed the builder.
@@ -223,8 +223,8 @@ public class SearchConfiguration {
         /**
          * Feed the builder.
          */
-        public SearchConfigurationBuilder isRecursingSubdirectories(final FilesystemEnumerationConfiguration input) {
-            this.theFilesystemEnumerationConfiguration = input;
+        public SearchConfigurationBuilder isRecursingSubdirectories(final boolean input) {
+            this.theRecursingSubdirectories = input;
             return this;
         }
 
@@ -248,7 +248,7 @@ public class SearchConfiguration {
 
             sc.setThreadCount(theThreadCount != null ? theThreadCount : Constants.SEARCH_THREAD_COUNT_DEFAULT);
 
-            sc.setRecursingSubdirectories(theFilesystemEnumerationConfiguration != null ? theFilesystemEnumerationConfiguration : Constants.RECURSE_SUBDIRECTORIES_VALUE_DEFAULT);
+            sc.setRecursingSubdirectories(theRecursingSubdirectories != null ? FilesystemEnumerationConfiguration.deriveConfiguration(theRecursingSubdirectories) : Constants.RECURSE_SUBDIRECTORIES_VALUE_DEFAULT);
 
             return sc;
         }

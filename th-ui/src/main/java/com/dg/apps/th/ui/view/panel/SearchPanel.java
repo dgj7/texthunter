@@ -1,7 +1,6 @@
 package com.dg.apps.th.ui.view.panel;
 
 import com.dg.apps.th.model.Constants;
-import com.dg.apps.th.model.config.FilesystemEnumerationConfiguration;
 import com.dg.apps.th.model.config.SearchConfiguration;
 import com.dg.apps.th.ui.view.frame.SearchResultInternalFrame;
 import lombok.extern.slf4j.Slf4j;
@@ -77,7 +76,7 @@ public class SearchPanel extends JPanel {
         chkRegex.setSelected(Constants.REGEX_SEARCH_VALUE_DEFAULT);
         txtPath.setText(System.getProperty(Constants.DEFAULT_PATH_SYSTEM_PROPERTY));
         txtPath.setEnabled(false);
-        chkSubdirs.setSelected(Constants.RECURSE_SUBDIRECTORIES_VALUE_DEFAULT.isConfiguration());
+        chkSubdirs.setSelected(Constants.RECURSE_SUBDIRECTORIES_VALUE_DEFAULT.isRecursive());
         txtFilter.setEnabled(false);
         chkFilterRegex.setEnabled(false);
         btnSearch.setEnabled(false);
@@ -298,7 +297,7 @@ public class SearchPanel extends JPanel {
                 .isSearchFileNames(chkSearchFileNames.isSelected())
                 .isRegex(chkRegex.isSelected())
                 .isCaseSensitive(chkCapitalization.isSelected())
-                .isRecursingSubdirectories(FilesystemEnumerationConfiguration.deriveConfiguration(chkSubdirs.isSelected()));
+                .isRecursingSubdirectories(chkSubdirs.isSelected());
 
         if (chkFilter.isSelected()) {
             builder.isFilteredSearch(true)

@@ -12,13 +12,13 @@ public enum FilesystemEnumerationConfiguration {
     NonRecursive(false);
 
     @Getter
-    private final boolean configuration;
+    private final boolean recursive;
 
     /**
      * Create a new instance.
      */
     FilesystemEnumerationConfiguration(final boolean config) {
-        configuration = config;
+        recursive = config;
     }
 
     /**
