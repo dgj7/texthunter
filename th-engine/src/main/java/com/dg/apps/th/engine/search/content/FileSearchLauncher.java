@@ -5,14 +5,13 @@ import com.dg.apps.th.model.exc.FilesystemEnumerationException;
 import com.dg.apps.th.engine.enumeration.FilesystemEnumeratorFactory;
 import com.dg.apps.th.engine.enumeration.IFilesystemEnumerator;
 import com.dg.apps.th.engine.threads.IStatusReporter;
-import com.dg.apps.th.engine.util.CollectionUtility;
+import com.dg.apps.th.engine.util.ListUtility;
 import lombok.extern.slf4j.Slf4j;
 
 import java.io.File;
 import java.time.Duration;
 import java.time.Instant;
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -56,17 +55,16 @@ public class FileSearchLauncher implements Runnable {
             final List<File> lstFiles = fse.enumerateAllFiles(searchConfig.getPathString());
             log.debug("found " + lstFiles.size() + " files to search");
 
-            // todo: make into List<List<File>>; this requires updating collection utility
-            List<Collection<File>> lstSplitLists;
+            List<List<File>> lstSplitLists;
             try {
-                lstSplitLists = CollectionUtility.splitCollection(lstFiles, searchConfig.getThreadCount());
+                lstSplitLists = ListUtility.splitCollection(lstFiles, searchConfig.getThreadCount());
             } catch (Exception ex) {
                 lstSplitLists = new ArrayList<>();
                 lstSplitLists.add(lstFiles);
             }
 
             for (int c = 0; c < lstSplitLists.size(); c++) {
-                final List<File> lstSplitFiles = (List) lstSplitLists.get(c);
+                final List<File> lstSplitFiles = lstSplitLists.get(c);
                 final FileSetSearcher searcher = new FileSetSearcher(lstSplitFiles, searchConfig, reporter);
                 final Thread thread = new Thread(searcher);
 
@@ -86,7 +84,7 @@ public class FileSearchLauncher implements Runnable {
             reporter.reportCompletion();
             log.info("search completed ({}ms).", Duration.between(start, Instant.now()).toMillis());
         } catch (FilesystemEnumerationException fsex) {
-            //
+            // todo: probably should at least be logging something here
         }
     }
 

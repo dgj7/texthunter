@@ -49,6 +49,8 @@
 				<configuration>
 					<source>20</source>
 					<target>20</target>
+					<compilerArgument>-Xlint:unchecked</compilerArgument>
+					<compilerArgument>-Xlint:deprecation</compilerArgument>
 				</configuration>
 			</plugin>
 			<plugin>
