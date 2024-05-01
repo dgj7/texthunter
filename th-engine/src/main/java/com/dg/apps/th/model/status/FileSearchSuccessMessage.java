@@ -25,7 +25,7 @@ public class FileSearchSuccessMessage {
      */
     public FileSearchSuccessMessage(final File pFile, final String pText, final Long pLine) {
         this.file = Objects.requireNonNull(pFile);
-        this.text = Objects.requireNonNull(pText);
-        this.line = Objects.requireNonNull(pLine);
+        this.text = pText;
+        this.line = pLine;
     }
 }

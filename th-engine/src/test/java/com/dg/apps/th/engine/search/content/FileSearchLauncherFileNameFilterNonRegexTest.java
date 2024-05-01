@@ -11,7 +11,7 @@ import org.mockito.Mockito;
 /**
  * Test {@link FileSearchLauncher}.
  */
-public class FileSearchLauncherTest extends TestBase {
+public class FileSearchLauncherFileNameFilterNonRegexTest extends TestBase {
     private IStatusReporter mockStatusReporter;
 
     @Before
@@ -23,7 +23,9 @@ public class FileSearchLauncherTest extends TestBase {
     @Test
     public final void testMiss() {
         final SearchConfiguration config = CONFIG.get()
-                .withSearchString("space")
+                .withSearchString("north")
+                .isFilteredSearch(true)
+                .withFilterString("java")
                 .build();
         final FileSearchLauncher objectUnderTest = new FileSearchLauncher(config, mockStatusReporter);
 
@@ -34,7 +36,7 @@ public class FileSearchLauncherTest extends TestBase {
         Mockito.verify(mockStatusReporter, Mockito.times(1)).reportCompletion();
         Mockito.verify(mockStatusReporter, Mockito.times(0)).reportCancellation();
 
-        Assert.assertEquals(12, getLogAppender().count());
+        Assert.assertEquals(10, getLogAppender().count());
         Assert.assertTrue(getLogAppender().getMessages().get(0).startsWith("begin FileSearchLauncher c'tor "));
         Assert.assertEquals("end FileSearchLauncher c'tor", getLogAppender().getMessages().get(1));
         Assert.assertTrue(getLogAppender().getMessages().get(2).startsWith("launching search with: "));
@@ -42,17 +44,17 @@ public class FileSearchLauncherTest extends TestBase {
         Assert.assertTrue(getLogAppender().getMessages().get(4).startsWith("beginning search: "));
         Assert.assertEquals("beginning batch search of files", getLogAppender().getMessages().get(5));
         Assert.assertEquals("checking if states-including-northern-states.txt passes filename filter...", getLogAppender().getMessages().get(6));
-        Assert.assertTrue(getLogAppender().getMessages().get(7).startsWith("opening "));
-        Assert.assertTrue(getLogAppender().getMessages().get(8).startsWith("done with "));
-        Assert.assertEquals("done with batch search of files", getLogAppender().getMessages().get(9));
-        Assert.assertTrue(getLogAppender().getMessages().get(10).startsWith("completed search: "));
-        Assert.assertTrue(getLogAppender().getMessages().get(11).startsWith("search completed ("));
+        Assert.assertEquals("done with batch search of files", getLogAppender().getMessages().get(7));
+        Assert.assertTrue(getLogAppender().getMessages().get(8).startsWith("completed search: "));
+        Assert.assertTrue(getLogAppender().getMessages().get(9).startsWith("search completed ("));
     }
 
     @Test
     public final void testHit() {
         final SearchConfiguration config = CONFIG.get()
                 .withSearchString("north")
+                .isFilteredSearch(true)
+                .withFilterString("states")
                 .build();
         final FileSearchLauncher objectUnderTest = new FileSearchLauncher(config, mockStatusReporter);
 

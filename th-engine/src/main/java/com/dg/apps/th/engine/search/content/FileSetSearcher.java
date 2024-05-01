@@ -126,7 +126,7 @@ public class FileSetSearcher implements Runnable {
      */
     private void searchLine(final File file, final String line, final Long lineNumber) {
         boolean found = false;
-        if (config.isRegex()) {
+        if (config.isRegexSearchString()) {
             final Matcher matcher = pattern.matcher(line);
             if (matcher.find()) {
                 found = true;
@@ -183,7 +183,7 @@ public class FileSetSearcher implements Runnable {
         log.debug("checking if " + fileName + " passes filename filter...");
 
         if (config.isFilteredSearch()) {
-            if (config.isRegexFilter()) {
+            if (config.isRegexFileNameFilter()) {
                 final Matcher fileNameMatcher = fileNamePattern.matcher(fileName);
                 if (fileNameMatcher.find()) {
                     return true;

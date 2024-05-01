@@ -94,4 +94,15 @@ public abstract class TestBase {
                     .toList();
         }
     }
+
+    /**
+     * Util method to print the asserts.
+     */
+    protected void printLogAsserts() {
+        System.out.println("Assert.assertEquals(" + getLogAppender().count() + ", getLogAppender().count());");
+        for (int c = 0; c < getLogAppender().count(); c++) {
+            System.out.println("Assert.assertEquals(\"" + getLogAppender().getMessages().get(c) + "\", getLogAppender().getMessages().get(" + c + "));");
+        }
+        Assert.fail("remove call to printLogAsserts() before proceeding");
+    }
 }

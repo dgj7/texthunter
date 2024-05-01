@@ -27,7 +27,7 @@ public class SearchConfiguration {
     private volatile boolean caseSensitive;
     @Getter
     @Setter
-    private volatile boolean regex;
+    private volatile boolean regexSearchString;
     @Getter
     @Setter
     private volatile boolean searchFileContent;
@@ -39,7 +39,7 @@ public class SearchConfiguration {
     private volatile boolean filteredSearch;
     @Getter
     @Setter
-    private volatile boolean regexFilter;
+    private volatile boolean regexFileNameFilter;
 
     @Getter
     @Setter
@@ -63,7 +63,7 @@ public class SearchConfiguration {
      * Generate the search string pattern.
      */
     public Pattern generateSearchStringPattern() {
-        if (isRegex())
+        if (isRegexSearchString())
             return Pattern.compile(getSearchString());
         return null;
     }
@@ -72,7 +72,7 @@ public class SearchConfiguration {
      * Generate the file name pattern.
      */
     public Pattern generateFileNamePattern() {
-        if (isFilteredSearch() && isRegexFilter())
+        if (isFilteredSearch() && isRegexFileNameFilter())
             return Pattern.compile(getFilterString());
         return null;
     }
@@ -87,7 +87,7 @@ public class SearchConfiguration {
                 .append("], isCaseSensitive=[")
                 .append(BooleanUtility.convertToString(caseSensitive))
                 .append("], isRegex=[")
-                .append(BooleanUtility.convertToString(regex))
+                .append(BooleanUtility.convertToString(regexSearchString))
                 .append("], searchFileContents=[")
                 .append(BooleanUtility.convertToString(searchFileContent))
                 .append("], searchFileNames][")
@@ -99,7 +99,7 @@ public class SearchConfiguration {
                 .append("], isFilteredSearch=[")
                 .append(BooleanUtility.convertToString(filteredSearch))
                 .append("], isRegexFilter=[")
-                .append(BooleanUtility.convertToString(regexFilter))
+                .append(BooleanUtility.convertToString(regexFileNameFilter))
                 .append("], filterString=[")
                 .append(filterString)
                 .append("]")
@@ -253,11 +253,11 @@ public class SearchConfiguration {
             sc.setFilterString(theFilterString != null ? theFilterString : Constants.FILTER_STRING_VALUE_DEFAULT);
 
             sc.setCaseSensitive(theCaseSensitive != null ? theCaseSensitive : Constants.CASE_SENSITIVE_VALUE_DEFAULT);
-            sc.setRegex(theRegex != null ? theRegex : Constants.REGEX_SEARCH_VALUE_DEFAULT);
+            sc.setRegexSearchString(theRegex != null ? theRegex : Constants.REGEX_SEARCH_VALUE_DEFAULT);
             sc.setSearchFileContent(theSearchFileContent != null ? theSearchFileContent : Constants.SEARCH_FILE_CONTENT_DEFAULT);
             sc.setSearchFileNames(theSearchFileNames != null ? theSearchFileNames : Constants.SEARCH_FILE_NAMES_DEFAULT);
             sc.setFilteredSearch(theFilteredSearch != null ? theFilteredSearch : Constants.FILTERED_SEARCH_VALUE_DEFAULT);
-            sc.setRegexFilter(theRegexFilter != null ? theRegexFilter : Constants.REGEX_FILTER_VALUE_DEFAULT);
+            sc.setRegexFileNameFilter(theRegexFilter != null ? theRegexFilter : Constants.REGEX_FILTER_VALUE_DEFAULT);
 
             sc.setThreadCount(theThreadCount != null ? theThreadCount : Constants.SEARCH_THREAD_COUNT_DEFAULT);
             sc.setThreadsCompleteSleepTime(theThreadCompleteSleepTime != null ? theThreadCompleteSleepTime : Constants.SEARCH_THREAD_COMPLETE_SLEEP_TIME_MS);

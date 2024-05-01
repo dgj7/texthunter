@@ -38,7 +38,7 @@ public class FileSearchFactory {
      */
     public static IFileNameFilterer getFileNameFilterer(final SearchConfiguration config) {
         if (config.isFilteredSearch()) {
-            if (config.isRegexFilter()) {
+            if (config.isRegexFileNameFilter()) {
                 return RegexFileNameFilterer.getInstance();
             } else {
                 if (config.isCaseSensitive())
@@ -58,7 +58,7 @@ public class FileSearchFactory {
             return DisabledFileNameSearcher.getInstance();
 
         if (config.isSearchFileNames()) {
-            if (config.isRegex()) {
+            if (config.isRegexSearchString()) {
                 return RegexFileNameSearcher.getInstance();
             } else {
                 if (config.isCaseSensitive())
