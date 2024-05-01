@@ -1,5 +1,6 @@
 package com.dg.apps.th.engine.search.content;
 
+import com.dg.apps.th.engine.search.name.filter.IFileNameFilterer;
 import com.dg.apps.th.engine.threads.IStatusReporter;
 import com.dg.apps.th.model.def.ThreadStatus;
 import com.dg.apps.th.model.config.SearchConfiguration;
@@ -181,22 +182,7 @@ public class FileSetSearcher implements Runnable {
      */
     private boolean filePassesNameFilter(final String fileName) {
         log.debug("checking if " + fileName + " passes filename filter...");
-
-        if (config.isFilteredSearch()) {
-            if (config.isRegexFileNameFilter()) {
-                final Matcher fileNameMatcher = fileNamePattern.matcher(fileName);
-                if (fileNameMatcher.find()) {
-                    return true;
-                }
-                return false;
-            } else {
-                if (fileName.contains(config.getFilterString())) {
-                    return true;
-                }
-                return false;
-            }
-        }
-        return true;
+        return IFileNameFilterer.create(config).filterFileName(fileName, config).isMatch();
     }
 
     /**
