@@ -156,6 +156,7 @@ public class FileSetSearcher implements Runnable {
      * Search a file name.
      */
     // todo: should this be using the file name search impls?
+    // todo: before that, add unit tests for cs/cis, regex, and disabled (not sure about disabled)
     private void searchFileName(final File file) {
         boolean found = false;
         if (file != null && file.getName() != null) {
