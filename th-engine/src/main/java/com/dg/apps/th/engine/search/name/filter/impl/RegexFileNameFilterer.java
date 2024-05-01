@@ -1,11 +1,9 @@
 package com.dg.apps.th.engine.search.name.filter.impl;
 
 import com.dg.apps.th.engine.search.name.filter.IFileNameFilterer;
-import com.dg.apps.th.engine.util.FileUtility;
 import com.dg.apps.th.model.config.SearchConfiguration;
 import com.dg.apps.th.model.def.FileNameFilterResult;
 
-import java.io.File;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -35,8 +33,7 @@ public class RegexFileNameFilterer implements IFileNameFilterer {
      * {@inheritDoc
      */
     @Override
-    public FileNameFilterResult filterFileName(final File file, final SearchConfiguration config) {
-        final String fileName = FileUtility.getShortFileName(file);
+    public FileNameFilterResult filterFileName(String fileName, final SearchConfiguration config) {
         final Pattern fileNamePattern = config.generateFileNamePattern();
         final Matcher fileNameMatcher = fileNamePattern.matcher(fileName);
 

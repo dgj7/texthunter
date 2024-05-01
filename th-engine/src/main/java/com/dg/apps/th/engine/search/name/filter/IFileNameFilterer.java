@@ -16,7 +16,7 @@ public interface IFileNameFilterer {
     /**
      * Filter a filename.
      */
-    FileNameFilterResult filterFileName(final File file, final SearchConfiguration config);
+    FileNameFilterResult filterFileName(final String fileName, final SearchConfiguration config);
 
     /**
      * Provide {@link IFileNameFilterer}.

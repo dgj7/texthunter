@@ -1,11 +1,8 @@
 package com.dg.apps.th.engine.search.name.filter.impl;
 
-import com.dg.apps.th.model.config.SearchConfiguration;
 import com.dg.apps.th.engine.search.name.filter.IFileNameFilterer;
-import com.dg.apps.th.model.Constants;
+import com.dg.apps.th.model.config.SearchConfiguration;
 import com.dg.apps.th.model.def.FileNameFilterResult;
-
-import java.io.File;
 
 /**
  * {@link IFileNameFilterer} that's disabled.
@@ -33,7 +30,7 @@ public class DisabledFileNameFilterer implements IFileNameFilterer {
      * {@inheritDoc
      */
     @Override
-    public FileNameFilterResult filterFileName(final File file, final SearchConfiguration config) {
+    public FileNameFilterResult filterFileName(String fileName, final SearchConfiguration config) {
         return FileNameFilterResult.Passed;
     }
 }

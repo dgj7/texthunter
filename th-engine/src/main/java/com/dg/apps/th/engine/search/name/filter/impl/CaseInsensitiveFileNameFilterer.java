@@ -1,13 +1,9 @@
 package com.dg.apps.th.engine.search.name.filter.impl;
 
-import com.dg.apps.th.model.config.SearchConfiguration;
 import com.dg.apps.th.engine.search.name.filter.IFileNameFilterer;
-import com.dg.apps.th.engine.util.FileUtility;
 import com.dg.apps.th.engine.util.StringUtility;
-import com.dg.apps.th.model.Constants;
+import com.dg.apps.th.model.config.SearchConfiguration;
 import com.dg.apps.th.model.def.FileNameFilterResult;
-
-import java.io.File;
 
 /**
  * {@link IFileNameFilterer} that's case-insensitive.
@@ -35,8 +31,7 @@ public class CaseInsensitiveFileNameFilterer implements IFileNameFilterer {
      * {@inheritDoc
      */
     @Override
-    public FileNameFilterResult filterFileName(final File file, final SearchConfiguration config) {
-        final String fileName = StringUtility.toLowerCase(FileUtility.getShortFileName(file));
+    public FileNameFilterResult filterFileName(final String fileName, final SearchConfiguration config) {
         final String filterString = StringUtility.toLowerCase(config.getFilterString());
 
         if (fileName.contains(filterString))
