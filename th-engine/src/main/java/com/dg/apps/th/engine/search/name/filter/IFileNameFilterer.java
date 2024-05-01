@@ -21,7 +21,7 @@ public interface IFileNameFilterer {
     /**
      * Provide {@link IFileNameFilterer}.
      */
-    static IFileNameFilterer getFileNameFilterer(final SearchConfiguration config) {
+    static IFileNameFilterer create(final SearchConfiguration config) {
         if (config.isFilteredSearch()) {
             if (config.isRegexFileNameFilter()) {
                 return RegexFileNameFilterer.getInstance();

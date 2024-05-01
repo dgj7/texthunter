@@ -22,7 +22,7 @@ public interface IFileNameSearcher {
     /**
      * Provide {@link IFileNameSearcher}.
      */
-    static IFileNameSearcher getFileNameSearcher(final SearchConfiguration config, final FileNameFilterResult fileNameFilterResult) {
+    static IFileNameSearcher create(final SearchConfiguration config, final FileNameFilterResult fileNameFilterResult) {
         if (FileNameFilterResult.Failed.equals(fileNameFilterResult))
             return DisabledFileNameSearcher.getInstance();
 
