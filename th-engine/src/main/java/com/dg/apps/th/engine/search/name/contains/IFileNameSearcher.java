@@ -8,8 +8,6 @@ import com.dg.apps.th.model.config.SearchConfiguration;
 import com.dg.apps.th.model.def.FileNameFilterResult;
 import com.dg.apps.th.model.def.FileNameSearchResult;
 
-import java.io.File;
-
 /**
  * Search a file's name.
  */
@@ -17,7 +15,7 @@ public interface IFileNameSearcher {
     /**
      * Search a file's name.
      */
-    FileNameSearchResult searchFileName(final File file, final SearchConfiguration config);
+    FileNameSearchResult searchFileName(final String fileName, final SearchConfiguration config);
 
     /**
      * Provide {@link IFileNameSearcher}.

@@ -1,11 +1,8 @@
 package com.dg.apps.th.engine.search.name.contains.impl;
 
-import com.dg.apps.th.model.config.SearchConfiguration;
-import com.dg.apps.th.model.Constants;
-import com.dg.apps.th.model.def.FileNameSearchResult;
 import com.dg.apps.th.engine.search.name.contains.IFileNameSearcher;
-
-import java.io.File;
+import com.dg.apps.th.model.config.SearchConfiguration;
+import com.dg.apps.th.model.def.FileNameSearchResult;
 
 /**
  * {@link IFileNameSearcher} that uses regular expressions.
@@ -33,7 +30,7 @@ public class RegexFileNameSearcher implements IFileNameSearcher {
      * {@inheritDoc}
      */
     @Override
-    public FileNameSearchResult searchFileName(final File file, final SearchConfiguration config) {
+    public FileNameSearchResult searchFileName(final String fileName, final SearchConfiguration config) {
         // TODO: not yet implemented
         return FileNameSearchResult.NotFound;
     }
