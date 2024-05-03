@@ -9,7 +9,7 @@ import com.dg.apps.th.model.def.FileNameFilterResult;
 import com.dg.apps.th.model.def.FileNameSearchResult;
 
 /**
- * Search a file's name.
+ * Search within a file's name.
  */
 public interface IFileNameSearcher {
     /**
