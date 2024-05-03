@@ -1,10 +1,10 @@
 package com.dg.apps.th.engine.search.name.contains.impl;
 
 import com.dg.apps.th.engine.search.name.contains.IFileNameSearcher;
-import com.dg.apps.th.engine.util.FileUtility;
-import com.dg.apps.th.engine.util.StringUtility;
 import com.dg.apps.th.model.config.SearchConfiguration;
 import com.dg.apps.th.model.def.FileNameSearchResult;
+
+import java.util.Optional;
 
 /**
  * {@link IFileNameSearcher} that's case-insensitive contains.
@@ -33,7 +33,10 @@ public class CaseInsensitiveFileNameSearcher implements IFileNameSearcher {
      */
     @Override
     public FileNameSearchResult searchFileName(final String fileName, final SearchConfiguration config) {
-        final String searchTarget = StringUtility.toLowerCase(config.getSearchString());
+        final String searchTarget = Optional.ofNullable(config)
+                .map(SearchConfiguration::getSearchString)
+                .map(String::toLowerCase)
+                .orElse(null);
 
         if (fileName.contains(searchTarget))
             return FileNameSearchResult.Found;

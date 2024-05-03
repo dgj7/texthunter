@@ -1,14 +1,13 @@
 package com.dg.apps.th.engine.enumeration.impl;
 
-import com.dg.apps.th.model.Constants;
 import com.dg.apps.th.model.exc.FilesystemEnumerationException;
 import com.dg.apps.th.engine.enumeration.IFilesystemEnumerator;
-import com.dg.apps.th.engine.util.FileUtility;
 import lombok.extern.slf4j.Slf4j;
 
 import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 /**
  * <p>
@@ -49,7 +48,7 @@ public class RecursiveFilesystemEnumerator extends AbstractFilesystemEnumerator 
             folder = new File(filePath);
             lstFiles.addAll(recursiveEnumerateAllFiles(folder));
         } catch (Exception ex) {
-            final String folderName = FileUtility.getAbsoluteFilePath(folder);
+            final String folderName = Optional.ofNullable(folder).map(File::getAbsolutePath).orElse("");
             final String message = "exception in " + folderName;
             log.error(message);
             throw new FilesystemEnumerationException(message);
@@ -74,7 +73,7 @@ public class RecursiveFilesystemEnumerator extends AbstractFilesystemEnumerator 
                     lstFiles.addAll(recursiveEnumerateAllFiles(file));
             }
         } catch (Exception ex) {
-            final String folderName = FileUtility.getAbsoluteFilePath(folder);
+            final String folderName = Optional.ofNullable(folder).map(File::getAbsolutePath).orElse("");
             log.error("exception in " + folderName);
         }
 
@@ -90,7 +89,7 @@ public class RecursiveFilesystemEnumerator extends AbstractFilesystemEnumerator 
         final List<String> lstFileNames = new ArrayList<>();
 
         for (File file : lstFiles) {
-            final String fileName = FileUtility.getAbsoluteFilePath(file);
+            final String fileName = Optional.ofNullable(file).map(File::getAbsolutePath).orElse("");
             lstFileNames.add(fileName);
         }
 

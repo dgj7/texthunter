@@ -1,6 +1,5 @@
 package com.dg.apps.th.engine.enumeration.impl;
 
-import com.dg.apps.th.engine.util.FileUtility;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
 
@@ -44,7 +43,7 @@ public abstract class AbstractFilesystemEnumerator {
                 }
             }
         } catch (Exception ex) {
-            final String folderName = FileUtility.getAbsoluteFilePath(directory);
+            final String folderName = Optional.ofNullable(directory).map(File::getAbsolutePath).orElse("");
             log.error("there was an error retrieving the file list in " + folderName);
         }
         return lstFilesAndFolders;

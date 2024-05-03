@@ -30,20 +30,4 @@ public class ListUtility {
 
         return lstReturn;
     }
-
-    /**
-     * Determine if the given Class is a {@link List}.
-     */
-    public static boolean isList(final Class<?> clazz) {
-        if (List.class.isAssignableFrom(clazz))
-            return true;
-        return false;
-    }
-
-    /**
-     * Determine if the given Object is a {@link Collection}.
-     */
-    public static boolean isList(final Object object) {
-        return isList(object.getClass());
-    }
 }

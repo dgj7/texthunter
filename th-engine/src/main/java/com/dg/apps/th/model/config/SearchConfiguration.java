@@ -1,6 +1,5 @@
 package com.dg.apps.th.model.config;
 
-import com.dg.apps.th.engine.util.BooleanUtility;
 import com.dg.apps.th.model.Constants;
 import com.dg.apps.th.model.pattern.build.Builder;
 import lombok.Getter;
@@ -85,21 +84,21 @@ public class SearchConfiguration {
                 .append("searchString=[")
                 .append(searchString)
                 .append("], isCaseSensitive=[")
-                .append(BooleanUtility.convertToString(caseSensitive))
+                .append(Boolean.valueOf(caseSensitive).toString())
                 .append("], isRegex=[")
-                .append(BooleanUtility.convertToString(regexSearchString))
+                .append(Boolean.valueOf(regexSearchString).toString())
                 .append("], searchFileContents=[")
-                .append(BooleanUtility.convertToString(searchFileContent))
+                .append(Boolean.valueOf(searchFileContent).toString())
                 .append("], searchFileNames][")
-                .append(BooleanUtility.convertToString(searchFileNames))
+                .append(Boolean.valueOf(searchFileNames).toString())
                 .append("], pathString=[")
                 .append(pathString)
                 .append("], isRecursingSubdirectories=[")
                 .append(recursingSubdirectories.name())
                 .append("], isFilteredSearch=[")
-                .append(BooleanUtility.convertToString(filteredSearch))
+                .append(Boolean.valueOf(filteredSearch).toString())
                 .append("], isRegexFilter=[")
-                .append(BooleanUtility.convertToString(regexFileNameFilter))
+                .append(Boolean.valueOf(regexFileNameFilter).toString())
                 .append("], filterString=[")
                 .append(filterString)
                 .append("]")
