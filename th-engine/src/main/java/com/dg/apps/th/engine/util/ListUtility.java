@@ -9,7 +9,7 @@ public class ListUtility {
     /**
      * Split a collection into n collections.
      */
-    public static <T> List<List<T>> splitCollection(final List<T> list, final int numLists) {
+    public static <T> List<List<T>> splitList(final List<T> list, final int numLists) {
         final List<List<T>> lstReturn = new LinkedList<>();
         final Iterator<T> iter = list.iterator();
 

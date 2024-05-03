@@ -11,7 +11,6 @@ import lombok.extern.slf4j.Slf4j;
 import java.io.File;
 import java.time.Duration;
 import java.time.Instant;
-import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Objects;
@@ -58,7 +57,7 @@ public class FileSearchLauncher implements Runnable {
             log.debug("found [{}] files to search ({}ms)", lstFiles.size(), Duration.between(beforeEnumeratingFiles, Instant.now()).toMillis());
 
             final Instant beforeSplit = Instant.now();
-            final List<List<File>> lstSplitLists = ListUtility.splitCollection(lstFiles, searchConfig.getThreadCount());
+            final List<List<File>> lstSplitLists = ListUtility.splitList(lstFiles, searchConfig.getThreadCount());
             log.debug("split into [{}] lists ({}ms)", lstSplitLists.size(), Duration.between(beforeSplit, Instant.now()).toMillis());
 
             for (int c = 0; c < lstSplitLists.size(); c++) {
