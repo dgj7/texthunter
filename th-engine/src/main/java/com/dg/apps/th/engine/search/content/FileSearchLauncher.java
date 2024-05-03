@@ -53,17 +53,13 @@ public class FileSearchLauncher implements Runnable {
             final Instant start = Instant.now();
             log.info("launching search with: " + searchConfig.toString());
 
+            final Instant beforeEnumeratingFiles = Instant.now();
             final List<File> lstFiles = fse.enumerateAllFiles(searchConfig.getPathString());
-            log.debug("found " + lstFiles.size() + " files to search");
+            log.debug("found [{}] files to search ({}ms)", lstFiles.size(), Duration.between(beforeEnumeratingFiles, Instant.now()).toMillis());
 
-            List<List<File>> lstSplitLists;
-            try {
-                lstSplitLists = ListUtility.splitCollection(lstFiles, searchConfig.getThreadCount());
-            } catch (Exception ex) {
-                log.error("{}: {}", ex.getClass().getSimpleName(), ex.getMessage());
-                lstSplitLists = new ArrayList<>();
-                lstSplitLists.add(lstFiles);
-            }
+            final Instant beforeSplit = Instant.now();
+            final List<List<File>> lstSplitLists = ListUtility.splitCollection(lstFiles, searchConfig.getThreadCount());
+            log.debug("split into [{}] lists ({}ms)", lstSplitLists.size(), Duration.between(beforeSplit, Instant.now()).toMillis());
 
             for (int c = 0; c < lstSplitLists.size(); c++) {
                 final List<File> lstSplitFiles = lstSplitLists.get(c);

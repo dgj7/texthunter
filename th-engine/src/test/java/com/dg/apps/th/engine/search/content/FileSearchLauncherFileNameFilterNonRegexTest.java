@@ -36,17 +36,18 @@ public class FileSearchLauncherFileNameFilterNonRegexTest extends TestBase {
         Mockito.verify(mockStatusReporter, Mockito.times(1)).reportCompletion();
         Mockito.verify(mockStatusReporter, Mockito.times(0)).reportCancellation();
 
-        Assert.assertEquals(10, getLogAppender().count());
+        Assert.assertEquals(11, getLogAppender().count());
         Assert.assertTrue(getLogAppender().getMessages().get(0).startsWith("begin FileSearchLauncher c'tor "));
         Assert.assertEquals("end FileSearchLauncher c'tor", getLogAppender().getMessages().get(1));
         Assert.assertTrue(getLogAppender().getMessages().get(2).startsWith("launching search with: "));
-        Assert.assertEquals("found 1 files to search", getLogAppender().getMessages().get(3));
-        Assert.assertTrue(getLogAppender().getMessages().get(4).startsWith("beginning search: "));
-        Assert.assertEquals("beginning batch search of files", getLogAppender().getMessages().get(5));
-        Assert.assertEquals("checking if states-including-northern-states.txt passes filename filter...", getLogAppender().getMessages().get(6));
-        Assert.assertEquals("done with batch search of files", getLogAppender().getMessages().get(7));
-        Assert.assertTrue(getLogAppender().getMessages().get(8).startsWith("completed search: "));
-        Assert.assertTrue(getLogAppender().getMessages().get(9).startsWith("search completed ("));
+        Assert.assertTrue(getLogAppender().getMessages().get(3).startsWith("found [1] files to search ("));
+        Assert.assertTrue(getLogAppender().getMessages().get(4).startsWith("split into [1] lists ("));
+        Assert.assertTrue(getLogAppender().getMessages().get(5).startsWith("beginning search: "));
+        Assert.assertEquals("beginning batch search of files", getLogAppender().getMessages().get(6));
+        Assert.assertEquals("checking if states-including-northern-states.txt passes filename filter...", getLogAppender().getMessages().get(7));
+        Assert.assertEquals("done with batch search of files", getLogAppender().getMessages().get(8));
+        Assert.assertTrue(getLogAppender().getMessages().get(9).startsWith("completed search: "));
+        Assert.assertTrue(getLogAppender().getMessages().get(10).startsWith("search completed ("));
     }
 
     @Test
@@ -65,18 +66,19 @@ public class FileSearchLauncherFileNameFilterNonRegexTest extends TestBase {
         Mockito.verify(mockStatusReporter, Mockito.times(1)).reportCompletion();
         Mockito.verify(mockStatusReporter, Mockito.times(0)).reportCancellation();
 
-        Assert.assertEquals(12, getLogAppender().count());
+        Assert.assertEquals(13, getLogAppender().count());
         Assert.assertTrue(getLogAppender().getMessages().get(0).startsWith("begin FileSearchLauncher c'tor "));
         Assert.assertEquals("end FileSearchLauncher c'tor", getLogAppender().getMessages().get(1));
         Assert.assertTrue(getLogAppender().getMessages().get(2).startsWith("launching search with: "));
-        Assert.assertEquals("found 1 files to search", getLogAppender().getMessages().get(3));
-        Assert.assertTrue(getLogAppender().getMessages().get(4).startsWith("beginning search: "));
-        Assert.assertEquals("beginning batch search of files", getLogAppender().getMessages().get(5));
-        Assert.assertEquals("checking if states-including-northern-states.txt passes filename filter...", getLogAppender().getMessages().get(6));
-        Assert.assertTrue(getLogAppender().getMessages().get(7).startsWith("opening "));
-        Assert.assertTrue(getLogAppender().getMessages().get(8).startsWith("done with "));
-        Assert.assertEquals("done with batch search of files", getLogAppender().getMessages().get(9));
-        Assert.assertTrue(getLogAppender().getMessages().get(10).startsWith("completed search: "));
-        Assert.assertTrue(getLogAppender().getMessages().get(11).startsWith("search completed ("));
+        Assert.assertTrue(getLogAppender().getMessages().get(3).startsWith("found [1] files to search ("));
+        Assert.assertTrue(getLogAppender().getMessages().get(4).startsWith("split into [1] lists ("));
+        Assert.assertTrue(getLogAppender().getMessages().get(5).startsWith("beginning search: "));
+        Assert.assertEquals("beginning batch search of files", getLogAppender().getMessages().get(6));
+        Assert.assertEquals("checking if states-including-northern-states.txt passes filename filter...", getLogAppender().getMessages().get(7));
+        Assert.assertTrue(getLogAppender().getMessages().get(8).startsWith("opening "));
+        Assert.assertTrue(getLogAppender().getMessages().get(9).startsWith("done with "));
+        Assert.assertEquals("done with batch search of files", getLogAppender().getMessages().get(10));
+        Assert.assertTrue(getLogAppender().getMessages().get(11).startsWith("completed search: "));
+        Assert.assertTrue(getLogAppender().getMessages().get(12).startsWith("search completed ("));
     }
 }
