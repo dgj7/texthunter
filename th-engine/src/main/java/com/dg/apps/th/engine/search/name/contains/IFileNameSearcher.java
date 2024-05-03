@@ -13,7 +13,7 @@ import com.dg.apps.th.model.def.FileNameSearchResult;
  */
 public interface IFileNameSearcher {
     /**
-     * Search a file's name.
+     * Search within a file's name.
      */
     FileNameSearchResult searchFileName(final String fileName, final SearchConfiguration config);
 
