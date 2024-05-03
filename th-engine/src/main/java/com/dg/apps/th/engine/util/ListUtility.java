@@ -1,6 +1,7 @@
 package com.dg.apps.th.engine.util;
 
 import java.util.*;
+import java.util.stream.IntStream;
 
 /**
  * Various list utilities.
@@ -11,21 +12,13 @@ public class ListUtility {
      */
     public static <T> List<List<T>> splitList(final List<T> list, final int numLists) {
         final List<List<T>> lstReturn = new LinkedList<>();
-        final Iterator<T> iter = list.iterator();
+        int listIndex = 0;
 
-        for (int c = 0; c < numLists; c++) {
-            final List<T> temp = new LinkedList<>();
-            lstReturn.add(temp);
-        }
+        IntStream.range(0, numLists).forEach(idx -> lstReturn.add(new LinkedList<>()));
 
-        while (iter.hasNext()) {
-            for (int collectionIndex = 0; collectionIndex < numLists; collectionIndex++) {
-                if (iter.hasNext()) {
-                    final List<T> current = lstReturn.get(collectionIndex);
-                    final T value = iter.next();
-                    current.add(value);
-                }
-            }
+        for (final T element : list) {
+            lstReturn.get(listIndex).add(element);
+            listIndex = listIndex >= (numLists-1) ? 0 : listIndex+1;
         }
 
         return lstReturn;
