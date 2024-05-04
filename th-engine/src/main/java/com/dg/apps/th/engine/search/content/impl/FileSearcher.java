@@ -3,7 +3,6 @@ package com.dg.apps.th.engine.search.content.impl;
 import com.dg.apps.th.engine.search.content.ISearch;
 import com.dg.apps.th.model.config.SearchConfiguration;
 import com.dg.apps.th.model.exc.FilesystemEnumerationException;
-import com.dg.apps.th.engine.enumeration.FilesystemEnumeratorFactory;
 import com.dg.apps.th.engine.enumeration.IFilesystemEnumerator;
 import com.dg.apps.th.engine.threads.IStatusReporter;
 import com.dg.apps.th.engine.util.ListUtility;
@@ -30,7 +29,6 @@ public class FileSearcher implements ISearch {
     private final IStatusReporter reporter;
     private final List<Thread> threads = new LinkedList<>();
     private final List<FileSetSearcher> searchers = new LinkedList<>();
-    private final IFilesystemEnumerator fse;
 
     /**
      * Create a new instance.
@@ -40,7 +38,6 @@ public class FileSearcher implements ISearch {
 
         this.searchConfig = Objects.requireNonNull(pConfig);
         this.reporter = Objects.requireNonNull(pReporter);
-        this.fse = FilesystemEnumeratorFactory.getFilesystemEnumerator(searchConfig.getRecursingSubdirectories());
 
         log.trace("end FileSearchLauncher c'tor");
     }
@@ -54,7 +51,8 @@ public class FileSearcher implements ISearch {
             log.info("launching search with: " + searchConfig.toString());
 
             final Instant beforeEnumeratingFiles = Instant.now();
-            final List<File> lstFiles = fse.enumerateAllFiles(searchConfig.getPathString());
+            final List<File> lstFiles = IFilesystemEnumerator.create(searchConfig.getRecursingSubdirectories())
+                    .enumerateAllFiles(searchConfig.getPathString());
             log.debug("found [{}] files to search ({}ms)", lstFiles.size(), Duration.between(beforeEnumeratingFiles, Instant.now()).toMillis());
 
             final Instant beforeSplit = Instant.now();
