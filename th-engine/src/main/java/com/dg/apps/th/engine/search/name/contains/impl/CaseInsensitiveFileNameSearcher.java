@@ -32,11 +32,14 @@ public class CaseInsensitiveFileNameSearcher implements IFileNameSearcher {
      * {@inheritDoc}
      */
     @Override
-    public FileNameSearchResult searchFileName(final String fileName, final SearchConfiguration config) {
+    public FileNameSearchResult searchFileName(final String pFileName, final SearchConfiguration config) {
+        final String fileName = Optional.ofNullable(pFileName)
+                .map(String::toLowerCase)
+                .orElse("");
         final String searchTarget = Optional.ofNullable(config)
                 .map(SearchConfiguration::getSearchString)
                 .map(String::toLowerCase)
-                .orElse(null);
+                .orElse("");
 
         if (fileName.contains(searchTarget))
             return FileNameSearchResult.Found;

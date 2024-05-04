@@ -32,11 +32,14 @@ public class CaseInsensitiveFileNameFilterer implements IFileNameFilterer {
      * {@inheritDoc
      */
     @Override
-    public FileNameFilterResult filterFileName(final String fileName, final SearchConfiguration config) {
+    public FileNameFilterResult filterFileName(final String pFileName, final SearchConfiguration config) {
+        final String fileName = Optional.ofNullable(pFileName)
+                .map(String::toLowerCase)
+                .orElse("");
         final String filterString = Optional.ofNullable(config)
                 .map(SearchConfiguration::getFilterString)
                 .map(String::toLowerCase)
-                .orElse(null);
+                .orElse("");
 
         if (fileName.contains(filterString))
             return FileNameFilterResult.Passed;

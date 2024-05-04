@@ -29,8 +29,9 @@ public class CaseSensitiveFileNameFilterer implements IFileNameFilterer {
     /**
      * {@inheritDoc
      */
+    // todo: these methods should probably be asserting non-nullness of inputs
     @Override
-    public FileNameFilterResult filterFileName(String fileName, final SearchConfiguration config) {
+    public FileNameFilterResult filterFileName(final String fileName, final SearchConfiguration config) {
         final String filterString = config.getFilterString();
 
         if (fileName.contains(filterString))

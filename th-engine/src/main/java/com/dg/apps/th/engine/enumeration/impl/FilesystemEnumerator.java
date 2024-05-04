@@ -36,12 +36,13 @@ public class FilesystemEnumerator extends AbstractFilesystemEnumerator implement
      * {@inheritDoc}
      */
     @Override
-    public List<File> enumerateAllFiles(String filePath) throws FilesystemEnumerationException {
+    public List<File> enumerateAllFiles(final String filePath) throws FilesystemEnumerationException {
         final List<File> lstFiles = new ArrayList<File>();
         File folder = null;
 
         try {
-            if (!isValidDirectoryName(filePath)) return new ArrayList<File>(0);
+            if (!isValidDirectoryName(filePath))
+                return new ArrayList<>(0);
             folder = new File(filePath);
             final List<File> lstFilesAndFolders = getListFilesInDirectory(folder);
 
@@ -63,7 +64,7 @@ public class FilesystemEnumerator extends AbstractFilesystemEnumerator implement
      * {@inheritDoc}
      */
     @Override
-    public List<String> enumerateAllFilenames(String filePath) throws FilesystemEnumerationException {
+    public List<String> enumerateAllFilenames(final String filePath) throws FilesystemEnumerationException {
         final List<File> lstFiles = enumerateAllFiles(filePath);
         final List<String> lstFileNames = new ArrayList<String>();
 

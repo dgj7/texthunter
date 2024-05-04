@@ -68,6 +68,7 @@ public class FileSearchStatusReporter implements IStatusReporter {
     public void reportStatus(final FileSearchStatusMessage message) {
         log.debug("attempting to report status...");
 
+        // todo: need to analyze the number of try/catches in this app; this one is probably fine because we're purposely sending null here, but finding out why m ight be a good thing too
         try {
             label.updateStatusLabel(message);
         } catch (Exception ex) {

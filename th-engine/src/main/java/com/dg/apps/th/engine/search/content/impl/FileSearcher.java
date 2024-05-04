@@ -105,8 +105,6 @@ public class FileSearcher implements ISearch {
     @Override
     public void requestCancel() {
         log.info("requested cancel...");
-        for (FileSetSearcher searcher : searchers) {
-            searcher.requestCancel();
-        }
+        searchers.forEach(FileSetSearcher::requestCancel);
     }
 }

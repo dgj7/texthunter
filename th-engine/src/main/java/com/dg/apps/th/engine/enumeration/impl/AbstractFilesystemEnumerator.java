@@ -43,8 +43,10 @@ public abstract class AbstractFilesystemEnumerator {
                 }
             }
         } catch (Exception ex) {
-            final String folderName = Optional.ofNullable(directory).map(File::getAbsolutePath).orElse("");
-            log.error("there was an error retrieving the file list in " + folderName);
+            final String folderName = Optional.ofNullable(directory)
+                    .map(File::getAbsolutePath)
+                    .orElse("");
+            log.error("there was an error retrieving the file list in {}", folderName);
         }
         return lstFilesAndFolders;
     }

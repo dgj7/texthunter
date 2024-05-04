@@ -30,7 +30,7 @@ public class DisabledFileNameFilterer implements IFileNameFilterer {
      * {@inheritDoc
      */
     @Override
-    public FileNameFilterResult filterFileName(String fileName, final SearchConfiguration config) {
+    public FileNameFilterResult filterFileName(final String fileName, final SearchConfiguration config) {
         return FileNameFilterResult.Passed;
     }
 }

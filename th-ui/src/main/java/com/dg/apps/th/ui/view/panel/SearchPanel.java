@@ -199,14 +199,14 @@ public class SearchPanel extends JPanel {
         btnPath.addActionListener(actionEvent -> {
             log.trace("begin _btnPath click handler");
 
-            JFileChooser fc = new JFileChooser();
-            File currentDirectory = new File(txtPath.getText());
+            final JFileChooser fc = new JFileChooser();
+            final File currentDirectory = new File(txtPath.getText());
 
             fc.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
             fc.setDialogTitle(Constants.PATH_SEARCH_DIALOG_TITLE);
             fc.setCurrentDirectory(currentDirectory);
 
-            int retVal = fc.showOpenDialog(SearchPanel.this);
+            final int retVal = fc.showOpenDialog(SearchPanel.this);
 
             if (retVal == JFileChooser.APPROVE_OPTION) {
                 File selectedFile = fc.getSelectedFile();

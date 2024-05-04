@@ -38,7 +38,7 @@ public class RecursiveFilesystemEnumerator extends AbstractFilesystemEnumerator 
      * {@inheritDoc}
      */
     @Override
-    public List<File> enumerateAllFiles(String filePath) throws FilesystemEnumerationException {
+    public List<File> enumerateAllFiles(final String filePath) throws FilesystemEnumerationException {
         final List<File> lstFiles = new ArrayList<File>();
         File folder = null;
 
@@ -48,7 +48,9 @@ public class RecursiveFilesystemEnumerator extends AbstractFilesystemEnumerator 
             folder = new File(filePath);
             lstFiles.addAll(recursiveEnumerateAllFiles(folder));
         } catch (Exception ex) {
-            final String folderName = Optional.ofNullable(folder).map(File::getAbsolutePath).orElse("");
+            final String folderName = Optional.ofNullable(folder)
+                    .map(File::getAbsolutePath)
+                    .orElse("");
             final String message = "exception in " + folderName;
             log.error(message);
             throw new FilesystemEnumerationException(message);
@@ -60,7 +62,7 @@ public class RecursiveFilesystemEnumerator extends AbstractFilesystemEnumerator 
     /**
      * Recursive helper.
      */
-    private List<File> recursiveEnumerateAllFiles(File folder) {
+    private List<File> recursiveEnumerateAllFiles(final File folder) {
         final List<File> lstFiles = new ArrayList<File>();
 
         try {
@@ -73,7 +75,9 @@ public class RecursiveFilesystemEnumerator extends AbstractFilesystemEnumerator 
                     lstFiles.addAll(recursiveEnumerateAllFiles(file));
             }
         } catch (Exception ex) {
-            final String folderName = Optional.ofNullable(folder).map(File::getAbsolutePath).orElse("");
+            final String folderName = Optional.ofNullable(folder)
+                    .map(File::getAbsolutePath)
+                    .orElse("");
             log.error("exception in " + folderName);
         }
 
@@ -84,12 +88,14 @@ public class RecursiveFilesystemEnumerator extends AbstractFilesystemEnumerator 
      * {@inheritDoc}
      */
     @Override
-    public List<String> enumerateAllFilenames(String filePath) throws FilesystemEnumerationException {
+    public List<String> enumerateAllFilenames(final String filePath) throws FilesystemEnumerationException {
         final List<File> lstFiles = enumerateAllFiles(filePath);
         final List<String> lstFileNames = new ArrayList<>();
 
         for (File file : lstFiles) {
-            final String fileName = Optional.ofNullable(file).map(File::getAbsolutePath).orElse("");
+            final String fileName = Optional.ofNullable(file)
+                    .map(File::getAbsolutePath)
+                    .orElse("");
             lstFileNames.add(fileName);
         }
 

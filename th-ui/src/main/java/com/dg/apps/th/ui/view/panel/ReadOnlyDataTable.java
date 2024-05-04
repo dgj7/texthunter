@@ -31,7 +31,7 @@ public class ReadOnlyDataTable extends JPanel implements ITableAdapter {
     /**
      * Add columns.
      */
-    public synchronized void addColumns(String[] arrColumnNames) {
+    public synchronized void addColumns(final String[] arrColumnNames) {
         for (String columnName : arrColumnNames) {
             model.addColumn(columnName);
         }
@@ -41,7 +41,7 @@ public class ReadOnlyDataTable extends JPanel implements ITableAdapter {
      * {@inheritDoc}
      */
     @Override
-    public synchronized void addRow(Vector<String> rowData) {
+    public synchronized void addRow(final Vector<String> rowData) {
         model.addRow(rowData);
     }
 
@@ -75,7 +75,7 @@ public class ReadOnlyDataTable extends JPanel implements ITableAdapter {
     private DefaultTableModel generateTableModel() {
         return new DefaultTableModel() {
             @Override
-            public boolean isCellEditable(int row, int column) {
+            public boolean isCellEditable(final int row, final int column) {
                 return false;
             }
         };
@@ -84,7 +84,7 @@ public class ReadOnlyDataTable extends JPanel implements ITableAdapter {
     /**
      * Adjust the column width.
      */
-    public synchronized void adjustColumnWidth(int column, int width) {
+    public synchronized void adjustColumnWidth(final int column, final int width) {
         try {
             table.getColumnModel().getColumn(column).setPreferredWidth(width);
         } catch (Exception ex) {
@@ -95,7 +95,7 @@ public class ReadOnlyDataTable extends JPanel implements ITableAdapter {
     /**
      * Get a value in the table.
      */
-    public synchronized Object getValueAt(int row, int column) {
+    public synchronized Object getValueAt(final int row, final int column) {
         return table.getValueAt(row, column);
     }
 
