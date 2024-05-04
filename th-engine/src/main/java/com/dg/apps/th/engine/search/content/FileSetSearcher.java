@@ -62,7 +62,7 @@ public class FileSetSearcher implements Runnable {
      * {@inheritDoc}
      */
     public void run() {
-        log.info("beginning search: " + Thread.currentThread().getName());
+        log.info("beginning search: {}", Thread.currentThread().getName());
         threadStatus = ThreadStatus.running;
         searchFiles(files);
         if (ThreadStatus.cancelling.equals(threadStatus))
@@ -70,7 +70,7 @@ public class FileSetSearcher implements Runnable {
         else
             threadStatus = ThreadStatus.completed;
         this.reportStatus(null);
-        log.info("completed search: " + Thread.currentThread().getName());
+        log.info("completed search: {}", Thread.currentThread().getName());
     }
 
     /**
@@ -102,7 +102,7 @@ public class FileSetSearcher implements Runnable {
      * Search a file.
      */
     private void searchFile(final File file) {
-        log.debug("opening " + file.getAbsolutePath());
+        log.debug("opening {}", file.getAbsolutePath());
         long lineNumber = 0;
 
         try {
@@ -110,23 +110,28 @@ public class FileSetSearcher implements Runnable {
             String line;
 
             while ((line = reader.readLine()) != null && !cancelled) {
+                if (cancelled) {
+                    break;
+                }
+
                 searchLine(file, line, lineNumber);
                 lineNumber++;
             }
         } catch (Exception ex) {
-            log.error("caught exception on line " + lineNumber + " of type " + ex.getClass().getSimpleName() + " on file " + file.getAbsolutePath());
+            log.error("caught exception on line {} of type {} on file {}", lineNumber, ex.getClass().getSimpleName(), file.getAbsolutePath());
         }
 
         this.filesSearched++;
         this.reportStatus(file);
 
-        log.debug("done with " + file.getAbsolutePath());
+        log.debug("done with {}", file.getAbsolutePath());
     }
 
     /**
      * Search a line.
      */
     private void searchLine(final File file, final String line, final Long lineNumber) {
+        final String searchString = config.getSearchString();
         boolean found = false;
         if (config.isRegexSearchString()) {
             final Matcher matcher = pattern.matcher(line);
@@ -135,11 +140,11 @@ public class FileSetSearcher implements Runnable {
             }
         } else {
             if (config.isCaseSensitive()) {
-                if (line.contains(config.getSearchString())) {
+                if (line.contains(searchString)) {
                     found = true;
                 }
             } else {
-                if (line.toLowerCase().contains(config.getSearchString().toLowerCase())) {
+                if (line.toLowerCase().contains(searchString.toLowerCase())) {
                     found = true;
                 }
             }
@@ -161,9 +166,11 @@ public class FileSetSearcher implements Runnable {
                 .map(File::getName)
                 .orElse("");
         if (StringUtils.isNotEmpty(fileName)) {
-            final FileNameSearchResult fnsr = IFileNameSearcher.create(config).searchFileName(fileName, config);
+            final boolean found = IFileNameSearcher.create(config)
+                    .searchFileName(fileName, config)
+                    .isFound();
 
-            if (fnsr.isFound()) {
+            if (found) {
                 final FileSearchSuccessMessage msg = new FileSearchSuccessMessage(file, null, null);
                 reporter.reportSuccess(msg);
                 /* increment file searched counter if and only if file contents are not searched */
@@ -180,8 +187,10 @@ public class FileSetSearcher implements Runnable {
      * Determine if a file name passes the name filter.
      */
     private boolean filePassesNameFilter(final String fileName) {
-        log.debug("checking if " + fileName + " passes filename filter...");
-        return IFileNameFilterer.create(config).filterFileName(fileName, config).isMatch();
+        log.debug("checking if {} passes filename filter...", fileName);
+        return IFileNameFilterer.create(config)
+                .filterFileName(fileName, config)
+                .isMatch();
     }
 
     /**
