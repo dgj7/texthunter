@@ -1,6 +1,5 @@
 package com.dg.apps.th.engine.enumeration.impl;
 
-import com.dg.apps.th.model.exc.FilesystemEnumerationException;
 import com.dg.apps.th.engine.enumeration.IFilesystemEnumerator;
 import lombok.extern.slf4j.Slf4j;
 
@@ -36,25 +35,17 @@ public class FilesystemEnumerator extends AbstractFilesystemEnumerator implement
      * {@inheritDoc}
      */
     @Override
-    public List<File> enumerateAllFiles(final String filePath) throws FilesystemEnumerationException {
+    public List<File> enumerateAllFiles(final String filePath) {
+        if (!isValidDirectoryName(filePath))
+            return new ArrayList<>(0);
+
         final List<File> lstFiles = new ArrayList<File>();
-        File folder = null;
+        final File folder = new File(filePath);
+        final List<File> lstFilesAndFolders = getListFilesInDirectory(folder);
 
-        try {
-            if (!isValidDirectoryName(filePath))
-                return new ArrayList<>(0);
-            folder = new File(filePath);
-            final List<File> lstFilesAndFolders = getListFilesInDirectory(folder);
-
-            for (File file : lstFilesAndFolders) {
-                if (file.isFile())
-                    lstFiles.add(file);
-            }
-        } catch (Exception ex) {
-            final String folderName = Optional.ofNullable(folder).map(File::getAbsolutePath).orElse("");
-            final String message = "exception in " + folderName;
-            log.error(message);
-            throw new FilesystemEnumerationException(message);
+        for (File file : lstFilesAndFolders) {
+            if (file.isFile())
+                lstFiles.add(file);
         }
 
         return lstFiles;
@@ -64,7 +55,7 @@ public class FilesystemEnumerator extends AbstractFilesystemEnumerator implement
      * {@inheritDoc}
      */
     @Override
-    public List<String> enumerateAllFilenames(final String filePath) throws FilesystemEnumerationException {
+    public List<String> enumerateAllFilenames(final String filePath) {
         final List<File> lstFiles = enumerateAllFiles(filePath);
         final List<String> lstFileNames = new ArrayList<String>();
 

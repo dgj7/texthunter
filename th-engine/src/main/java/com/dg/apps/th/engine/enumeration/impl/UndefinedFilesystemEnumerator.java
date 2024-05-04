@@ -1,7 +1,5 @@
 package com.dg.apps.th.engine.enumeration.impl;
 
-import com.dg.apps.th.model.Constants;
-import com.dg.apps.th.model.exc.FilesystemEnumerationException;
 import com.dg.apps.th.engine.enumeration.IFilesystemEnumerator;
 
 import java.io.File;
@@ -33,15 +31,15 @@ public class UndefinedFilesystemEnumerator extends AbstractFilesystemEnumerator 
      * {@inheritDoc}
      */
     @Override
-    public List<File> enumerateAllFiles(final String filePath) throws FilesystemEnumerationException {
-        throw new FilesystemEnumerationException("undefined filesystem enumerator!");
+    public List<File> enumerateAllFiles(final String filePath) {
+        throw new UnsupportedOperationException("undefined filesystem enumerator!");
     }
 
     /**
      * {@inheritDoc}
      */
     @Override
-    public List<String> enumerateAllFilenames(final String filePath) throws FilesystemEnumerationException {
-        throw new FilesystemEnumerationException("undefined filesystem enumerator!");
+    public List<String> enumerateAllFilenames(final String filePath) {
+        throw new UnsupportedOperationException("undefined filesystem enumerator!");
     }
 }

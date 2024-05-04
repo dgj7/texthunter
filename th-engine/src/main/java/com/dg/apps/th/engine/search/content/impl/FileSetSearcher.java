@@ -1,5 +1,6 @@
 package com.dg.apps.th.engine.search.content.impl;
 
+import com.dg.apps.th.engine.exc.TextHunterEngineException;
 import com.dg.apps.th.engine.search.name.contains.IFileNameSearcher;
 import com.dg.apps.th.engine.search.name.filter.IFileNameFilterer;
 import com.dg.apps.th.engine.threads.IStatusReporter;
@@ -11,10 +12,7 @@ import lombok.Getter;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
 
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.InputStreamReader;
+import java.io.*;
 import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
@@ -116,8 +114,8 @@ public class FileSetSearcher implements Runnable {
                 searchLine(file, line, lineNumber);
                 lineNumber++;
             }
-        } catch (Exception ex) {
-            log.error("caught exception on line {} of type {} on file {}", lineNumber, ex.getClass().getSimpleName(), file.getAbsolutePath());
+        } catch (IOException ex) {
+            throw new TextHunterEngineException(ex);
         }
 
         this.filesSearched++;

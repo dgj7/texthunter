@@ -2,6 +2,7 @@ package com.dg.apps.th.ui.view.panel;
 
 import com.dg.apps.th.model.Constants;
 import com.dg.apps.th.model.config.SearchConfiguration;
+import com.dg.apps.th.ui.exc.TextHunterUserInterfaceException;
 import com.dg.apps.th.ui.view.frame.SearchResultInternalFrame;
 import lombok.extern.slf4j.Slf4j;
 
@@ -144,7 +145,7 @@ public class SearchPanel extends JPanel {
                 try {
                     existingFrame.setIcon(true);
                 } catch (java.beans.PropertyVetoException pve) {
-                    log.error(pve.getClass().getSimpleName() + " thrown while iconifying existing frames.");
+                    throw new TextHunterUserInterfaceException(pve);
                 }
             }
 
@@ -153,7 +154,7 @@ public class SearchPanel extends JPanel {
             try {
                 frame.setMaximum(true);
             } catch (java.beans.PropertyVetoException pve) {
-                log.error(pve.getClass().getSimpleName() + " thrown while iconifying existing frames.");
+                throw new TextHunterUserInterfaceException(pve);
             }
 
             txtInput.setText("");
@@ -243,7 +244,7 @@ public class SearchPanel extends JPanel {
         try {
             frame.setSelected(true);
         } catch (java.beans.PropertyVetoException ex) {
-            log.error("{}: {}", ex.getClass().getSimpleName(), ex.getMessage());
+            throw new TextHunterUserInterfaceException(ex);
         }
 
         frame.launchSearch();

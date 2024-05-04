@@ -35,18 +35,11 @@ public abstract class AbstractFilesystemEnumerator {
      */
     protected List<File> getListFilesInDirectory(final File directory) {
         final List<File> lstFilesAndFolders = new ArrayList<>();
-        try {
-            if (directory.isDirectory()) {
-                final File[] files = directory.listFiles();
-                if (files != null) {
-                    lstFilesAndFolders.addAll(Arrays.asList(files));
-                }
+        if (directory.isDirectory()) {
+            final File[] files = directory.listFiles();
+            if (files != null) {
+                lstFilesAndFolders.addAll(Arrays.asList(files));
             }
-        } catch (Exception ex) {
-            final String folderName = Optional.ofNullable(directory)
-                    .map(File::getAbsolutePath)
-                    .orElse("");
-            log.error("there was an error retrieving the file list in {}", folderName);
         }
         return lstFilesAndFolders;
     }

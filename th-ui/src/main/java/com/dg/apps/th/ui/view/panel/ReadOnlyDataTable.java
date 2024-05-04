@@ -85,11 +85,7 @@ public class ReadOnlyDataTable extends JPanel implements ITableAdapter {
      * Adjust the column width.
      */
     public synchronized void adjustColumnWidth(final int column, final int width) {
-        try {
-            table.getColumnModel().getColumn(column).setPreferredWidth(width);
-        } catch (Exception ex) {
-            log.error("{}: {}", ex.getClass().getSimpleName(), ex.getMessage());
-        }
+        table.getColumnModel().getColumn(column).setPreferredWidth(width);
     }
 
     /**

@@ -2,6 +2,7 @@ package com.dg.apps.th.ui.action.handler;
 
 import com.dg.apps.th.model.Constants;
 import com.dg.apps.th.model.config.SearchConfiguration;
+import com.dg.apps.th.ui.exc.TextHunterUserInterfaceException;
 import com.dg.apps.th.ui.view.adapter.IDataTableAware;
 import com.dg.apps.th.ui.view.panel.ReadOnlyDataTable;
 import lombok.extern.slf4j.Slf4j;
@@ -10,6 +11,7 @@ import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.PrintWriter;
 import java.util.Objects;
 
@@ -119,8 +121,8 @@ public class ExportButtonHandler implements ActionListener {
                         PrintWriter writer = new PrintWriter(selectedFile.getAbsolutePath());
                         writer.write(builder.toString());
                         writer.close();
-                    } catch (Exception ex) {
-                        log.error(ex.getClass().getSimpleName() + " thrown while exporting data file.");
+                    } catch (FileNotFoundException ex) {
+                        throw new TextHunterUserInterfaceException(ex);
                     }
                 }
             } else {

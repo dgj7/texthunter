@@ -31,33 +31,34 @@ public class FileSearchStatusReporter implements IStatusReporter {
      */
     @Override
     public void reportSuccess(final FileSearchSuccessMessage message) {
-        log.debug("attempting to report success message to data table...");
-        try {
-            final Vector<String> rowData = new Vector<>();
-            if (message.getFile() != null) {
-                rowData.add(message.getFile().getName());
-                rowData.add(message.getFile().getAbsolutePath());
-            } else {
-                rowData.add("");
-                rowData.add("");
-            }
-
-            if (message.getLine() != null) {
-                rowData.add(message.getLine().toString());
-            } else {
-                rowData.add("");
-            }
-
-            if (message.getText() != null) {
-                rowData.add(message.getText());
-            } else {
-                rowData.add("");
-            }
-
-            table.addRow(rowData);
-        } catch (Exception ex) {
-            log.error("unable to report success message!");
+        if (message == null) {
+            log.error("skipped reportSuccess() because FileSearchSuccessMessage is null!");
+            return;
         }
+
+        log.debug("attempting to report success message to data table...");
+        final Vector<String> rowData = new Vector<>();
+        if (message.getFile() != null) {
+            rowData.add(message.getFile().getName());
+            rowData.add(message.getFile().getAbsolutePath());
+        } else {
+            rowData.add("");
+            rowData.add("");
+        }
+
+        if (message.getLine() != null) {
+            rowData.add(message.getLine().toString());
+        } else {
+            rowData.add("");
+        }
+
+        if (message.getText() != null) {
+            rowData.add(message.getText());
+        } else {
+            rowData.add("");
+        }
+
+        table.addRow(rowData);
         log.debug("done with attempt to log success message to data table");
     }
 
@@ -68,12 +69,7 @@ public class FileSearchStatusReporter implements IStatusReporter {
     public void reportStatus(final FileSearchStatusMessage message) {
         log.debug("attempting to report status...");
 
-        // todo: need to analyze the number of try/catches in this app; this one is probably fine because we're purposely sending null here, but finding out why m ight be a good thing too
-        try {
-            label.updateStatusLabel(message);
-        } catch (Exception ex) {
-            log.error("unable to report status message!");
-        }
+        label.updateStatusLabel(message);
 
         log.debug("done with attempt to report status");
     }

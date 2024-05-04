@@ -1,10 +1,10 @@
 package com.dg.apps.th.engine.search.content.impl;
 
-import com.dg.apps.th.engine.search.content.ISearch;
-import com.dg.apps.th.model.config.SearchConfiguration;
-import com.dg.apps.th.model.exc.FilesystemEnumerationException;
 import com.dg.apps.th.engine.enumeration.IFilesystemEnumerator;
+import com.dg.apps.th.engine.exc.TextHunterEngineException;
+import com.dg.apps.th.engine.search.content.ISearch;
 import com.dg.apps.th.engine.threads.IStatusReporter;
+import com.dg.apps.th.model.config.SearchConfiguration;
 import com.dg.apps.th.model.util.ListUtility;
 import lombok.extern.slf4j.Slf4j;
 
@@ -46,7 +46,6 @@ public class FileSearcher implements ISearch {
      * {@inheritDoc}
      */
     public void run() {
-        try {
             final Instant start = Instant.now();
             log.info("launching search with: " + searchConfig.toString());
 
@@ -69,19 +68,17 @@ public class FileSearcher implements ISearch {
                 searchers.add(searcher);
             }
 
+            // todo: stop using sleep here; countdownlatch perhaps
             while (!this.allThreadsCompleted()) {
                 try {
                     Thread.sleep(searchConfig.getThreadsCompleteSleepTime());
                 } catch (InterruptedException iex) {
-                    log.error("caught interrupted exception...");
+                    throw new TextHunterEngineException(iex);
                 }
             }
 
             reporter.reportCompletion();
             log.info("search completed ({}ms).", Duration.between(start, Instant.now()).toMillis());
-        } catch (FilesystemEnumerationException fsex) {
-            log.error("{}: {}", fsex.getClass().getSimpleName(), fsex.getMessage());
-        }
     }
 
     /**

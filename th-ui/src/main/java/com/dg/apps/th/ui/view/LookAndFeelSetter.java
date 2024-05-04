@@ -1,5 +1,6 @@
 package com.dg.apps.th.ui.view;
 
+import com.dg.apps.th.ui.exc.TextHunterUserInterfaceException;
 import lombok.extern.slf4j.Slf4j;
 
 import javax.swing.*;
@@ -16,7 +17,7 @@ public class LookAndFeelSetter {
         try {
             UIManager.setLookAndFeel(lnf);
         } catch (UnsupportedLookAndFeelException ex) {
-            log.error("{}: {}", ex.getClass().getSimpleName(), ex.getMessage());
+            throw new TextHunterUserInterfaceException(ex);
         }
     }
 
@@ -26,9 +27,8 @@ public class LookAndFeelSetter {
     public static void setLookAndFeel(final String className) {
         try {
             UIManager.setLookAndFeel(className);
-        } catch (UnsupportedLookAndFeelException | ClassNotFoundException | InstantiationException |
-                 IllegalAccessException ex) {
-            log.error("{}: {}", ex.getClass().getSimpleName(), ex.getMessage());
+        } catch (UnsupportedLookAndFeelException | ClassNotFoundException | InstantiationException | IllegalAccessException ex) {
+            throw new TextHunterUserInterfaceException(ex);
         }
     }
 
