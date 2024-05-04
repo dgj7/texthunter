@@ -5,7 +5,7 @@ import com.dg.apps.th.model.config.SearchConfiguration;
 import com.dg.apps.th.model.exc.FilesystemEnumerationException;
 import com.dg.apps.th.engine.enumeration.IFilesystemEnumerator;
 import com.dg.apps.th.engine.threads.IStatusReporter;
-import com.dg.apps.th.engine.util.ListUtility;
+import com.dg.apps.th.model.util.ListUtility;
 import lombok.extern.slf4j.Slf4j;
 
 import java.io.File;

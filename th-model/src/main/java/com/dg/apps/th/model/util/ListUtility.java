@@ -1,4 +1,4 @@
-package com.dg.apps.th.engine.util;
+package com.dg.apps.th.model.util;
 
 import java.util.*;
 import java.util.stream.IntStream;

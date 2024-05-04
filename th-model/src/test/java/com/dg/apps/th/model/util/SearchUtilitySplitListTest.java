@@ -1,6 +1,6 @@
-package com.dg.apps.th.engine.util;
+package com.dg.apps.th.model.util;
 
-import com.dg.apps.th.engine.testonly.TestBase;
+import com.dg.apps.th.model.testonly.TestBase;
 import org.junit.Assert;
 import org.junit.Test;
 
