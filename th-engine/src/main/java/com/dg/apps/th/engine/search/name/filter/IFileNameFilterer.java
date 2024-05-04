@@ -7,8 +7,6 @@ import com.dg.apps.th.engine.search.name.filter.impl.RegexFileNameFilterer;
 import com.dg.apps.th.model.config.SearchConfiguration;
 import com.dg.apps.th.model.def.FileNameFilterResult;
 
-import java.io.File;
-
 /**
  * Filter a filename.
  */

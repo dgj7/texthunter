@@ -4,7 +4,6 @@ import com.dg.apps.th.engine.search.name.filter.IFileNameFilterer;
 import com.dg.apps.th.model.config.SearchConfiguration;
 import com.dg.apps.th.model.def.FileNameFilterResult;
 
-import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 /**

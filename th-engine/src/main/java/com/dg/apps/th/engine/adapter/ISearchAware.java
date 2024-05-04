@@ -1,4 +1,4 @@
-package com.dg.apps.th.model.adapter;
+package com.dg.apps.th.engine.adapter;
 
 import com.dg.apps.th.engine.search.content.ISearch;
 

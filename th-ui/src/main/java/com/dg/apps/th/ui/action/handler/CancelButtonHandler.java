@@ -1,6 +1,6 @@
 package com.dg.apps.th.ui.action.handler;
 
-import com.dg.apps.th.model.adapter.ISearchAware;
+import com.dg.apps.th.engine.adapter.ISearchAware;
 import com.dg.apps.th.model.config.SearchConfiguration;
 
 import java.awt.event.ActionEvent;

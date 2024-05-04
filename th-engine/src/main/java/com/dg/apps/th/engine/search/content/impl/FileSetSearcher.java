@@ -3,7 +3,6 @@ package com.dg.apps.th.engine.search.content.impl;
 import com.dg.apps.th.engine.search.name.contains.IFileNameSearcher;
 import com.dg.apps.th.engine.search.name.filter.IFileNameFilterer;
 import com.dg.apps.th.engine.threads.IStatusReporter;
-import com.dg.apps.th.model.def.FileNameSearchResult;
 import com.dg.apps.th.model.def.ThreadStatus;
 import com.dg.apps.th.model.config.SearchConfiguration;
 import com.dg.apps.th.model.status.FileSearchStatusMessage;
