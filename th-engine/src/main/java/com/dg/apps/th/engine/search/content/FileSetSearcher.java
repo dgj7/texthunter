@@ -1,13 +1,16 @@
 package com.dg.apps.th.engine.search.content;
 
+import com.dg.apps.th.engine.search.name.contains.IFileNameSearcher;
 import com.dg.apps.th.engine.search.name.filter.IFileNameFilterer;
 import com.dg.apps.th.engine.threads.IStatusReporter;
+import com.dg.apps.th.model.def.FileNameSearchResult;
 import com.dg.apps.th.model.def.ThreadStatus;
 import com.dg.apps.th.model.config.SearchConfiguration;
 import com.dg.apps.th.model.status.FileSearchStatusMessage;
 import com.dg.apps.th.model.status.FileSearchSuccessMessage;
 import lombok.Getter;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.commons.lang3.StringUtils;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -15,6 +18,7 @@ import java.io.FileInputStream;
 import java.io.InputStreamReader;
 import java.util.List;
 import java.util.Objects;
+import java.util.Optional;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -158,15 +162,11 @@ public class FileSetSearcher implements Runnable {
     // todo: should this be using the file name search impls?
     // todo: before that, add unit tests for cs/cis, regex, and disabled (not sure about disabled)
     private void searchFileName(final File file) {
-        boolean found = false;
-        if (file != null && file.getName() != null) {
-            if (config.isCaseSensitive()) {
-                found = file.getName().contains(config.getSearchString());
-            } else {
-                found = file.getName().toLowerCase().contains(config.getSearchString().toLowerCase());
-            }
+        final String fileName = Optional.ofNullable(file).map(f -> f.getName()).orElse("");
+        if (StringUtils.isNotEmpty(fileName)) {
+            final FileNameSearchResult fnsr = IFileNameSearcher.create(config).searchFileName(fileName, config);
 
-            if (found) {
+            if (fnsr.isFound()) {
                 final FileSearchSuccessMessage msg = new FileSearchSuccessMessage(file, null, null);
                 reporter.reportSuccess(msg);
                 if (!config.isSearchFileContent()) {// increment file searched counter if and only if file contents are not searched

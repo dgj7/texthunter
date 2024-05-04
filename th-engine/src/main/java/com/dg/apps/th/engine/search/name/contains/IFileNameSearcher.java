@@ -5,7 +5,6 @@ import com.dg.apps.th.engine.search.name.contains.impl.CaseSensitiveFileNameSear
 import com.dg.apps.th.engine.search.name.contains.impl.DisabledFileNameSearcher;
 import com.dg.apps.th.engine.search.name.contains.impl.RegexFileNameSearcher;
 import com.dg.apps.th.model.config.SearchConfiguration;
-import com.dg.apps.th.model.def.FileNameFilterResult;
 import com.dg.apps.th.model.def.FileNameSearchResult;
 
 /**
@@ -20,10 +19,7 @@ public interface IFileNameSearcher {
     /**
      * Provide {@link IFileNameSearcher}.
      */
-    static IFileNameSearcher create(final SearchConfiguration config, final FileNameFilterResult fileNameFilterResult) {
-        if (FileNameFilterResult.Failed.equals(fileNameFilterResult))
-            return DisabledFileNameSearcher.getInstance();
-
+    static IFileNameSearcher create(final SearchConfiguration config) {
         if (config.isSearchFileNames()) {
             if (config.isRegexSearchString()) {
                 return RegexFileNameSearcher.getInstance();
