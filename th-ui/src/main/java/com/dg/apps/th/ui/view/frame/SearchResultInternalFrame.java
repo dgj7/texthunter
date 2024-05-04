@@ -37,7 +37,6 @@ public class SearchResultInternalFrame extends JInternalFrame implements ILabelA
     private final JButton btnExport;
 
     private FileSearchLauncher launcher;
-    private IStatusReporter reporter;
 
     /**
      * Create a new instance.
@@ -94,7 +93,7 @@ public class SearchResultInternalFrame extends JInternalFrame implements ILabelA
      * Launch the search.
      */
     public void launchSearch() {
-        reporter = new FileSearchStatusReporter(tblResult, SearchResultInternalFrame.this);
+        final IStatusReporter reporter = new FileSearchStatusReporter(tblResult, SearchResultInternalFrame.this);
         reporter.reportSuccess(null);
         launcher = new FileSearchLauncher(config, reporter);
         (new Thread(launcher)).start();

@@ -11,7 +11,7 @@ import org.mockito.Mockito;
 /**
  * Test {@link FileSearchLauncher}.
  */
-public class FileSearchLauncherFileNameFilterCaseSensitiveSearch extends TestBase {
+public class FileSearchLauncherFileNameFilterCaseSensitiveSearchTest extends TestBase {
     private IStatusReporter mockStatusReporter;
 
     @Before
