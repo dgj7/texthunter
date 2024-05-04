@@ -1,4 +1,4 @@
-package com.dg.apps.th.engine.search.content;
+package com.dg.apps.th.engine.search.content.impl;
 
 import com.dg.apps.th.engine.testonly.TestBase;
 import com.dg.apps.th.engine.threads.IStatusReporter;
@@ -9,9 +9,9 @@ import org.junit.Test;
 import org.mockito.Mockito;
 
 /**
- * Test {@link FileSearchLauncher}.
+ * Test {@link FileSearcher}.
  */
-public class FileSearchLauncherFileNameFilterCaseSensitiveSearchTest extends TestBase {
+public class FileSearcherTest extends TestBase {
     private IStatusReporter mockStatusReporter;
 
     @Before
@@ -23,12 +23,9 @@ public class FileSearchLauncherFileNameFilterCaseSensitiveSearchTest extends Tes
     @Test
     public final void testMiss() {
         final SearchConfiguration config = CONFIG.get()
-                .withSearchString("north")
-                .isCaseSensitive(true)
-                .isFilteredSearch(true)
-                .withFilterString("North")
+                .withSearchString("space")
                 .build();
-        final FileSearchLauncher objectUnderTest = new FileSearchLauncher(config, mockStatusReporter);
+        final FileSearcher objectUnderTest = new FileSearcher(config, mockStatusReporter);
 
         objectUnderTest.run();
 
@@ -37,7 +34,7 @@ public class FileSearchLauncherFileNameFilterCaseSensitiveSearchTest extends Tes
         Mockito.verify(mockStatusReporter, Mockito.times(1)).reportCompletion();
         Mockito.verify(mockStatusReporter, Mockito.times(0)).reportCancellation();
 
-        Assert.assertEquals(11, getLogAppender().count());
+        Assert.assertEquals(13, getLogAppender().count());
         Assert.assertTrue(getLogAppender().getMessages().get(0).startsWith("begin FileSearchLauncher c'tor "));
         Assert.assertEquals("end FileSearchLauncher c'tor", getLogAppender().getMessages().get(1));
         Assert.assertTrue(getLogAppender().getMessages().get(2).startsWith("launching search with: "));
@@ -46,25 +43,24 @@ public class FileSearchLauncherFileNameFilterCaseSensitiveSearchTest extends Tes
         Assert.assertTrue(getLogAppender().getMessages().get(5).startsWith("beginning search: "));
         Assert.assertEquals("beginning batch search of files", getLogAppender().getMessages().get(6));
         Assert.assertEquals("checking if states-including-northern-states.txt passes filename filter...", getLogAppender().getMessages().get(7));
-        Assert.assertEquals("done with batch search of files", getLogAppender().getMessages().get(8));
-        Assert.assertTrue(getLogAppender().getMessages().get(9).startsWith("completed search: "));
-        Assert.assertTrue(getLogAppender().getMessages().get(10).startsWith("search completed ("));
+        Assert.assertTrue(getLogAppender().getMessages().get(8).startsWith("opening "));
+        Assert.assertTrue(getLogAppender().getMessages().get(9).startsWith("done with "));
+        Assert.assertEquals("done with batch search of files", getLogAppender().getMessages().get(10));
+        Assert.assertTrue(getLogAppender().getMessages().get(11).startsWith("completed search: "));
+        Assert.assertTrue(getLogAppender().getMessages().get(12).startsWith("search completed ("));
     }
 
     @Test
     public final void testHit() {
         final SearchConfiguration config = CONFIG.get()
-                .withSearchString("North")
-                .isCaseSensitive(true)
-                .isFilteredSearch(true)
-                .withFilterString("north")
+                .withSearchString("north")
                 .build();
-        final FileSearchLauncher objectUnderTest = new FileSearchLauncher(config, mockStatusReporter);
+        final FileSearcher objectUnderTest = new FileSearcher(config, mockStatusReporter);
 
         objectUnderTest.run();
 
-        Mockito.verify(mockStatusReporter, Mockito.times(5)).reportStatus(Mockito.any());
-        Mockito.verify(mockStatusReporter, Mockito.times(2)).reportSuccess(Mockito.any());
+        Mockito.verify(mockStatusReporter, Mockito.times(6)).reportStatus(Mockito.any());
+        Mockito.verify(mockStatusReporter, Mockito.times(3)).reportSuccess(Mockito.any());
         Mockito.verify(mockStatusReporter, Mockito.times(1)).reportCompletion();
         Mockito.verify(mockStatusReporter, Mockito.times(0)).reportCancellation();
 

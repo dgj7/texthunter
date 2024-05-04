@@ -26,6 +26,6 @@ public class CancelButtonHandler implements ActionListener {
      * Handle action performed.
      */
     public void actionPerformed(final ActionEvent event) {
-        parent.getFileSearchLauncherReference().requestCancel();
+        parent.getSearcherReference().requestCancel();
     }
 }

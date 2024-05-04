@@ -1,17 +1,15 @@
 package com.dg.apps.th.ui.view.frame;
 
-import com.dg.apps.th.engine.search.content.FileSearchLauncher;
+import com.dg.apps.th.engine.search.content.ISearch;
 import com.dg.apps.th.model.Constants;
 import com.dg.apps.th.model.adapter.ILabelAdapter;
 import com.dg.apps.th.model.adapter.ISearchAware;
-import com.dg.apps.th.model.status.FileSearchStatusMessage;
 import com.dg.apps.th.model.config.SearchConfiguration;
-import com.dg.apps.th.engine.threads.IStatusReporter;
 import com.dg.apps.th.model.def.ThreadStatus;
-import com.dg.apps.th.ui.view.adapter.IDataTableAware;
+import com.dg.apps.th.model.status.FileSearchStatusMessage;
 import com.dg.apps.th.ui.action.handler.CancelButtonHandler;
 import com.dg.apps.th.ui.action.handler.ExportButtonHandler;
-import com.dg.apps.th.engine.threads.impl.FileSearchStatusReporter;
+import com.dg.apps.th.ui.view.adapter.IDataTableAware;
 import com.dg.apps.th.ui.view.panel.ReadOnlyDataTable;
 import lombok.extern.slf4j.Slf4j;
 
@@ -36,7 +34,7 @@ public class SearchResultInternalFrame extends JInternalFrame implements ILabelA
     private final JButton btnCancel;
     private final JButton btnExport;
 
-    private FileSearchLauncher launcher;
+    private ISearch launcher;
 
     /**
      * Create a new instance.
@@ -93,9 +91,7 @@ public class SearchResultInternalFrame extends JInternalFrame implements ILabelA
      * Launch the search.
      */
     public void launchSearch() {
-        final IStatusReporter reporter = new FileSearchStatusReporter(tblResult, SearchResultInternalFrame.this);
-        reporter.reportSuccess(null);
-        launcher = new FileSearchLauncher(config, reporter);
+        launcher = ISearch.create(config, tblResult, SearchResultInternalFrame.this);
         (new Thread(launcher)).start();
     }
 
@@ -111,7 +107,7 @@ public class SearchResultInternalFrame extends JInternalFrame implements ILabelA
      * {@inheritDoc}
      */
     @Override
-    public FileSearchLauncher getFileSearchLauncherReference() {
+    public ISearch getSearcherReference() {
         return launcher;
     }
 

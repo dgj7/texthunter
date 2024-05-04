@@ -1,4 +1,4 @@
-package com.dg.apps.th.engine.search.content;
+package com.dg.apps.th.engine.search.content.impl;
 
 import com.dg.apps.th.engine.testonly.TestBase;
 import com.dg.apps.th.engine.threads.IStatusReporter;
@@ -9,9 +9,9 @@ import org.junit.Test;
 import org.mockito.Mockito;
 
 /**
- * Test {@link FileSearchLauncher}.
+ * Test {@link FileSearcher}.
  */
-public class FileSearchLauncherFileNameFilterRegexTest extends TestBase {
+public class FileSearcherFileNameFilterCaseSensitiveSearchTest extends TestBase {
     private IStatusReporter mockStatusReporter;
 
     @Before
@@ -24,11 +24,11 @@ public class FileSearchLauncherFileNameFilterRegexTest extends TestBase {
     public final void testMiss() {
         final SearchConfiguration config = CONFIG.get()
                 .withSearchString("north")
+                .isCaseSensitive(true)
                 .isFilteredSearch(true)
-                .isRegexFilter(true)
-                .withFilterString("^.*\\.java$")
+                .withFilterString("North")
                 .build();
-        final FileSearchLauncher objectUnderTest = new FileSearchLauncher(config, mockStatusReporter);
+        final FileSearcher objectUnderTest = new FileSearcher(config, mockStatusReporter);
 
         objectUnderTest.run();
 
@@ -54,17 +54,17 @@ public class FileSearchLauncherFileNameFilterRegexTest extends TestBase {
     @Test
     public final void testHit() {
         final SearchConfiguration config = CONFIG.get()
-                .withSearchString("north")
+                .withSearchString("North")
+                .isCaseSensitive(true)
                 .isFilteredSearch(true)
-                .isRegexFilter(true)
-                .withFilterString("^.*\\.txt$")
+                .withFilterString("north")
                 .build();
-        final FileSearchLauncher objectUnderTest = new FileSearchLauncher(config, mockStatusReporter);
+        final FileSearcher objectUnderTest = new FileSearcher(config, mockStatusReporter);
 
         objectUnderTest.run();
 
-        Mockito.verify(mockStatusReporter, Mockito.times(6)).reportStatus(Mockito.any());
-        Mockito.verify(mockStatusReporter, Mockito.times(3)).reportSuccess(Mockito.any());
+        Mockito.verify(mockStatusReporter, Mockito.times(5)).reportStatus(Mockito.any());
+        Mockito.verify(mockStatusReporter, Mockito.times(2)).reportSuccess(Mockito.any());
         Mockito.verify(mockStatusReporter, Mockito.times(1)).reportCompletion();
         Mockito.verify(mockStatusReporter, Mockito.times(0)).reportCancellation();
 

@@ -1,5 +1,6 @@
-package com.dg.apps.th.engine.search.content;
+package com.dg.apps.th.engine.search.content.impl;
 
+import com.dg.apps.th.engine.search.content.ISearch;
 import com.dg.apps.th.model.config.SearchConfiguration;
 import com.dg.apps.th.model.exc.FilesystemEnumerationException;
 import com.dg.apps.th.engine.enumeration.FilesystemEnumeratorFactory;
@@ -24,7 +25,7 @@ import java.util.Objects;
  * </p>
  */
 @Slf4j
-public class FileSearchLauncher implements Runnable {
+public class FileSearcher implements ISearch {
     private final SearchConfiguration searchConfig;
     private final IStatusReporter reporter;
     private final List<Thread> threads = new LinkedList<>();
@@ -34,7 +35,7 @@ public class FileSearchLauncher implements Runnable {
     /**
      * Create a new instance.
      */
-    public FileSearchLauncher(final SearchConfiguration pConfig, final IStatusReporter pReporter) {
+    public FileSearcher(final SearchConfiguration pConfig, final IStatusReporter pReporter) {
         log.trace("begin FileSearchLauncher c'tor - " + pConfig.toString());
 
         this.searchConfig = Objects.requireNonNull(pConfig);
@@ -103,6 +104,7 @@ public class FileSearchLauncher implements Runnable {
     /**
      * Request that threads be cancelled.
      */
+    @Override
     public void requestCancel() {
         log.info("requested cancel...");
         for (FileSetSearcher searcher : searchers) {

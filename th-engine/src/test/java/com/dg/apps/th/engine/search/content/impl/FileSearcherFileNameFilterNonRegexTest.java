@@ -1,4 +1,4 @@
-package com.dg.apps.th.engine.search.content;
+package com.dg.apps.th.engine.search.content.impl;
 
 import com.dg.apps.th.engine.testonly.TestBase;
 import com.dg.apps.th.engine.threads.IStatusReporter;
@@ -9,9 +9,9 @@ import org.junit.Test;
 import org.mockito.Mockito;
 
 /**
- * Test {@link FileSearchLauncher}.
+ * Test {@link FileSearcher}.
  */
-public class FileSearchLauncherFileNameFilterNonRegexTest extends TestBase {
+public class FileSearcherFileNameFilterNonRegexTest extends TestBase {
     private IStatusReporter mockStatusReporter;
 
     @Before
@@ -27,7 +27,7 @@ public class FileSearchLauncherFileNameFilterNonRegexTest extends TestBase {
                 .isFilteredSearch(true)
                 .withFilterString("java")
                 .build();
-        final FileSearchLauncher objectUnderTest = new FileSearchLauncher(config, mockStatusReporter);
+        final FileSearcher objectUnderTest = new FileSearcher(config, mockStatusReporter);
 
         objectUnderTest.run();
 
@@ -57,7 +57,7 @@ public class FileSearchLauncherFileNameFilterNonRegexTest extends TestBase {
                 .isFilteredSearch(true)
                 .withFilterString("states")
                 .build();
-        final FileSearchLauncher objectUnderTest = new FileSearchLauncher(config, mockStatusReporter);
+        final FileSearcher objectUnderTest = new FileSearcher(config, mockStatusReporter);
 
         objectUnderTest.run();
 

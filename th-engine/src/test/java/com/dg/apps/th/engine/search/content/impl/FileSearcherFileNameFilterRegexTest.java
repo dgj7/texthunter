@@ -1,4 +1,4 @@
-package com.dg.apps.th.engine.search.content;
+package com.dg.apps.th.engine.search.content.impl;
 
 import com.dg.apps.th.engine.testonly.TestBase;
 import com.dg.apps.th.engine.threads.IStatusReporter;
@@ -9,9 +9,9 @@ import org.junit.Test;
 import org.mockito.Mockito;
 
 /**
- * Test {@link FileSearchLauncher}.
+ * Test {@link FileSearcher}.
  */
-public class FileSearchLauncherFileNameFilterCaseInsensitiveTest extends TestBase {
+public class FileSearcherFileNameFilterRegexTest extends TestBase {
     private IStatusReporter mockStatusReporter;
 
     @Before
@@ -24,11 +24,11 @@ public class FileSearchLauncherFileNameFilterCaseInsensitiveTest extends TestBas
     public final void testMiss() {
         final SearchConfiguration config = CONFIG.get()
                 .withSearchString("north")
-                .isCaseSensitive(false)
                 .isFilteredSearch(true)
-                .withFilterString("failure")
+                .isRegexFilter(true)
+                .withFilterString("^.*\\.java$")
                 .build();
-        final FileSearchLauncher objectUnderTest = new FileSearchLauncher(config, mockStatusReporter);
+        final FileSearcher objectUnderTest = new FileSearcher(config, mockStatusReporter);
 
         objectUnderTest.run();
 
@@ -55,11 +55,11 @@ public class FileSearchLauncherFileNameFilterCaseInsensitiveTest extends TestBas
     public final void testHit() {
         final SearchConfiguration config = CONFIG.get()
                 .withSearchString("north")
-                .isCaseSensitive(false)
                 .isFilteredSearch(true)
-                .withFilterString("north")
+                .isRegexFilter(true)
+                .withFilterString("^.*\\.txt$")
                 .build();
-        final FileSearchLauncher objectUnderTest = new FileSearchLauncher(config, mockStatusReporter);
+        final FileSearcher objectUnderTest = new FileSearcher(config, mockStatusReporter);
 
         objectUnderTest.run();
 

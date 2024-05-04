@@ -1,4 +1,4 @@
-package com.dg.apps.th.engine.search.content;
+package com.dg.apps.th.engine.search.content.impl;
 
 import com.dg.apps.th.engine.search.name.contains.IFileNameSearcher;
 import com.dg.apps.th.engine.search.name.filter.IFileNameFilterer;
