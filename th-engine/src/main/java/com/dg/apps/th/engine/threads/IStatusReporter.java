@@ -1,6 +1,9 @@
 package com.dg.apps.th.engine.threads;
 
 
+import com.dg.apps.th.engine.threads.impl.FileSearchStatusReporter;
+import com.dg.apps.th.model.adapter.ILabelAdapter;
+import com.dg.apps.th.model.adapter.ITableAdapter;
 import com.dg.apps.th.model.status.FileSearchStatusMessage;
 import com.dg.apps.th.model.status.FileSearchSuccessMessage;
 
@@ -33,4 +36,11 @@ public interface IStatusReporter {
      * Report cancellation.
      */
     void reportCancellation();
+
+    /**
+     * Provide {@link IStatusReporter}.
+     */
+    static IStatusReporter create(final ITableAdapter tableAdapter, final ILabelAdapter labelAdapter) {
+        return new FileSearchStatusReporter(tableAdapter, labelAdapter);
+    }
 }
