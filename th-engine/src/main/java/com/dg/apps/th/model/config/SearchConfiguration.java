@@ -68,15 +68,6 @@ public class SearchConfiguration {
     }
 
     /**
-     * Generate the file name pattern.
-     */
-    public Pattern generateFileNamePattern() {
-        if (isFilteredSearch() && isRegexFileNameFilter())
-            return Pattern.compile(getFilterString());
-        return null;
-    }
-
-    /**
      * {@inheritDoc}
      */
     public String toString() {

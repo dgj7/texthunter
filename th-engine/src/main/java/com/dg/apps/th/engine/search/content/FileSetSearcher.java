@@ -36,9 +36,7 @@ public class FileSetSearcher implements Runnable {
     private final IStatusReporter reporter;
     private final List<File> files;
     private final SearchConfiguration config;
-    private final FileSearchStatusMessage status = new FileSearchStatusMessage();
     private final Pattern pattern;
-    private final Pattern fileNamePattern;
 
     private final long totalFiles;
     private long linesFound = 0;
@@ -57,7 +55,6 @@ public class FileSetSearcher implements Runnable {
 
         totalFiles = files.size();
         pattern = config.generateSearchStringPattern();
-        fileNamePattern = config.generateFileNamePattern();
         threadStatus = ThreadStatus.idle;
     }
 
@@ -159,17 +156,18 @@ public class FileSetSearcher implements Runnable {
     /**
      * Search a file name.
      */
-    // todo: should this be using the file name search impls?
-    // todo: before that, add unit tests for cs/cis, regex, and disabled (not sure about disabled)
     private void searchFileName(final File file) {
-        final String fileName = Optional.ofNullable(file).map(f -> f.getName()).orElse("");
+        final String fileName = Optional.ofNullable(file)
+                .map(File::getName)
+                .orElse("");
         if (StringUtils.isNotEmpty(fileName)) {
             final FileNameSearchResult fnsr = IFileNameSearcher.create(config).searchFileName(fileName, config);
 
             if (fnsr.isFound()) {
                 final FileSearchSuccessMessage msg = new FileSearchSuccessMessage(file, null, null);
                 reporter.reportSuccess(msg);
-                if (!config.isSearchFileContent()) {// increment file searched counter if and only if file contents are not searched
+                /* increment file searched counter if and only if file contents are not searched */
+                if (!config.isSearchFileContent()) {
                     this.filesSearched++;
                 }
                 this.linesFound++;

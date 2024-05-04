@@ -33,12 +33,10 @@ public class RegexFileNameFilterer implements IFileNameFilterer {
      * {@inheritDoc
      */
     @Override
-    public FileNameFilterResult filterFileName(String fileName, final SearchConfiguration config) {
-        final Pattern fileNamePattern = config.generateFileNamePattern();
-        final Matcher fileNameMatcher = fileNamePattern.matcher(fileName);
-
-        if (fileNameMatcher.find())
+    public FileNameFilterResult filterFileName(final String fileName, final SearchConfiguration config) {
+        if (Pattern.matches(config.getFilterString(), fileName)) {
             return FileNameFilterResult.Passed;
+        }
         return FileNameFilterResult.Failed;
     }
 }
