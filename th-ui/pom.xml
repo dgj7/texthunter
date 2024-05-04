@@ -28,9 +28,15 @@
 			<version>1.18.32</version>
 			<scope>provided</scope>
 		</dependency>
+
 		<dependency>
 			<groupId>com.dg.apps.th.engine</groupId>
 			<artifactId>th-engine</artifactId>
+			<version>0.0.1</version>
+		</dependency>
+		<dependency>
+			<groupId>com.dg.apps.th.model</groupId>
+			<artifactId>th-model</artifactId>
 			<version>0.0.1</version>
 		</dependency>
 

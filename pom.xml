@@ -12,7 +12,8 @@
 	<modules>
 		<module>th-ui</module>
 		<module>th-engine</module>
-	</modules>
+        <module>th-model</module>
+    </modules>
 	
 	<dependencies>
 		<dependency>

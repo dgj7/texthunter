@@ -24,7 +24,9 @@ hs_err_pid*
 # custom
 .idea/
 texthunter.iml
+th-model/target/
 th-ui/target/
 th-engine/target/
+th-model/th-model.iml
 th-ui/th-ui.iml
 th-engine/th-engine.iml
