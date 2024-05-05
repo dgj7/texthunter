@@ -1,7 +1,6 @@
 package com.dg.apps.th.engine.search.content.impl;
 
 import com.dg.apps.th.engine.enumeration.IFilesystemEnumerator;
-import com.dg.apps.th.engine.exc.TextHunterEngineException;
 import com.dg.apps.th.engine.search.content.ISearch;
 import com.dg.apps.th.engine.threads.IStatusReporter;
 import com.dg.apps.th.model.config.SearchConfiguration;
@@ -34,7 +33,7 @@ public class FileSearcher implements ISearch {
      * Create a new instance.
      */
     public FileSearcher(final SearchConfiguration pConfig, final IStatusReporter pReporter) {
-        log.trace("begin FileSearchLauncher c'tor - " + pConfig.toString());
+        log.trace("begin FileSearchLauncher c'tor - {}", pConfig.toString());
 
         this.searchConfig = Objects.requireNonNull(pConfig, "SearchConfiguration is null");
         this.reporter = Objects.requireNonNull(pReporter, "IStatusReporter is null");
@@ -47,16 +46,14 @@ public class FileSearcher implements ISearch {
      */
     public void run() {
             final Instant start = Instant.now();
-            log.info("launching search with: " + searchConfig.toString());
+            log.info("launching search with: {}", searchConfig.toString());
 
             final Instant beforeEnumeratingFiles = Instant.now();
             final List<File> lstFiles = IFilesystemEnumerator.create(searchConfig.getRecursingSubdirectories())
                     .enumerateAllFiles(searchConfig.getPathString());
             log.debug("found [{}] files to search ({}ms)", lstFiles.size(), Duration.between(beforeEnumeratingFiles, Instant.now()).toMillis());
 
-            final Instant beforeSplit = Instant.now();
             final List<List<File>> lstSplitLists = ListUtility.splitList(lstFiles, searchConfig.getThreadCount());
-            log.debug("split into [{}] lists ({}ms)", lstSplitLists.size(), Duration.between(beforeSplit, Instant.now()).toMillis());
 
             for (int c = 0; c < lstSplitLists.size(); c++) {
                 final List<File> lstSplitFiles = lstSplitLists.get(c);
@@ -69,7 +66,7 @@ public class FileSearcher implements ISearch {
             }
 
             while (!this.allThreadsCompleted()) {
-                // do nothing
+                //
             }
 
             reporter.reportCompletion();

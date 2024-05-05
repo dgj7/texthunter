@@ -39,7 +39,7 @@ public class FileSearcherTest extends TestBase {
         Assert.assertEquals("end FileSearchLauncher c'tor", getLogAppender().getMessages().get(1));
         Assert.assertTrue(getLogAppender().getMessages().get(2).startsWith("launching search with: "));
         Assert.assertTrue(getLogAppender().getMessages().get(3).startsWith("found [1] files to search ("));
-        Assert.assertTrue(getLogAppender().getMessages().get(4).startsWith("split into [1] lists ("));
+        Assert.assertTrue(getLogAppender().getMessages().get(4).startsWith("finished splitting into [1] lists ("));
         Assert.assertTrue(getLogAppender().getMessages().get(5).startsWith("beginning search: "));
         Assert.assertEquals("beginning batch search of files", getLogAppender().getMessages().get(6));
         Assert.assertEquals("checking if states-including-northern-states.txt passes filename filter...", getLogAppender().getMessages().get(7));
@@ -69,7 +69,7 @@ public class FileSearcherTest extends TestBase {
         Assert.assertEquals("end FileSearchLauncher c'tor", getLogAppender().getMessages().get(1));
         Assert.assertTrue(getLogAppender().getMessages().get(2).startsWith("launching search with: "));
         Assert.assertTrue(getLogAppender().getMessages().get(3).startsWith("found [1] files to search ("));
-        Assert.assertTrue(getLogAppender().getMessages().get(4).startsWith("split into [1] lists ("));
+        Assert.assertTrue(getLogAppender().getMessages().get(4).startsWith("finished splitting into [1] lists ("));
         Assert.assertTrue(getLogAppender().getMessages().get(5).startsWith("beginning search: "));
         Assert.assertEquals("beginning batch search of files", getLogAppender().getMessages().get(6));
         Assert.assertEquals("checking if states-including-northern-states.txt passes filename filter...", getLogAppender().getMessages().get(7));
