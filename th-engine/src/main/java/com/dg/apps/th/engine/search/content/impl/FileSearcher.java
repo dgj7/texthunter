@@ -68,13 +68,8 @@ public class FileSearcher implements ISearch {
                 searchers.add(searcher);
             }
 
-            // todo: stop using sleep here; countdownlatch perhaps
             while (!this.allThreadsCompleted()) {
-                try {
-                    Thread.sleep(searchConfig.getThreadsCompleteSleepTime());
-                } catch (InterruptedException iex) {
-                    throw new TextHunterEngineException(iex);
-                }
+                // do nothing
             }
 
             reporter.reportCompletion();
