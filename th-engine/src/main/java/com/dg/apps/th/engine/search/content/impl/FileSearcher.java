@@ -22,6 +22,7 @@ import java.util.Objects;
  * Searches all files in the selected search configuration.
  * </p>
  */
+// todo: what happens if a file is deleted mid-search? should investigate behavior there
 @Slf4j
 public class FileSearcher implements ISearch {
     private final SearchConfiguration searchConfig;
@@ -51,7 +52,7 @@ public class FileSearcher implements ISearch {
             final Instant beforeEnumeratingFiles = Instant.now();
             final List<File> lstFiles = IFilesystemEnumerator.create(searchConfig.getRecursingSubdirectories())
                     .enumerateAllFiles(searchConfig.getPathString());
-            log.debug("found [{}] files to search ({}ms)", lstFiles.size(), Duration.between(beforeEnumeratingFiles, Instant.now()).toMillis());
+            log.info("found [{}] files to search ({}ms)", lstFiles.size(), Duration.between(beforeEnumeratingFiles, Instant.now()).toMillis());
 
             final List<List<File>> lstSplitLists = ListUtility.splitList(lstFiles, searchConfig.getThreadCount());
 
