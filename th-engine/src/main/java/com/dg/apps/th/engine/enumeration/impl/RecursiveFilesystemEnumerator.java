@@ -38,10 +38,11 @@ public class RecursiveFilesystemEnumerator extends AbstractFilesystemEnumerator 
      */
     @Override
     public List<File> enumerateAllFiles(final String filePath) {
-        final List<File> lstFiles = new ArrayList<File>();
-
         if (!isValidDirectoryName(filePath))
             return new ArrayList<>(0);
+
+        final List<File> lstFiles = new ArrayList<File>();
+
         final File folder = new File(filePath);
         lstFiles.addAll(recursiveEnumerateAllFiles(folder));
 

@@ -46,9 +46,9 @@ public class FileSetSearcher implements Runnable {
      * Create a new instance.
      */
     public FileSetSearcher(final List<File> pFiles, final SearchConfiguration pConfig, final IStatusReporter pReporter) {
-        files = Objects.requireNonNull(pFiles);
-        config = Objects.requireNonNull(pConfig);
-        reporter = Objects.requireNonNull(pReporter);
+        files = Objects.requireNonNull(pFiles, "List<File> is null");
+        config = Objects.requireNonNull(pConfig, "SearchConfiguration is null");
+        reporter = Objects.requireNonNull(pReporter, "IStatusReporter is null");
 
         totalFiles = files.size();
         pattern = config.generateSearchStringPattern();

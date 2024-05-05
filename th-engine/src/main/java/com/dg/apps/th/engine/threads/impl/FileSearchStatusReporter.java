@@ -22,8 +22,8 @@ public class FileSearchStatusReporter implements IStatusReporter {
      * Create a new instance.
      */
     public FileSearchStatusReporter(final ITableAdapter pTable, final ILabelAdapter pLabel) {
-        table = Objects.requireNonNull(pTable);
-        label = Objects.requireNonNull(pLabel);
+        table = Objects.requireNonNull(pTable, "ITableAdapter is null");
+        label = Objects.requireNonNull(pLabel, "ILabelAdapter is null");
     }
 
     /**

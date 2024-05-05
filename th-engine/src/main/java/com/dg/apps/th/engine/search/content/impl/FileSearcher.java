@@ -36,8 +36,8 @@ public class FileSearcher implements ISearch {
     public FileSearcher(final SearchConfiguration pConfig, final IStatusReporter pReporter) {
         log.trace("begin FileSearchLauncher c'tor - " + pConfig.toString());
 
-        this.searchConfig = Objects.requireNonNull(pConfig);
-        this.reporter = Objects.requireNonNull(pReporter);
+        this.searchConfig = Objects.requireNonNull(pConfig, "SearchConfiguration is null");
+        this.reporter = Objects.requireNonNull(pReporter, "IStatusReporter is null");
 
         log.trace("end FileSearchLauncher c'tor");
     }

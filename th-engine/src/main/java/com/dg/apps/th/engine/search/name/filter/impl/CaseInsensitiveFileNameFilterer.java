@@ -4,6 +4,7 @@ import com.dg.apps.th.engine.search.name.filter.IFileNameFilterer;
 import com.dg.apps.th.model.config.SearchConfiguration;
 import com.dg.apps.th.model.def.FileNameFilterResult;
 
+import java.util.Objects;
 import java.util.Optional;
 
 /**
@@ -32,14 +33,10 @@ public class CaseInsensitiveFileNameFilterer implements IFileNameFilterer {
      * {@inheritDoc
      */
     @Override
-    public FileNameFilterResult filterFileName(final String pFileName, final SearchConfiguration config) {
-        final String fileName = Optional.ofNullable(pFileName)
-                .map(String::toLowerCase)
-                .orElse("");
-        final String filterString = Optional.ofNullable(config)
-                .map(SearchConfiguration::getFilterString)
-                .map(String::toLowerCase)
-                .orElse("");
+    public FileNameFilterResult filterFileName(final String pFileName, final SearchConfiguration pConfig) {
+        final String fileName = Objects.requireNonNull(pFileName, "FileName(String) is null").toLowerCase();
+        final SearchConfiguration config = Objects.requireNonNull(pConfig, "SearchConfiguration is null");
+        final String filterString = Objects.requireNonNull(config.getFilterString(), "SearchConfiguration.FilterString is null").toLowerCase();
 
         if (fileName.contains(filterString))
             return FileNameFilterResult.Passed;
