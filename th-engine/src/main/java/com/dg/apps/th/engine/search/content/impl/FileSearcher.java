@@ -83,6 +83,7 @@ public class FileSearcher implements ISearch {
         for (Thread thread : threads) {
             if (thread.getState() != Thread.State.TERMINATED) {
                 completed = false;
+                break;
             }
         }
 
