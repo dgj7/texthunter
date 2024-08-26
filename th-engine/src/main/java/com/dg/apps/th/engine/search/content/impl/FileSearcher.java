@@ -56,15 +56,14 @@ public class FileSearcher implements ISearch {
 
             final List<List<File>> lstSplitLists = ListUtility.splitList(lstFiles, searchConfig.getThreadCount());
 
-            for (int c = 0; c < lstSplitLists.size(); c++) {
-                final List<File> lstSplitFiles = lstSplitLists.get(c);
-                final FileSetSearcher searcher = new FileSetSearcher(lstSplitFiles, searchConfig, reporter);
-                final Thread thread = new Thread(searcher);
+        for (final List<File> lstSplitFiles : lstSplitLists) {
+            final FileSetSearcher searcher = new FileSetSearcher(lstSplitFiles, searchConfig, reporter);
+            final Thread thread = new Thread(searcher);
 
-                thread.start();
-                threads.add(thread);
-                searchers.add(searcher);
-            }
+            thread.start();
+            threads.add(thread);
+            searchers.add(searcher);
+        }
 
             while (!this.allThreadsCompleted()) {
                 //
