@@ -5,7 +5,6 @@ import com.dg.apps.th.model.config.SearchConfiguration;
 import com.dg.apps.th.model.def.FileNameSearchResult;
 
 import java.util.Objects;
-import java.util.Optional;
 
 /**
  * {@link IFileNameSearcher} that's case-insensitive contains.

@@ -46,15 +46,15 @@ public class FileSearcher implements ISearch {
      * {@inheritDoc}
      */
     public void run() {
-            final Instant start = Instant.now();
-            log.info("launching search with: {}", searchConfig.toString());
+        final Instant start = Instant.now();
+        log.info("launching search with: {}", searchConfig.toString());
 
-            final Instant beforeEnumeratingFiles = Instant.now();
-            final List<File> lstFiles = IFilesystemEnumerator.create(searchConfig.getRecursingSubdirectories())
-                    .enumerateAllFiles(searchConfig.getPathString());
-            log.info("found [{}] files to search ({}ms)", lstFiles.size(), Duration.between(beforeEnumeratingFiles, Instant.now()).toMillis());
+        final Instant beforeEnumeratingFiles = Instant.now();
+        final List<File> lstFiles = IFilesystemEnumerator.create(searchConfig.getRecursingSubdirectories())
+                .enumerateAllFiles(searchConfig.getPathString());
+        log.info("found [{}] files to search ({}ms)", lstFiles.size(), Duration.between(beforeEnumeratingFiles, Instant.now()).toMillis());
 
-            final List<List<File>> lstSplitLists = ListUtility.splitList(lstFiles, searchConfig.getThreadCount());
+        final List<List<File>> lstSplitLists = ListUtility.splitList(lstFiles, searchConfig.getThreadCount());
 
         for (final List<File> lstSplitFiles : lstSplitLists) {
             final FileSetSearcher searcher = new FileSetSearcher(lstSplitFiles, searchConfig, reporter);
@@ -65,12 +65,12 @@ public class FileSearcher implements ISearch {
             searchers.add(searcher);
         }
 
-            while (!this.allThreadsCompleted()) {
-                //
-            }
+        while (!this.allThreadsCompleted()) {
+            //
+        }
 
-            reporter.reportCompletion();
-            log.info("search completed ({}ms).", Duration.between(start, Instant.now()).toMillis());
+        reporter.reportCompletion();
+        log.info("search completed ({}ms).", Duration.between(start, Instant.now()).toMillis());
     }
 
     /**

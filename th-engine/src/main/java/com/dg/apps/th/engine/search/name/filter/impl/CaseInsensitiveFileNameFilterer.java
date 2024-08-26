@@ -5,7 +5,6 @@ import com.dg.apps.th.model.config.SearchConfiguration;
 import com.dg.apps.th.model.def.FileNameFilterResult;
 
 import java.util.Objects;
-import java.util.Optional;
 
 /**
  * {@link IFileNameFilterer} that's case-insensitive.

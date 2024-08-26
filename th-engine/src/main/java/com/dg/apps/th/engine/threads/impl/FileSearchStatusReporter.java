@@ -1,7 +1,7 @@
 package com.dg.apps.th.engine.threads.impl;
 
-import com.dg.apps.th.model.adapter.ILabelAdapter;
 import com.dg.apps.th.engine.threads.IStatusReporter;
+import com.dg.apps.th.model.adapter.ILabelAdapter;
 import com.dg.apps.th.model.adapter.ITableAdapter;
 import com.dg.apps.th.model.status.FileSearchStatusMessage;
 import com.dg.apps.th.model.status.FileSearchSuccessMessage;

@@ -1,9 +1,9 @@
 package com.dg.apps.th.ui.view.frame;
 
+import com.dg.apps.th.engine.adapter.ISearchAware;
 import com.dg.apps.th.engine.search.content.ISearch;
 import com.dg.apps.th.model.Constants;
 import com.dg.apps.th.model.adapter.ILabelAdapter;
-import com.dg.apps.th.engine.adapter.ISearchAware;
 import com.dg.apps.th.model.config.SearchConfiguration;
 import com.dg.apps.th.model.def.ThreadStatus;
 import com.dg.apps.th.model.status.FileSearchStatusMessage;

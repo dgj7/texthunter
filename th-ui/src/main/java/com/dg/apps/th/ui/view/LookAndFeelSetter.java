@@ -27,7 +27,8 @@ public class LookAndFeelSetter {
     public static void setLookAndFeel(final String className) {
         try {
             UIManager.setLookAndFeel(className);
-        } catch (UnsupportedLookAndFeelException | ClassNotFoundException | InstantiationException | IllegalAccessException ex) {
+        } catch (UnsupportedLookAndFeelException | ClassNotFoundException | InstantiationException |
+                 IllegalAccessException ex) {
             throw new TextHunterUserInterfaceException(ex);
         }
     }
