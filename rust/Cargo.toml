@@ -1,0 +1,11 @@
+[package]
+name = "text-hunter"
+version = "0.2.11"
+authors = ["dave garcia <garciad48879@gmail.com>"]
+edition = "2021"
+rust-version = "1.76"
+publish = false
+
+[dependencies]
+eframe = "0.28.1"
+native-dialog = "0.6.3"
