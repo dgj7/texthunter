@@ -17,6 +17,8 @@ jobs:
         java-version: '17'
         distribution: 'temurin'
         cache: maven
+    - name: Permissions
+      run: chmod +x mvnw
     - name: BuildMaven
       run: ./mvnw -B package
       working-directory: ./java
