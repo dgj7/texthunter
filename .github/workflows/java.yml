@@ -19,6 +19,7 @@ jobs:
         cache: maven
     - name: Permissions
       run: chmod +x mvnw
+      working-directory: ./java
     - name: BuildMaven
       run: ./mvnw -B package
       working-directory: ./java
