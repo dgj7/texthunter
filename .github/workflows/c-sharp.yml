@@ -2,9 +2,11 @@ name: c-sharp
 
 on:
   push:
-    branches: [ "master" ]
+    paths:
+    - c#/**
   pull_request:
-    branches: [ "master" ]
+    paths:
+    - c#/**
 
 jobs:
   build:
