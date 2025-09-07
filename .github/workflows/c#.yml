@@ -1,0 +1,21 @@
+name: c#
+
+on:
+  push:
+    branches: [ "master" ]
+  pull_request:
+    branches: [ "master" ]
+
+jobs:
+  build:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Setup csc.exe
+        uses: yoavain/Setup-CSC@v5
+      - name: Permissions
+        run: chmod +x build.bat
+        working-directory: ./c#
+      - name: Compile
+        run: ./build.bat
+        working-directory: ./c#
