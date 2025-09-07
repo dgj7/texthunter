@@ -1,4 +1,4 @@
-name: c#
+name: c-sharp
 
 on:
   push:
@@ -11,8 +11,6 @@ jobs:
     runs-on: windows-latest
     steps:
       - uses: actions/checkout@v4
-      - name: Setup csc.exe
-        uses: yoavain/Setup-CSC@v5
       - name: Permissions
         run: chmod +x build.bat
         working-directory: ./c#
