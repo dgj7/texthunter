@@ -28,5 +28,6 @@ multi-threaded desktop file search built with Rust.
 * [x] controls: ~~find a library that handles controls, cross platform~~ egui
 * [x] add mouse-over tooltips for various input options
 * [ ] threading library?
+* [ ] unit tests
 
 ---
