@@ -7,8 +7,8 @@
 ::
 :: This script expects the following:
 :: ../src		source files
-:: ../bin		compilation target directory
-:: ../build		build files, including this script
+:: ../target	compilation target directory
+:: ..			build files, including this script
 ::
 :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
 
