@@ -22,6 +22,9 @@ multi-threaded desktop file search built with Rust.
 	</tr>
 </table>
 
+## UI
+![rust-main-gui](../.docs/rust-main.PNG)
+
 ## Todo
 * [x] windowing: winit
 * [x] child windows (for each search): ~~Winit can handle this part~~ egui
@@ -31,3 +34,4 @@ multi-threaded desktop file search built with Rust.
 * [ ] unit tests
 
 ---
+[Go Back](..)
