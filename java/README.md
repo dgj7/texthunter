@@ -2,6 +2,11 @@
 ## Purpose
 A desktop file search application.
 
+## UI
+![java-main-ui](../.docs/java-main.PNG)
+![java-logs-ui](../.docs/java-log.PNG)
+![java-options-ui](../.docs/java-options.PNG)
+
 ## Todo
 ### code improvements
 * versioning
